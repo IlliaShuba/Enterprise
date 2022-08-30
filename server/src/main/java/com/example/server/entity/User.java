@@ -1,4 +1,4 @@
-package com.example.server.models;
+package com.example.server.entity;
 
 import com.sun.istack.NotNull;
 

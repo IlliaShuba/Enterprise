@@ -1,9 +1,9 @@
-package com.example.server.models;
+package com.example.server.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="role",uniqueConstraints=@UniqueConstraint(columnNames={"login"}))
+@Table(name="role")
 public class Role {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
