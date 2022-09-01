@@ -27,6 +27,15 @@ public class ShopController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity showAllShop(){
+        try {
+            return ResponseEntity.ok(shopService.getAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Произошла ошибка");
+        }
+    }
+
     @DeleteMapping
     public ResponseEntity deleteShop(@RequestParam Integer id){
         try {

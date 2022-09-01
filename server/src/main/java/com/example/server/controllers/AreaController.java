@@ -21,4 +21,22 @@ public class AreaController {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
+
+    @GetMapping
+    public ResponseEntity showAllArea(){
+        try {
+            return ResponseEntity.ok(areaService.getAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Произошла ошибка");
+        }
+    }
+
+    @DeleteMapping
+    public ResponseEntity deleteArea(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(areaService.deleteArea(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Произошла ошибка");
+        }
+    }
 }

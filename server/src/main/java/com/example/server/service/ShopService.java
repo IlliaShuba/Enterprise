@@ -20,6 +20,11 @@ public class ShopService {
     @Autowired
     AreaRepository areaRepository;
 
+    public Iterable<Shop>  getAll(){
+        Iterable<Shop> set = shopRepository.findAll();
+        return set;
+    }
+
     public Shop createShop(Shop shop){
         return shopRepository.save(shop);
     }
