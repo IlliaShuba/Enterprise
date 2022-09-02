@@ -10,7 +10,9 @@ public class Area {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String type;
-
+    @OneToOne(mappedBy = "area", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private EngineeringStaff head;
     @ManyToOne
     @JoinColumn(name = "shop_id")
     private Shop shop;

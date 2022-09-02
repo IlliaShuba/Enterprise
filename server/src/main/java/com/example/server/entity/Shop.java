@@ -1,6 +1,7 @@
 package com.example.server.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -9,9 +10,11 @@ public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
-    private Set<Area> area;
+    private Set<Area> area = new HashSet<>();
+    @OneToOne(mappedBy = "shop", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private EngineeringStaff head;
 
 
     public Shop() {
