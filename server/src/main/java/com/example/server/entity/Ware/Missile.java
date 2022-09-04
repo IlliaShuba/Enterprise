@@ -1,4 +1,6 @@
-package com.example.server.entity;
+package com.example.server.entity.Ware;
+
+import com.example.server.entity.Brigade;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,4 +17,8 @@ public class Missile {
     private LocalDateTime finishCreate;
     private LocalDateTime startTest;
     private LocalDateTime finishTest;
+
+    @OneToOne(mappedBy = "missile", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Brigade brigade;
 }

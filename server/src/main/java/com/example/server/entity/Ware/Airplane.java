@@ -1,19 +1,25 @@
-package com.example.server.entity;
+package com.example.server.entity.Ware;
+
+import com.example.server.entity.Brigade;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "hangGlider")
-public class HangGlider {
+@Table(name = "airplane")
+public class Airplane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String typeOfWorks;
-    private Integer weight;
+    private Integer numberOfEngines;
     private LocalDateTime startCreate;
     private LocalDateTime finishCreate;
     private LocalDateTime startTest;
     private LocalDateTime finishTest;
+
+    @OneToOne(mappedBy = "airplane", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Brigade brigade;
 
 }

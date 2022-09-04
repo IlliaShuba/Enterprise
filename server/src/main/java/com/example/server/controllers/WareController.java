@@ -1,6 +1,5 @@
 package com.example.server.controllers;
 
-import com.example.server.entity.Ware;
 import com.example.server.service.WareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
