@@ -22,17 +22,18 @@ public class AreaService {
         return areaRepository.save(area);
     }
 
-    public Iterable<Area>  getAll(){
-        Iterable<Area> set = areaRepository.findAll();
+    public Iterable<Area> getByShopId(Integer id){
+        Iterable<Area> set = areaRepository.findAllByShopId(id);
         return set;
     }
+
     public Integer deleteArea(Integer id){
         areaRepository.deleteById(id);
         return id;
     }
 
 
-    public AreaDto toShopDto(Area entity){
+    public AreaDto toDto(Area entity){
         AreaDto dto = new AreaDto();
         dto.setId(entity.getId());
         dto.setType(entity.getType());

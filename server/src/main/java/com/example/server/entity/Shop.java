@@ -1,5 +1,7 @@
 package com.example.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +13,7 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
+    @JsonManagedReference
     private Set<Area> area = new HashSet<>();
     @OneToOne(mappedBy = "shop", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn

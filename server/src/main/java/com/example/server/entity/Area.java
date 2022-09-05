@@ -1,6 +1,11 @@
 package com.example.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "area")
@@ -10,11 +15,17 @@ public class Area {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String type;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    @JsonManagedReference
+    private Set<Brigade> brigades = new HashSet<>();
+
     @OneToOne(mappedBy = "area", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private EngineeringStaff head;
     @ManyToOne
     @JoinColumn(name = "shop_id")
+    @JsonBackReference
     private Shop shop;
 
     public Integer getId() {

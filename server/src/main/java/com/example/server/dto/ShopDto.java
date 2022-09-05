@@ -1,9 +1,11 @@
 package com.example.server.dto;
 
-import java.util.List;
+import com.example.server.entity.Area;
+
+import java.util.Set;
 
 public class ShopDto {
-    /*public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -11,15 +13,15 @@ public class ShopDto {
         this.id = id;
     }
 
-    public List<Area> getArea() {
+    public Set<Area> getArea() {
         return area;
     }
 
-    public void setArea(List<Area> area) {
+    public void setArea(Set<Area> area) {
         this.area = area;
     }
 
     private Integer id;
-    private List<Area> area;*/
+    private Set<Area> area;
 
 }

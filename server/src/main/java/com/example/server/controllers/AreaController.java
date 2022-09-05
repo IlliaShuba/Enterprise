@@ -23,9 +23,9 @@ public class AreaController {
     }
 
     @GetMapping
-    public ResponseEntity showAllArea(){
+    public ResponseEntity getAllAreaInShop(@RequestParam Integer id){
         try {
-            return ResponseEntity.ok(areaService.getAll());
+            return ResponseEntity.ok(areaService.getByShopId(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }

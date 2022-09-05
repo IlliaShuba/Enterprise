@@ -1,5 +1,7 @@
 package com.example.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ public class Worker {
 
     @ManyToOne
     @JoinColumn(name = "brigade_id")
+    @JsonBackReference
     private Brigade brigade;
 
 

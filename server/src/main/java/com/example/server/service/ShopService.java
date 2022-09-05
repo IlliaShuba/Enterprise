@@ -35,11 +35,11 @@ public class ShopService {
     }
 
 
-    /*public ShopDto toShopDto(Shop entity){
+    public ShopDto toDto(Shop entity){
         ShopDto dto = new ShopDto();
         dto.setId(entity.getId());
         //dto.setArea(entity.getArea().stream().map(Area::toAreaDto).collect(Collectors.toList()));
         return dto;
-    }*/
+    }
 
 }
