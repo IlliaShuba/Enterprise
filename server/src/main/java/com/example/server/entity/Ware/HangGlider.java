@@ -19,7 +19,7 @@ public class HangGlider {
     private LocalDateTime startTest;
     private LocalDateTime finishTest;
 
-    @OneToOne(mappedBy = "hangGlider", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne
+    @MapsId
     private Brigade brigade;
 }

@@ -18,8 +18,8 @@ public class Airplane {
     private LocalDateTime startTest;
     private LocalDateTime finishTest;
 
-    @OneToOne(mappedBy = "airplane", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne
+    @MapsId
     private Brigade brigade;
 
 }

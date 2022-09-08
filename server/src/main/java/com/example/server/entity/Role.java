@@ -9,23 +9,23 @@ public class Role {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    private String access_right;
+    private String accessRight;
 
 
     public Integer getId() {
         return id;
     }
 
-    public String getAccess_right() {
-        return access_right;
+    public String getAccessRight() {
+        return accessRight;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setAccess_right(String access_right) {
-        this.access_right = access_right;
+    public void setAccessRight(String accessRight) {
+        this.accessRight = accessRight;
     }
 
 

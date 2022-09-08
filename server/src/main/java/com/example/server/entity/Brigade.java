@@ -22,20 +22,20 @@ public class Brigade {
     @JsonManagedReference
     private Set<Worker> worker = new HashSet<>();
 
-    @OneToOne
-    @MapsId
+    @OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Airplane airplane;
-    @OneToOne
-    @MapsId
+    @OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Glider glider;
-    @OneToOne
-    @MapsId
+    @OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private HangGlider hangGlider;
-    @OneToOne
-    @MapsId
+    @OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Helicopter helicopter;
-    @OneToOne
-    @MapsId
+    @OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Missile missile;
 
 

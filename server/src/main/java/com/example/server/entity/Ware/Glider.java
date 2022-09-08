@@ -18,7 +18,7 @@ public class Glider {
     private LocalDateTime startTest;
     private LocalDateTime finishTest;
 
-    @OneToOne(mappedBy = "glider", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne
+    @MapsId
     private Brigade brigade;
 }

@@ -18,7 +18,7 @@ public class Helicopter {
     private LocalDateTime startTest;
     private LocalDateTime finishTest;
 
-    @OneToOne(mappedBy = "helicopter", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne
+    @MapsId
     private Brigade brigade;
 }
