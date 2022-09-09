@@ -66,7 +66,7 @@ public class UserController {
         user.setLogin(body.getLogin());
         user.setPassword(passwordEncoder.encode(body.getPassword()));
 
-        Role roles = roleRepository.findByAccessRight("ROLE_ADMIN").get();
+        Role roles = roleRepository.findByAccessRight("ADMIN").get();
         user.setRoles(Collections.singleton(roles));
 
         userRepository.save(user);
