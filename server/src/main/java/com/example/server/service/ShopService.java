@@ -1,24 +1,23 @@
 package com.example.server.service;
 
 import com.example.server.dto.ShopDto;
-import com.example.server.entity.Area;
+import com.example.server.entity.EngineeringStaff;
 import com.example.server.entity.Shop;
 import com.example.server.repository.AreaRepository;
+import com.example.server.repository.EngineeringStaffRepository;
 import com.example.server.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class ShopService {
 
     @Autowired
     ShopRepository shopRepository;
-
     @Autowired
     AreaRepository areaRepository;
+    @Autowired
+    EngineeringStaffRepository engineeringStaffRepository;
 
     public Iterable<Shop>  getAll(){
         Iterable<Shop> set = shopRepository.findAll();
@@ -27,6 +26,13 @@ public class ShopService {
 
     public Shop createShop(Shop shop){
         return shopRepository.save(shop);
+    }
+
+    public Shop setHead(Integer shopId,Integer headId){
+        Shop shop = shopRepository.findById(shopId).orElseThrow();
+        EngineeringStaff head = engineeringStaffRepository.findById(headId).orElseThrow();
+        shop.setHead(head);
+        return  shopRepository.save(shop);
     }
 
     public Integer deleteShop(Integer id){

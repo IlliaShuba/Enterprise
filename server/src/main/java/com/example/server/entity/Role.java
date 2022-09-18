@@ -1,8 +1,15 @@
 package com.example.server.entity;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@Getter
+@Setter
 @Table(name="role")
 public class Role {
     @Id
@@ -10,23 +17,5 @@ public class Role {
     private Integer id;
 
     private String accessRight;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getAccessRight() {
-        return accessRight;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setAccessRight(String accessRight) {
-        this.accessRight = accessRight;
-    }
-
 
 }

@@ -1,11 +1,24 @@
 package com.example.server.entity.Ware;
 
-import com.example.server.entity.Brigade;
+import com.example.server.entity.Area;
+import com.example.server.entity.Equipment;
+import com.example.server.entity.Laboratory;
+import com.example.server.entity.Shop;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Data
+@Getter
+@Setter
 @Table(name = "helicopter")
 public class Helicopter {
     @Id
@@ -18,7 +31,19 @@ public class Helicopter {
     private LocalDateTime startTest;
     private LocalDateTime finishTest;
 
-    @OneToOne
-    @MapsId
-    private Brigade brigade;
+    @OneToMany(mappedBy = "helicopter")
+    @JsonManagedReference
+    private Set<Equipment> equipment = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    @JsonBackReference
+    private Shop shop;
+    @ManyToOne
+    @JoinColumn(name = "area_id")
+    @JsonBackReference
+    private Area area;
+    @ManyToOne
+    @JoinColumn(name = "laboratory_id")
+    @JsonBackReference
+    private Laboratory laboratory;
 }
