@@ -24,7 +24,9 @@ public class ShopService {
         return set;
     }
 
-    public Shop createShop(Shop shop){
+    public Shop createShop(Shop shop, Integer headId){
+        EngineeringStaff head = engineeringStaffRepository.findById(headId).orElseThrow();
+        shop.setHead(head);
         return shopRepository.save(shop);
     }
 

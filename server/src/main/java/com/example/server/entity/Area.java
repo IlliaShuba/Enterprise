@@ -27,11 +27,10 @@ public class Area {
     @JsonManagedReference
     private Set<Brigade> brigades = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "area_id", referencedColumnName = "id", nullable = false)
+    @OneToOne
     private EngineeringStaff head;
 
-    @OneToMany(mappedBy = "area")
+    @OneToMany
     @JsonManagedReference
     private Set<EngineeringStaff> master = new HashSet<>();
 

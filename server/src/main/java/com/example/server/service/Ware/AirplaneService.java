@@ -1,5 +1,6 @@
 package com.example.server.service.Ware;
 
+import com.example.server.dto.AirplaneDto;
 import com.example.server.entity.Area;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
@@ -13,8 +14,9 @@ import com.example.server.repository.WareRepo.AirplaneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class AirplaneService {
@@ -30,17 +32,26 @@ public class AirplaneService {
     private EquipmentRepository equipmentRepository;
 
 
-    public Airplane create(Airplane airplane, Integer shopId, Integer areaId, Integer labId, Iterable<Integer> equipmentId){
+    public Airplane create(AirplaneDto dto, Integer shopId, Integer areaId, Integer labId, Iterable<Integer> equipmentId){
+        Airplane airplane = new Airplane();
+        airplane.setTypeOfWorks(dto.getTypeOfWorks());
+        airplane.setNumberOfEngines(dto.getNumberOfEngines());
+        airplane.setStartCreate(dto.getStartCreate());
+        airplane.setFinishCreate(dto.getFinishCreate());
+        airplane.setStartTest(dto.getStartTest());
+        airplane.setFinishTest(dto.getFinishTest());
+
         Shop shop = shopRepository.findById(shopId).get();
         Area area = areaRepository.findById(areaId).get();
         Laboratory laboratory = laboratoryRepository.findById(labId).get();
-        Iterable<Equipment> equipment = equipmentRepository.findAllById(equipmentId);
-
+        Set<Equipment> equipment = new HashSet<>((Collection<? extends Equipment>) equipmentRepository.findAllById(equipmentId));
 
         airplane.setShop(shop);
         airplane.setArea(area);
         airplane.setLaboratory(laboratory);
-        airplane.setEquipment(equipmentІ);
+        airplane.setEquipment(equipment);
         return airplaneRepository.save(airplane);
     }
+    public Airplane getById(Integer id){return airplaneRepository.findById(id).get();}
+
 }

@@ -15,10 +15,10 @@ public class ShopController {
     private ShopService shopService;
 
     @PostMapping
-    public ResponseEntity<?> createShop(){
+    public ResponseEntity<?> createShop(@RequestParam Integer headId){
         try {
             Shop shop = new Shop();
-            shopService.createShop(shop);
+            shopService.createShop(shop, headId);
             return ResponseEntity.ok("Shop created");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");

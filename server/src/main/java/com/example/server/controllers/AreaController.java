@@ -1,6 +1,6 @@
 package com.example.server.controllers;
 
-import com.example.server.entity.Area;
+import com.example.server.dto.AreaDto;
 import com.example.server.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +13,12 @@ public class AreaController {
     private AreaService areaService;
 
     @PostMapping
-    public ResponseEntity createArea(@RequestBody Area entity, @RequestParam Integer shopId){
+    public ResponseEntity createArea(@RequestBody AreaDto entity, @RequestParam Integer shopId, @RequestParam Integer headId){
         try {
-            areaService.createArea(entity, shopId);
+            areaService.createArea(entity, shopId, headId);
             return ResponseEntity.ok("Area created");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Произошла ошибка");
+            return ResponseEntity.badRequest().body("Error");
         }
     }
 
@@ -27,7 +27,7 @@ public class AreaController {
         try {
             return ResponseEntity.ok(areaService.getByShopId(id));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Произошла ошибка");
+            return ResponseEntity.badRequest().body("Error");
         }
     }
 
@@ -36,7 +36,7 @@ public class AreaController {
         try {
             return ResponseEntity.ok(areaService.deleteArea(id));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Произошла ошибка");
+            return ResponseEntity.badRequest().body("Error");
         }
     }
 }

@@ -23,8 +23,7 @@ public class Shop {
     @JsonManagedReference
     private Set<Area> area = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "shop_id", referencedColumnName = "id", nullable = false)
+    @OneToOne
     private EngineeringStaff head;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
