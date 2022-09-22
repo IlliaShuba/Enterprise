@@ -24,17 +24,25 @@ public class Equipment {
     private Laboratory laboratory;
 
     @ManyToOne
+    @JoinColumn(name = "airplane_id")
+    @JsonBackReference
+    private Airplane airplane;
+
+    @ManyToOne
     @JoinColumn(name = "glider_id")
     @JsonBackReference
     private Glider glider;
+
     @ManyToOne
     @JoinColumn(name = "hang_glider_id")
     @JsonBackReference
     private HangGlider hangGlider;
+
     @ManyToOne
     @JoinColumn(name = "helicopter_id")
     @JsonBackReference
     private Helicopter helicopter;
+
     @ManyToOne
     @JoinColumn(name = "missile_id")
     @JsonBackReference

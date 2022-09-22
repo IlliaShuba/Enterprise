@@ -31,7 +31,7 @@ public class Airplane {
     private LocalDateTime startTest;
     private LocalDateTime finishTest;
 
-    @OneToMany
+    @OneToMany(mappedBy = "airplane")
     @JsonManagedReference
     private Set<Equipment> equipment = new HashSet<>();
 

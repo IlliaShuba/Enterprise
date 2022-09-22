@@ -15,7 +15,7 @@ public class AirplaneController {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody AirplaneDto entity){
         try {
-            airplaneService.create(entity, entity.getShop(), entity.getArea(), entity.getLab(), entity.getEquipment());
+            airplaneService.create(entity);
             return ResponseEntity.ok("Airplane created");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");

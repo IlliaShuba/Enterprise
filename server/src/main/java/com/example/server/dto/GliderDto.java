@@ -9,11 +9,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class AirplaneDto {
+public class GliderDto {
 
     private Integer id;
     private String typeOfWorks;
-    private Integer numberOfEngines;
+    private Integer weight;
     private LocalDateTime startCreate;
     private LocalDateTime finishCreate;
     private LocalDateTime startTest;

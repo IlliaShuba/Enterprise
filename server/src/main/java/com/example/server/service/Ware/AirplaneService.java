@@ -14,7 +14,7 @@ import com.example.server.repository.WareRepo.AirplaneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,26 +32,49 @@ public class AirplaneService {
     private EquipmentRepository equipmentRepository;
 
 
-    public Airplane create(AirplaneDto dto, Integer shopId, Integer areaId, Integer labId, Iterable<Integer> equipmentId){
+    public Airplane create(AirplaneDto dto){
         Airplane airplane = new Airplane();
         airplane.setTypeOfWorks(dto.getTypeOfWorks());
         airplane.setNumberOfEngines(dto.getNumberOfEngines());
-        airplane.setStartCreate(dto.getStartCreate());
-        airplane.setFinishCreate(dto.getFinishCreate());
-        airplane.setStartTest(dto.getStartTest());
-        airplane.setFinishTest(dto.getFinishTest());
+        airplane.setStartCreate(LocalDateTime.now());
+        airplane.setFinishCreate(null);
+        airplane.setStartTest(null);
+        airplane.setFinishTest(null);
 
-        Shop shop = shopRepository.findById(shopId).get();
-        Area area = areaRepository.findById(areaId).get();
-        Laboratory laboratory = laboratoryRepository.findById(labId).get();
-        Set<Equipment> equipment = new HashSet<>((Collection<? extends Equipment>) equipmentRepository.findAllById(equipmentId));
-
+        Shop shop = shopRepository.findById(dto.getShop()).get();
+        Area area = areaRepository.findById(dto.getArea()).get();
+        Laboratory laboratory = laboratoryRepository.findById(dto.getLab()).get();
         airplane.setShop(shop);
         airplane.setArea(area);
         airplane.setLaboratory(laboratory);
-        airplane.setEquipment(equipment);
+        for (Integer id : dto.getEquipment()) {
+            Equipment equipment = equipmentRepository.findById(id).get();
+            equipment.setAirplane(airplane);
+        }
         return airplaneRepository.save(airplane);
     }
-    public Airplane getById(Integer id){return airplaneRepository.findById(id).get();}
+    public AirplaneDto getById(Integer id){
+        Airplane airplane = airplaneRepository.findById(id).get();
+        return toDto(airplane);
+    }
 
+    public AirplaneDto toDto(Airplane entity){
+        AirplaneDto dto = new AirplaneDto();
+        dto.setId(entity.getId());
+        dto.setTypeOfWorks(entity.getTypeOfWorks());
+        dto.setNumberOfEngines(entity.getNumberOfEngines());
+        dto.setStartCreate(entity.getStartCreate());
+        dto.setFinishCreate(entity.getFinishCreate());
+        dto.setStartTest(entity.getStartTest());
+        dto.setFinishTest(entity.getFinishTest());
+        dto.setShop(entity.getShop().getId());
+        dto.setArea(entity.getArea().getId());
+        dto.setLab(entity.getLaboratory().getId());
+        Set<Integer> equipment= new HashSet<>();
+        for (Equipment item :entity.getEquipment()) {
+            equipment.add(item.getId());
+        }
+        dto.setEquipment(equipment);
+        return dto;
+    }
 }

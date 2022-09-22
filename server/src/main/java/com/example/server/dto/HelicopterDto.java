@@ -7,13 +7,12 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
 @Setter
-public class AirplaneDto {
-
+@Getter
+public class HelicopterDto {
     private Integer id;
     private String typeOfWorks;
-    private Integer numberOfEngines;
+    private Integer enginePower;
     private LocalDateTime startCreate;
     private LocalDateTime finishCreate;
     private LocalDateTime startTest;
