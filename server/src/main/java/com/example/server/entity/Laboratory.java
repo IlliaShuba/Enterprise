@@ -26,6 +26,9 @@ public class Laboratory {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
     private Set<Equipment> equipment = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
+    @JsonManagedReference
+    private Set<Tester>  tester= new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
