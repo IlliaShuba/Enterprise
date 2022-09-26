@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,7 +27,7 @@ public class Area {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
     @JsonManagedReference
-    private Set<Brigade> brigades = new HashSet<>();
+    private List<Brigade> brigades = new ArrayList<>();
 
     @OneToOne
     private EngineeringStaff head;

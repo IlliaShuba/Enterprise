@@ -23,9 +23,26 @@ public class AirplaneController {
     }
 
     @GetMapping
-    public ResponseEntity getById(@RequestParam Integer id){
+    public ResponseEntity<?> getById(@RequestParam Integer id){
         try {
             return ResponseEntity.ok(airplaneService.getById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @PutMapping("/finish-create")
+    public ResponseEntity<?> finishCreate(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(airplaneService.finishCreate(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @PutMapping("/finish-test")
+    public ResponseEntity<?> finishTest(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(airplaneService.finishTest(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

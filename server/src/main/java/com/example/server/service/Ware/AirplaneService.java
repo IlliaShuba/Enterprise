@@ -1,6 +1,7 @@
 package com.example.server.service.Ware;
 
 import com.example.server.dto.AirplaneDto;
+import com.example.server.dto.EquipmentDto;
 import com.example.server.entity.Area;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
@@ -11,6 +12,7 @@ import com.example.server.repository.EquipmentRepository;
 import com.example.server.repository.LaboratoryRepository;
 import com.example.server.repository.ShopRepository;
 import com.example.server.repository.WareRepo.AirplaneRepository;
+import com.example.server.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,8 @@ public class AirplaneService {
     private LaboratoryRepository laboratoryRepository;
     @Autowired
     private EquipmentRepository equipmentRepository;
+    @Autowired
+    private EquipmentService equipmentService;
 
 
     public Airplane create(AirplaneDto dto){
@@ -58,6 +62,18 @@ public class AirplaneService {
         return toDto(airplane);
     }
 
+    public Airplane finishCreate(Integer id){
+        Airplane airplane = airplaneRepository.findById(id).get();
+        airplane.setFinishCreate(LocalDateTime.now());
+        airplane.setStartTest(LocalDateTime.now());
+        return airplaneRepository.save(airplane);
+    }
+    public Airplane finishTest(Integer id){
+        Airplane airplane = airplaneRepository.findById(id).get();
+        airplane.setFinishTest(LocalDateTime.now());
+        return airplaneRepository.save(airplane);
+    }
+
     public AirplaneDto toDto(Airplane entity){
         AirplaneDto dto = new AirplaneDto();
         dto.setId(entity.getId());
@@ -70,11 +86,13 @@ public class AirplaneService {
         dto.setShop(entity.getShop().getId());
         dto.setArea(entity.getArea().getId());
         dto.setLab(entity.getLaboratory().getId());
-        Set<Integer> equipment= new HashSet<>();
-        for (Equipment item :entity.getEquipment()) {
-            equipment.add(item.getId());
+
+        Set<EquipmentDto> equipment= equipmentService.getByWareId(entity.getId());
+        Set<Integer> equipment_ids= new HashSet<>();
+        for (EquipmentDto elem : equipment){
+            equipment_ids.add(elem.getId());
         }
-        dto.setEquipment(equipment);
+        dto.setEquipment(equipment_ids);
         return dto;
     }
 }

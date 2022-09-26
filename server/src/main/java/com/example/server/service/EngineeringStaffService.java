@@ -20,4 +20,6 @@ public class EngineeringStaffService {
     public EngineeringStaff create(EngineeringStaff entity){
         return engineeringStaffRepository.save(entity);
     }
+
+    public Iterable<EngineeringStaff> getAll(){return engineeringStaffRepository.findAll();}
 }

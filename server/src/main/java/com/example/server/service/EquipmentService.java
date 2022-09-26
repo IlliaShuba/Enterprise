@@ -8,6 +8,9 @@ import com.example.server.repository.LaboratoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class EquipmentService {
     @Autowired
@@ -22,5 +25,22 @@ public class EquipmentService {
         equipment.setName(dto.getName());
         equipment.setLaboratory(laboratory);
         return equipmentRepository.save(equipment);
+    }
+
+    public Iterable<Equipment> getAll(){return equipmentRepository.findAll();}
+
+    public Set<EquipmentDto> getByWareId(Integer id){
+        Set<EquipmentDto> response = new HashSet<>();
+        for (Equipment equipment : equipmentRepository.queryAllByAirplaneId(id)) {
+            response.add(toDto(equipment));
+        }
+        return response;
+    }
+
+    public EquipmentDto toDto(Equipment entity){
+        EquipmentDto dto = new EquipmentDto();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        return dto;
     }
 }

@@ -10,6 +10,8 @@ import com.example.server.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AreaService {
 
@@ -31,10 +33,7 @@ public class AreaService {
         return areaRepository.save(area);
     }
 
-    public Iterable<Area> getByShopId(Integer id){
-        Iterable<Area> set = areaRepository.findAllByShopId(id);
-        return set;
-    }
+    public List<Area> getByShopId(Integer id){return areaRepository.queryFindAllByShopId(id);}
 
     public Integer deleteArea(Integer id){
         areaRepository.deleteById(id);

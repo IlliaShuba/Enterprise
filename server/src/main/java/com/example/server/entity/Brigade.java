@@ -23,11 +23,8 @@ public class Brigade {
     @JoinColumn(name = "area_id")
     @JsonBackReference
     private Area area;
-    @ManyToMany
-    @JoinTable(name = "brigadier",
-            joinColumns = @JoinColumn(name = "brigade_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "worker_id", referencedColumnName = "id"))
-    private Set<Worker> brigadier;
+    @OneToOne
+    private Worker brigadier;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "brigade")
     @JsonManagedReference
     private Set<Worker> worker = new HashSet<>();

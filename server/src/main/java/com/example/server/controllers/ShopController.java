@@ -26,7 +26,7 @@ public class ShopController {
     }
 
     @GetMapping
-    public ResponseEntity showAllShop(){
+    public ResponseEntity<?> showAllShop(){
         try {
             return ResponseEntity.ok(shopService.getAll());
         } catch (Exception e) {

@@ -19,4 +19,7 @@ public class TesterService {
         entity.setLaboratory(laboratory);
         return testerRepository.save(entity);
     }
+
+    public Iterable<Tester> getAll(){return testerRepository.findAll();}
+
 }

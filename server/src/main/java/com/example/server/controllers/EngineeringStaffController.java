@@ -23,4 +23,12 @@ public class EngineeringStaffController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+    @GetMapping("/all")
+    public  ResponseEntity<?> showAll(){
+        try {
+            return ResponseEntity.ok(engineeringStaffService.getAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
 }

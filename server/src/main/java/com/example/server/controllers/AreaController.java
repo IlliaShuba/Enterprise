@@ -13,7 +13,7 @@ public class AreaController {
     private AreaService areaService;
 
     @PostMapping
-    public ResponseEntity createArea(@RequestBody AreaDto entity, @RequestParam Integer shopId, @RequestParam Integer headId){
+    public ResponseEntity<?> createArea(@RequestBody AreaDto entity, @RequestParam Integer shopId, @RequestParam Integer headId){
         try {
             areaService.createArea(entity, shopId, headId);
             return ResponseEntity.ok("Area created");
@@ -23,7 +23,7 @@ public class AreaController {
     }
 
     @GetMapping
-    public ResponseEntity getAllAreaInShop(@RequestParam Integer id){
+    public ResponseEntity<?> getAllAreaInShop(@RequestParam Integer id){
         try {
             return ResponseEntity.ok(areaService.getByShopId(id));
         } catch (Exception e) {

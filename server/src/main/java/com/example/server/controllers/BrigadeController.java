@@ -1,6 +1,5 @@
 package com.example.server.controllers;
 
-import com.example.server.entity.Brigade;
 import com.example.server.service.BrigadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +13,19 @@ public class BrigadeController {
     private BrigadeService brigadeService;
 
     @PostMapping
-    public ResponseEntity createBrigade(@RequestBody Brigade entity, @RequestParam Integer areaId){
+    public ResponseEntity<?> createBrigade(@RequestParam Integer areaId){
         try {
-            brigadeService.createBrigade(entity, areaId);
+            brigadeService.createBrigade(areaId);
             return ResponseEntity.ok("Brigade created");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @PutMapping
+    public ResponseEntity<?> setHead(@RequestParam Integer id, @RequestParam Integer headId){
+        try {
+            return ResponseEntity.ok(brigadeService.setHead(id, headId));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

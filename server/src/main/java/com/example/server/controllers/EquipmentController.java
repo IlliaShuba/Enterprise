@@ -1,7 +1,6 @@
 package com.example.server.controllers;
 
 import com.example.server.dto.EquipmentDto;
-import com.example.server.entity.Equipment;
 import com.example.server.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +17,24 @@ public class EquipmentController {
         try {
             equipmentService.create(entity, labId);
             return ResponseEntity.ok("Equipment created");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll(){
+        try {
+            return ResponseEntity.ok(equipmentService.getAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getByWareId(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(equipmentService.getByWareId(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

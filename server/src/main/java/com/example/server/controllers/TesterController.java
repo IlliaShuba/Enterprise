@@ -1,7 +1,7 @@
 package com.example.server.controllers;
 
-import com.example.server.entity.Worker;
-import com.example.server.service.WorkerService;
+import com.example.server.entity.Tester;
+import com.example.server.service.TesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,13 +10,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/tester")
 public class TesterController {
     @Autowired
-    private WorkerService workerService;
+    private TesterService testerService;
 
     @PostMapping
-    public ResponseEntity createWorker(@RequestBody Worker entity, @RequestParam Integer labId){
+    public ResponseEntity createWorker(@RequestBody Tester entity, @RequestParam Integer labId){
         try {
-            workerService.create(entity, labId);
+            testerService.create(entity, labId);
             return ResponseEntity.ok("Tester created");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @GetMapping("/all")
+    public  ResponseEntity<?> showAll(){
+        try {
+            return ResponseEntity.ok(testerService.getAll());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

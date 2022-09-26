@@ -19,10 +19,7 @@ public class ShopService {
     @Autowired
     EngineeringStaffRepository engineeringStaffRepository;
 
-    public Iterable<Shop>  getAll(){
-        Iterable<Shop> set = shopRepository.findAll();
-        return set;
-    }
+    public Iterable<Shop> getAll(){return shopRepository.findAll();}
 
     public Shop createShop(Shop shop, Integer headId){
         EngineeringStaff head = engineeringStaffRepository.findById(headId).orElseThrow();
