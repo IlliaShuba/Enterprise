@@ -1,6 +1,5 @@
 package com.example.server.entity.Ware;
 
-import com.example.server.entity.Area;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
@@ -12,7 +11,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,6 +32,9 @@ public class Helicopter {
     private LocalDateTime startTest;
     private LocalDateTime finishTest;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "helicopter")
+    @JsonManagedReference
+    private List<Work> work = new ArrayList<>();
     @OneToMany(mappedBy = "helicopter")
     @JsonManagedReference
     private Set<Equipment> equipment = new HashSet<>();
@@ -38,10 +42,6 @@ public class Helicopter {
     @JoinColumn(name = "shop_id")
     @JsonBackReference
     private Shop shop;
-    @ManyToOne
-    @JoinColumn(name = "area_id")
-    @JsonBackReference
-    private Area area;
     @ManyToOne
     @JoinColumn(name = "laboratory_id")
     @JsonBackReference

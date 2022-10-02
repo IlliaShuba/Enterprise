@@ -32,9 +32,9 @@ public class Area {
     @OneToOne
     private EngineeringStaff head;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
     @JsonManagedReference
-    private Set<EngineeringStaff> master = new HashSet<>();
+    private List<EngineeringStaff> master = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "shop_id")
@@ -43,17 +43,6 @@ public class Area {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
     @JsonManagedReference
-    private Set<Airplane> airplanes = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
-    @JsonManagedReference
-    private Set<Glider> gliders = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
-    @JsonManagedReference
-    private Set<HangGlider> hangGliders = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
-    @JsonManagedReference
-    private Set<Helicopter> helicopters = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
-    @JsonManagedReference
-    private Set<Missile> missiles = new HashSet<>();
+    private Set<Work> works = new HashSet<>();
+
 }

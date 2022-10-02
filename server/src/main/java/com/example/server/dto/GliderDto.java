@@ -12,7 +12,6 @@ import java.util.Set;
 public class GliderDto {
 
     private Integer id;
-    private String typeOfWorks;
     private Integer weight;
     private LocalDateTime startCreate;
     private LocalDateTime finishCreate;
@@ -20,6 +19,5 @@ public class GliderDto {
     private LocalDateTime finishTest;
     private Set<Integer> equipment = new HashSet<>();
     private Integer shop;
-    private Integer area;
     private Integer lab;
 }

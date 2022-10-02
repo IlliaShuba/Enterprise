@@ -1,7 +1,6 @@
 package com.example.server.service.Ware;
 
 import com.example.server.dto.MissileDto;
-import com.example.server.entity.Area;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
@@ -34,7 +33,6 @@ public class MissileService {
 
     public Missile create(MissileDto dto){
         Missile missile = new Missile();
-        missile.setTypeOfWorks(dto.getTypeOfWorks());
         missile.setChargePower(dto.getChargePower());
         missile.setStartCreate(LocalDateTime.now());
         missile.setFinishCreate(null);
@@ -42,10 +40,8 @@ public class MissileService {
         missile.setFinishTest(null);
 
         Shop shop = shopRepository.findById(dto.getShop()).get();
-        Area area = areaRepository.findById(dto.getArea()).get();
         Laboratory laboratory = laboratoryRepository.findById(dto.getLab()).get();
         missile.setShop(shop);
-        missile.setArea(area);
         missile.setLaboratory(laboratory);
         for (Integer id : dto.getEquipment()) {
             Equipment equipment = equipmentRepository.findById(id).get();
@@ -61,14 +57,12 @@ public class MissileService {
     public MissileDto toDto(Missile entity){
         MissileDto dto = new MissileDto();
         dto.setId(entity.getId());
-        dto.setTypeOfWorks(entity.getTypeOfWorks());
         dto.setChargePower(entity.getChargePower());
         dto.setStartCreate(entity.getStartCreate());
         dto.setFinishCreate(entity.getFinishCreate());
         dto.setStartTest(entity.getStartTest());
         dto.setFinishTest(entity.getFinishTest());
         dto.setShop(entity.getShop().getId());
-        dto.setArea(entity.getArea().getId());
         dto.setLab(entity.getLaboratory().getId());
         Set<Integer> equipment= new HashSet<>();
         for (Equipment item :entity.getEquipment()) {

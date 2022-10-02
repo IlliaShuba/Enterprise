@@ -1,7 +1,6 @@
 package com.example.server.service.Ware;
 
 import com.example.server.dto.HangGliderDto;
-import com.example.server.entity.Area;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
@@ -34,7 +33,6 @@ public class HangGliderService {
 
     public HangGlider create(HangGliderDto dto){
         HangGlider hangGlider = new HangGlider();
-        hangGlider.setTypeOfWorks(dto.getTypeOfWorks());
         hangGlider.setWeight(dto.getWeight());
         hangGlider.setStartCreate(LocalDateTime.now());
         hangGlider.setFinishCreate(null);
@@ -42,10 +40,8 @@ public class HangGliderService {
         hangGlider.setFinishTest(null);
 
         Shop shop = shopRepository.findById(dto.getShop()).get();
-        Area area = areaRepository.findById(dto.getArea()).get();
         Laboratory laboratory = laboratoryRepository.findById(dto.getLab()).get();
         hangGlider.setShop(shop);
-        hangGlider.setArea(area);
         hangGlider.setLaboratory(laboratory);
         for (Integer id : dto.getEquipment()) {
             Equipment equipment = equipmentRepository.findById(id).get();
@@ -61,14 +57,12 @@ public class HangGliderService {
     public HangGliderDto toDto(HangGlider entity){
         HangGliderDto dto = new HangGliderDto();
         dto.setId(entity.getId());
-        dto.setTypeOfWorks(entity.getTypeOfWorks());
         dto.setWeight(entity.getWeight());
         dto.setStartCreate(entity.getStartCreate());
         dto.setFinishCreate(entity.getFinishCreate());
         dto.setStartTest(entity.getStartTest());
         dto.setFinishTest(entity.getFinishTest());
         dto.setShop(entity.getShop().getId());
-        dto.setArea(entity.getArea().getId());
         dto.setLab(entity.getLaboratory().getId());
         Set<Integer> equipment= new HashSet<>();
         for (Equipment item :entity.getEquipment()) {

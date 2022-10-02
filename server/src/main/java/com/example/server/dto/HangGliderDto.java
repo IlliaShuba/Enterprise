@@ -11,7 +11,6 @@ import java.util.Set;
 @Getter
 public class HangGliderDto {
     private Integer id;
-    private String typeOfWorks;
     private Integer weight;
     private LocalDateTime startCreate;
     private LocalDateTime finishCreate;
@@ -19,6 +18,5 @@ public class HangGliderDto {
     private LocalDateTime finishTest;
     private Set<Integer> equipment = new HashSet<>();
     private Integer shop;
-    private Integer area;
     private Integer lab;
 }

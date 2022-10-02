@@ -1,7 +1,6 @@
 package com.example.server.service.Ware;
 
 import com.example.server.dto.HelicopterDto;
-import com.example.server.entity.Area;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
@@ -34,7 +33,6 @@ public class HelicopterService {
 
     public Helicopter create(HelicopterDto dto){
         Helicopter helicopter = new Helicopter();
-        helicopter.setTypeOfWorks(dto.getTypeOfWorks());
         helicopter.setEnginePower(dto.getEnginePower());
         helicopter.setStartCreate(LocalDateTime.now());
         helicopter.setFinishCreate(null);
@@ -42,10 +40,8 @@ public class HelicopterService {
         helicopter.setFinishTest(null);
 
         Shop shop = shopRepository.findById(dto.getShop()).get();
-        Area area = areaRepository.findById(dto.getArea()).get();
         Laboratory laboratory = laboratoryRepository.findById(dto.getLab()).get();
         helicopter.setShop(shop);
-        helicopter.setArea(area);
         helicopter.setLaboratory(laboratory);
         for (Integer id : dto.getEquipment()) {
             Equipment equipment = equipmentRepository.findById(id).get();
@@ -61,14 +57,12 @@ public class HelicopterService {
     public HelicopterDto toDto(Helicopter entity){
         HelicopterDto dto = new HelicopterDto();
         dto.setId(entity.getId());
-        dto.setTypeOfWorks(entity.getTypeOfWorks());
         dto.setEnginePower(entity.getEnginePower());
         dto.setStartCreate(entity.getStartCreate());
         dto.setFinishCreate(entity.getFinishCreate());
         dto.setStartTest(entity.getStartTest());
         dto.setFinishTest(entity.getFinishTest());
         dto.setShop(entity.getShop().getId());
-        dto.setArea(entity.getArea().getId());
         dto.setLab(entity.getLaboratory().getId());
         Set<Integer> equipment= new HashSet<>();
         for (Equipment item :entity.getEquipment()) {

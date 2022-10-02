@@ -21,4 +21,8 @@ public class Worker {
     @JsonBackReference
     private Brigade brigade;
 
+    @ManyToOne
+    @JoinColumn(name = "laboratory_id")
+    @JsonBackReference
+    private Laboratory laboratory;
 }

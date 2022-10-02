@@ -11,7 +11,6 @@ import java.util.Set;
 @Getter
 public class MissileDto {
     private Integer id;
-    private String typeOfWorks;
     private Integer chargePower;
     private LocalDateTime startCreate;
     private LocalDateTime finishCreate;
@@ -19,6 +18,5 @@ public class MissileDto {
     private LocalDateTime finishTest;
     private Set<Integer> equipment = new HashSet<>();
     private Integer shop;
-    private Integer area;
     private Integer lab;
 }

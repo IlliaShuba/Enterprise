@@ -2,7 +2,6 @@ package com.example.server.service.Ware;
 
 import com.example.server.dto.AirplaneDto;
 import com.example.server.dto.EquipmentDto;
-import com.example.server.entity.Area;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
@@ -38,7 +37,6 @@ public class AirplaneService {
 
     public Airplane create(AirplaneDto dto){
         Airplane airplane = new Airplane();
-        airplane.setTypeOfWorks(dto.getTypeOfWorks());
         airplane.setNumberOfEngines(dto.getNumberOfEngines());
         airplane.setStartCreate(LocalDateTime.now());
         airplane.setFinishCreate(null);
@@ -46,10 +44,8 @@ public class AirplaneService {
         airplane.setFinishTest(null);
 
         Shop shop = shopRepository.findById(dto.getShop()).get();
-        Area area = areaRepository.findById(dto.getArea()).get();
         Laboratory laboratory = laboratoryRepository.findById(dto.getLab()).get();
         airplane.setShop(shop);
-        airplane.setArea(area);
         airplane.setLaboratory(laboratory);
         for (Integer id : dto.getEquipment()) {
             Equipment equipment = equipmentRepository.findById(id).get();
@@ -77,14 +73,12 @@ public class AirplaneService {
     public AirplaneDto toDto(Airplane entity){
         AirplaneDto dto = new AirplaneDto();
         dto.setId(entity.getId());
-        dto.setTypeOfWorks(entity.getTypeOfWorks());
         dto.setNumberOfEngines(entity.getNumberOfEngines());
         dto.setStartCreate(entity.getStartCreate());
         dto.setFinishCreate(entity.getFinishCreate());
         dto.setStartTest(entity.getStartTest());
         dto.setFinishTest(entity.getFinishTest());
         dto.setShop(entity.getShop().getId());
-        dto.setArea(entity.getArea().getId());
         dto.setLab(entity.getLaboratory().getId());
 
         Set<EquipmentDto> equipment= equipmentService.getByWareId(entity.getId());
