@@ -31,6 +31,15 @@ public class AreaController {
         }
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll(){
+        try {
+            return ResponseEntity.ok(areaService.getAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
     @DeleteMapping
     public ResponseEntity deleteArea(@RequestParam Integer id){
         try {

@@ -1,27 +1,19 @@
 package com.example.server.dto;
 
 import com.example.server.entity.Area;
+import com.example.server.entity.EngineeringStaff;
+import com.example.server.entity.Laboratory;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
+@Getter
+@Setter
 public class ShopDto {
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Set<Area> getArea() {
-        return area;
-    }
-
-    public void setArea(Set<Area> area) {
-        this.area = area;
-    }
-
     private Integer id;
-    private Set<Area> area;
+    private List<Area> area;
+    private EngineeringStaff head;
+    private List<Laboratory> laboratories;
 
 }

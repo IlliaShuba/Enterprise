@@ -34,6 +34,7 @@ public class AreaService {
     }
 
     public List<Area> getByShopId(Integer id){return areaRepository.queryFindAllByShopId(id);}
+    public List<Area> getAll() {return areaRepository.findAll();}
 
     public Integer deleteArea(Integer id){
         areaRepository.deleteById(id);
@@ -47,5 +48,4 @@ public class AreaService {
         dto.setType(entity.getType());
         return dto;
     }
-
 }

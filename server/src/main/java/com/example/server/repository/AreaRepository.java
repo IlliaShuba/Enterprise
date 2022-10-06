@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface AreaRepository extends CrudRepository<Area, Integer> {
+    List<Area> findAll();
     List<Area> queryFindAllByShopId(Integer id);
 }

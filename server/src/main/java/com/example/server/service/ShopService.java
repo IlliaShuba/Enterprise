@@ -9,6 +9,9 @@ import com.example.server.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ShopService {
 
@@ -19,7 +22,10 @@ public class ShopService {
     @Autowired
     EngineeringStaffRepository engineeringStaffRepository;
 
-    public Iterable<Shop> getAll(){return shopRepository.findAll();}
+    public List<ShopDto> getAll(){
+        List<Shop> shops = shopRepository.findAll();
+        return shops.stream().map(this::toDto).collect(Collectors.toList());
+    }
 
     public Shop createShop(Shop shop, Integer headId){
         EngineeringStaff head = engineeringStaffRepository.findById(headId).orElseThrow();
@@ -43,7 +49,9 @@ public class ShopService {
     public ShopDto toDto(Shop entity){
         ShopDto dto = new ShopDto();
         dto.setId(entity.getId());
-        //dto.setArea(entity.getArea().stream().map(Area::toAreaDto).collect(Collectors.toList()));
+        dto.setArea(entity.getArea());
+        dto.setHead(entity.getHead());
+        dto.setLaboratories(entity.getLaboratories());
         return dto;
     }
 

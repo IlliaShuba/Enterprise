@@ -1,7 +1,6 @@
 package com.example.server.service.Ware;
 
 import com.example.server.dto.AirplaneDto;
-import com.example.server.dto.EquipmentDto;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
@@ -15,9 +14,9 @@ import com.example.server.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AirplaneService {
@@ -38,7 +37,7 @@ public class AirplaneService {
     public Airplane create(AirplaneDto dto){
         Airplane airplane = new Airplane();
         airplane.setNumberOfEngines(dto.getNumberOfEngines());
-        airplane.setStartCreate(LocalDateTime.now());
+        airplane.setStartCreate(LocalDate.now());
         airplane.setFinishCreate(null);
         airplane.setStartTest(null);
         airplane.setFinishTest(null);
@@ -58,15 +57,29 @@ public class AirplaneService {
         return toDto(airplane);
     }
 
+    public List<AirplaneDto> getAll(){
+        List<AirplaneDto> response = new ArrayList<>();
+
+        for (Airplane item : airplaneRepository.findAll()) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+
+    public List<Airplane> getByInterval(String firstDate,String secondDate){
+        return airplaneRepository.queryFirstByFinishCreateAfterAndFinishCreateBefore(LocalDate.parse(firstDate), LocalDate.parse(secondDate));
+    }
+
+
     public Airplane finishCreate(Integer id){
         Airplane airplane = airplaneRepository.findById(id).get();
-        airplane.setFinishCreate(LocalDateTime.now());
-        airplane.setStartTest(LocalDateTime.now());
+        airplane.setFinishCreate(LocalDate.now());
+        airplane.setStartTest(LocalDate.now());
         return airplaneRepository.save(airplane);
     }
     public Airplane finishTest(Integer id){
         Airplane airplane = airplaneRepository.findById(id).get();
-        airplane.setFinishTest(LocalDateTime.now());
+        airplane.setFinishTest(LocalDate.now());
         return airplaneRepository.save(airplane);
     }
 
@@ -81,9 +94,9 @@ public class AirplaneService {
         dto.setShop(entity.getShop().getId());
         dto.setLab(entity.getLaboratory().getId());
 
-        Set<EquipmentDto> equipment= equipmentService.getByWareId(entity.getId());
-        Set<Integer> equipment_ids= new HashSet<>();
-        for (EquipmentDto elem : equipment){
+        List<Equipment> equipment = equipmentService.getByWareId(entity.getId());
+        List<Integer> equipment_ids= new ArrayList<>();
+        for (Equipment elem : equipment){
             equipment_ids.add(elem.getId());
         }
         dto.setEquipment(equipment_ids);

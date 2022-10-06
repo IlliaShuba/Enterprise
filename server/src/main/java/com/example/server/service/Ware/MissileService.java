@@ -13,9 +13,9 @@ import com.example.server.repository.WareRepo.MissileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MissileService {
@@ -34,7 +34,7 @@ public class MissileService {
     public Missile create(MissileDto dto){
         Missile missile = new Missile();
         missile.setChargePower(dto.getChargePower());
-        missile.setStartCreate(LocalDateTime.now());
+        missile.setStartCreate(LocalDate.now());
         missile.setFinishCreate(null);
         missile.setStartTest(null);
         missile.setFinishTest(null);
@@ -64,7 +64,7 @@ public class MissileService {
         dto.setFinishTest(entity.getFinishTest());
         dto.setShop(entity.getShop().getId());
         dto.setLab(entity.getLaboratory().getId());
-        Set<Integer> equipment= new HashSet<>();
+        List<Integer> equipment= new ArrayList<>();
         for (Equipment item :entity.getEquipment()) {
             equipment.add(item.getId());
         }

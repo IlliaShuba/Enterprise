@@ -1,6 +1,7 @@
 package com.example.server.controllers.Ware;
 
 import com.example.server.dto.AirplaneDto;
+import com.example.server.dto.Interval;
 import com.example.server.service.Ware.AirplaneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,23 @@ public class AirplaneController {
     public ResponseEntity<?> getById(@RequestParam Integer id){
         try {
             return ResponseEntity.ok(airplaneService.getById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll(){
+        try {
+            return ResponseEntity.ok(airplaneService.getAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @PostMapping("/interval")
+    public ResponseEntity<?> getByInterval(@RequestBody Interval interval){
+        try {
+            return ResponseEntity.ok(airplaneService.getByInterval(interval.getFirstDate(), interval.getSecondDate()));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

@@ -10,11 +10,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -26,10 +24,10 @@ public class Airplane {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer numberOfEngines;
-    private LocalDateTime startCreate;
-    private LocalDateTime finishCreate;
-    private LocalDateTime startTest;
-    private LocalDateTime finishTest;
+    private LocalDate startCreate;
+    private LocalDate finishCreate;
+    private LocalDate startTest;
+    private LocalDate finishTest;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "airplane")
     @JsonManagedReference
@@ -37,7 +35,7 @@ public class Airplane {
 
     @OneToMany(mappedBy = "airplane")
     @JsonManagedReference
-    private Set<Equipment> equipment = new HashSet<>();
+    private List<Equipment> equipment = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "shop_id")

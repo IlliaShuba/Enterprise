@@ -13,9 +13,9 @@ import com.example.server.repository.WareRepo.HelicopterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class HelicopterService {
@@ -34,7 +34,7 @@ public class HelicopterService {
     public Helicopter create(HelicopterDto dto){
         Helicopter helicopter = new Helicopter();
         helicopter.setEnginePower(dto.getEnginePower());
-        helicopter.setStartCreate(LocalDateTime.now());
+        helicopter.setStartCreate(LocalDate.now());
         helicopter.setFinishCreate(null);
         helicopter.setStartTest(null);
         helicopter.setFinishTest(null);
@@ -64,7 +64,7 @@ public class HelicopterService {
         dto.setFinishTest(entity.getFinishTest());
         dto.setShop(entity.getShop().getId());
         dto.setLab(entity.getLaboratory().getId());
-        Set<Integer> equipment= new HashSet<>();
+        List<Integer> equipment= new ArrayList<>();
         for (Equipment item :entity.getEquipment()) {
             equipment.add(item.getId());
         }

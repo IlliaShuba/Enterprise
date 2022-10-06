@@ -21,4 +21,14 @@ public class WorkController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+
+    @PutMapping("/finish")
+    public ResponseEntity<?> finish(@RequestParam Integer id){
+        try {
+            workService.finish(id);
+            return ResponseEntity.ok("Work finished");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
 }

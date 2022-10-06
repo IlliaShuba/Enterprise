@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,10 +27,10 @@ public class Glider {
     private Integer id;
     private String typeOfWorks;
     private Integer weight;
-    private LocalDateTime startCreate;
-    private LocalDateTime finishCreate;
-    private LocalDateTime startTest;
-    private LocalDateTime finishTest;
+    private LocalDate startCreate;
+    private LocalDate finishCreate;
+    private LocalDate startTest;
+    private LocalDate finishTest;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "glider")
     @JsonManagedReference

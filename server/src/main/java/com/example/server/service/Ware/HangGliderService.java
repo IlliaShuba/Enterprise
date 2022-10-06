@@ -13,9 +13,9 @@ import com.example.server.repository.WareRepo.HangGliderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class HangGliderService {
@@ -34,7 +34,7 @@ public class HangGliderService {
     public HangGlider create(HangGliderDto dto){
         HangGlider hangGlider = new HangGlider();
         hangGlider.setWeight(dto.getWeight());
-        hangGlider.setStartCreate(LocalDateTime.now());
+        hangGlider.setStartCreate(LocalDate.now());
         hangGlider.setFinishCreate(null);
         hangGlider.setStartTest(null);
         hangGlider.setFinishTest(null);
@@ -64,7 +64,7 @@ public class HangGliderService {
         dto.setFinishTest(entity.getFinishTest());
         dto.setShop(entity.getShop().getId());
         dto.setLab(entity.getLaboratory().getId());
-        Set<Integer> equipment= new HashSet<>();
+        List<Integer> equipment= new ArrayList<>();
         for (Equipment item :entity.getEquipment()) {
             equipment.add(item.getId());
         }

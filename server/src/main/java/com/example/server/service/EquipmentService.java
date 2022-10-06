@@ -8,8 +8,8 @@ import com.example.server.repository.LaboratoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EquipmentService {
@@ -29,12 +29,14 @@ public class EquipmentService {
 
     public Iterable<Equipment> getAll(){return equipmentRepository.findAll();}
 
-    public Set<EquipmentDto> getByWareId(Integer id){
-        Set<EquipmentDto> response = new HashSet<>();
-        for (Equipment equipment : equipmentRepository.queryAllByAirplaneId(id)) {
+    public List<Equipment> getByWareId(Integer id){
+        List<EquipmentDto> response = new ArrayList<>();
+        /*for (Equipment equipment : ) {
             response.add(toDto(equipment));
         }
-        return response;
+        return response;*/
+        return equipmentRepository.queryAllByAirplaneId(id);
+
     }
 
     public EquipmentDto toDto(Equipment entity){

@@ -1,6 +1,5 @@
 package com.example.server.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,9 +17,9 @@ public class EngineeringStaff {
     private Integer id;
     private String name;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "area_id")
     @JsonBackReference
-    private Area area;
+    private Area area;*/
 
 }

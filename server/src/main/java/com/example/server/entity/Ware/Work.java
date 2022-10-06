@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -17,8 +17,8 @@ public class Work {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String typeOfWork;
-    private LocalDateTime startWork;
-    private LocalDateTime finishWork;
+    private LocalDate startWork;
+    private LocalDate finishWork;
 
     @ManyToOne
     @JoinColumn(name = "area_id")

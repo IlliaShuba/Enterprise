@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,7 +21,7 @@ public class Shop {
     private Integer id;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     @JsonManagedReference
-    private Set<Area> area = new HashSet<>();
+    private List<Area> area = new ArrayList<>();
 
     @OneToOne
     private EngineeringStaff head;
@@ -30,21 +30,21 @@ public class Shop {
     @JoinTable(name = "shop_lab",
             joinColumns = @JoinColumn(name = "shop_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "laboratory_id", referencedColumnName = "id"))
-    private Set<Laboratory> laboratories = new HashSet<>();
+    private List<Laboratory> laboratories = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     @JsonManagedReference
-    private Set<Airplane> airplanes = new HashSet<>();
+    private List<Airplane> airplanes = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     @JsonManagedReference
-    private Set<Glider> gliders = new HashSet<>();
+    private List<Glider> gliders = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     @JsonManagedReference
-    private Set<HangGlider> hangGliders = new HashSet<>();
+    private List<HangGlider> hangGliders = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     @JsonManagedReference
-    private Set<Helicopter> helicopters = new HashSet<>();
+    private List<Helicopter> helicopters = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     @JsonManagedReference
-    private Set<Missile> missiles = new HashSet<>();
+    private List<Missile> missiles = new ArrayList<>();
 }
