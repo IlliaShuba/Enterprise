@@ -8,13 +8,12 @@ const Home = () => {
   let navigate = useNavigate();
 
   return (
-    <div className="container">
+    <div className="home">
       <div className="home_item" onClick={() => navigate(AppPath.SHOP)}>Shops</div>
       <div className="home_item" onClick={() => navigate(AppPath.WARE)}>Wares</div>
       <div className="home_item" onClick={() => navigate(AppPath.EMPLOYEE)}>Personal</div>
       <div className="home_item" onClick={() => navigate(AppPath.LABORATORY)}>Laboratories</div>
       {isAdmin ? (<div className="home_item">Users</div>) : null}
-
     </div>
   );
 };
