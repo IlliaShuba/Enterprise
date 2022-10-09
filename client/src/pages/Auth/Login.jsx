@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AppPath } from "../common/path.enum";
+import { AppPath } from "../../common/path.enum";
 import "./login.css";
 import axios from 'axios';
 
