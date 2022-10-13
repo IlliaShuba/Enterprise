@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Laboratory = () => {
+const WarePage = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Laboratory = () => {
   );
 };
 
-export default Laboratory;
+export default WarePage;
