@@ -10,9 +10,13 @@ const AppPath = {
 
   SHOP_CREATE: '/shop-create',
   AREA_CREATE: '/area-create',
+  WORKER_CREATE: '/worker-create',
+  ENGINEER_CREATE: '/engineer-create',
 
   SHOP_ITEM: '/shop-item',
   AREA_ITEM: '/area-item',
+  WORKER_ITEM: '/worker-item',
+  ENGINEER_ITEM: '/engineer-item',
   ANY: '*'
 };
 

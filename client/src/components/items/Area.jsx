@@ -42,7 +42,7 @@ const Area = () => {
     <div className="main">
       <Back path = {AppPath.SHOP_PAGE} />
       <div className="content">
-        <p>Area number {area.id}{isEdit}</p>
+        <p>Area number {area.id}</p>
         <p>Area head:</p>
         {isEdit ? (
           <select onChange={event => setNewHead(event.target.value)} defaultValue={0}>

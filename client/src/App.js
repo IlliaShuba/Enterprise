@@ -10,6 +10,10 @@ import WorkshopCreate from "./pages/Creation_pages/WorkshopCreate";
 import Workshop from "./components/Workshop";
 import Area from "./components/items/Area";
 import AreaCreate from "./pages/Creation_pages/AreaCreate";
+import WorkerCreate from "./pages/Creation_pages/WorkerCreate";
+import EngineerCreate from "./pages/Creation_pages/EngineerCreate";
+import Engineer from "./components/items/Engineer";
+import Worker from "./components/items/Worker";
 
 function App() {
   return (
@@ -25,10 +29,14 @@ function App() {
       {/*Create routes*/}
       <Route path={AppPath.SHOP_CREATE} element={<WorkshopCreate/>}/>
       <Route path={AppPath.AREA_CREATE} element={<AreaCreate/>}/>
+      <Route path={AppPath.WORKER_CREATE} element={<WorkerCreate/>}/>
+      <Route path={AppPath.ENGINEER_CREATE} element={<EngineerCreate/>}/>
 
       {/*Edit routes*/}
       <Route path={AppPath.SHOP_ITEM} element={<Workshop />}/>
       <Route path={AppPath.AREA_ITEM} element={<Area />}/>
+      <Route path={AppPath.WORKER_ITEM} element={<Worker />}/>
+      <Route path={AppPath.ENGINEER_ITEM} element={<Engineer />}/>
     </Routes>
   );
 }
