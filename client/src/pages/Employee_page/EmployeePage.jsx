@@ -77,7 +77,7 @@ const EmployeePage = () => {
           item = {item}
         />
       ))}
-        <div className="create" onClick={() => selectType === "shop"? navigate(AppPath.SHOP_CREATE) :  navigate(AppPath.AREA_CREATE)}>Create new</div>
+        <div className="create" onClick={() => selectType === "worker"? navigate(AppPath.WORKER_CREATE) :  navigate(AppPath.ENGINEER_CREATE)}>Create new</div>
       </div>
     </div>
   );

@@ -9,16 +9,16 @@ const EngineerCreate = () => {
   let navigate = useNavigate();
 
   const create = async () => {
-    await $api.post(`/engineer`, {name: name}).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.post(`/engineer`, {name: name}).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
   }
 
-  useEffect(() => {
+ /* useEffect(() => {
     create();
-  }, []);
+  }, []);*/
 
   return (
     <div className="main">
-      <Back path={AppPath.SHOP_PAGE}/>
+      <Back path={AppPath.EMPLOYEE_PAGE}/>
       <fieldset>
         <legend>Employee</legend>
         <form class="inputs-container">

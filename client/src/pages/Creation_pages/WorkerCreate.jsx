@@ -11,7 +11,7 @@ const WorkerCreate = () => {
   let navigate = useNavigate();
 
   const create = async () => {
-    await $api.post(`/worker?brigadeId=${id}`, {name: name}).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.post(`/worker?brigadeId=${id}`, {name: name}).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
   }
 
 

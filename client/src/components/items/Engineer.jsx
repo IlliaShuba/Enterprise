@@ -43,7 +43,7 @@ const Engineer = () => {
       <Back path = {AppPath.EMPLOYEE_PAGE} />
       <div className="content">
         <p>Area number {worker.id}</p>
-        <p>Worker brigade:</p>
+        <p>Area :</p>
         {isEdit ? (
           <select onChange={event => setNewBrigade(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>

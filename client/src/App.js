@@ -14,6 +14,10 @@ import WorkerCreate from "./pages/Creation_pages/WorkerCreate";
 import EngineerCreate from "./pages/Creation_pages/EngineerCreate";
 import Engineer from "./components/items/Engineer";
 import Worker from "./components/items/Worker";
+import LabCreate from "./pages/Creation_pages/LabCreate";
+import EquipmentCreate from "./pages/Creation_pages/EquipmentCreate";
+import Laboratory from "./components/items/Laboratory";
+import Equipment from "./components/items/Equipment";
 
 function App() {
   return (
@@ -31,12 +35,16 @@ function App() {
       <Route path={AppPath.AREA_CREATE} element={<AreaCreate/>}/>
       <Route path={AppPath.WORKER_CREATE} element={<WorkerCreate/>}/>
       <Route path={AppPath.ENGINEER_CREATE} element={<EngineerCreate/>}/>
+      <Route path={AppPath.LABORATORY_CREATE} element={<LabCreate/>}/>
+      <Route path={AppPath.EQUIPMENT_CREATE} element={<EquipmentCreate/>}/>
 
       {/*Edit routes*/}
       <Route path={AppPath.SHOP_ITEM} element={<Workshop />}/>
       <Route path={AppPath.AREA_ITEM} element={<Area />}/>
       <Route path={AppPath.WORKER_ITEM} element={<Worker />}/>
       <Route path={AppPath.ENGINEER_ITEM} element={<Engineer />}/>
+      <Route path={AppPath.LABORATORY_ITEM} element={<Laboratory />}/>
+      <Route path={AppPath.EQUIPMENT_ITEM} element={<Equipment />}/>
     </Routes>
   );
 }
