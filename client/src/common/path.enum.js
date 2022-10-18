@@ -14,6 +14,8 @@ const AppPath = {
   ENGINEER_CREATE: '/engineer-create',
   LABORATORY_CREATE: '/laboratory-create',
   EQUIPMENT_CREATE: '/equipment-create',
+  WARE_CREATE: '/ware-create',
+  WORK_CREATE: '/work-create',
 
   SHOP_ITEM: '/shop-item',
   AREA_ITEM: '/area-item',
@@ -21,6 +23,7 @@ const AppPath = {
   ENGINEER_ITEM: '/engineer-item',
   LABORATORY_ITEM: '/laboratory-item',
   EQUIPMENT_ITEM: '/equipment-item',
+  WARE_ITEM: '/ware-item',
   ANY: '*'
 };
 
