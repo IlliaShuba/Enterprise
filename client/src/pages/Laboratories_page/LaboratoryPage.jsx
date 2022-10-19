@@ -61,7 +61,10 @@ const LaboratoryPage = () => {
           item = {item}
         />
       ))}
-        <div className="create" onClick={() => selectType === "laboratory"? navigate(AppPath.LABORATORY_CREATE) :  navigate(AppPath.EQUIPMENT_CREATE)}>Create new</div>
+        <div className="create" onClick={() => selectType === "laboratory"? navigate(AppPath.LABORATORY_CREATE) :  navigate(AppPath.EQUIPMENT_CREATE)}><div className="circle">
+          <div className="horizontal"></div>
+          <div className="vertical"></div>
+        </div></div>
       </div>
     </div>
   );

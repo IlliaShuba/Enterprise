@@ -3,6 +3,7 @@ import $api from "../../common/axios";
 import {useNavigate} from "react-router-dom";
 import {AppPath} from "../../common/path.enum";
 import Back from "../../components/Back";
+import "./create.css";
 
 const WorkshopCreate = () => {
   const [candidates, setCandidates] = useState([{value: 1, name: "ivan"}, {value: 2, name: "iqwe"}, {value: 3, name: "asd"}]);

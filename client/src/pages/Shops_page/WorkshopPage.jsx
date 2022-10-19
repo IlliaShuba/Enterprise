@@ -60,7 +60,10 @@ const WorkshopPage = () => {
           item = {item}
         />
       ))}
-        <div className="create" onClick={() => selectType === "shop"? navigate(AppPath.SHOP_CREATE) :  navigate(AppPath.AREA_CREATE)}>Create new</div>
+        <div className="create" onClick={() => selectType === "shop"? navigate(AppPath.SHOP_CREATE) :  navigate(AppPath.AREA_CREATE)}><div className="circle">
+          <div className="horizontal"></div>
+          <div className="vertical"></div>
+        </div></div>
       </div>
     </div>
   );

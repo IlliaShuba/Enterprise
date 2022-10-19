@@ -4,6 +4,7 @@ import {AppPath} from "../../common/path.enum";
 import {useNavigate} from "react-router-dom";
 import Back from "../../components/Back";
 import WareCard from "../../components/cards/WareCard";
+import "./pages.css";
 
 const WarePage = () => {
   let navigate = useNavigate();
@@ -64,7 +65,6 @@ const WarePage = () => {
     <div className="container">
       <Back path = {AppPath.HOME} />
       <div className="selector">
-        <div></div>
         <div onClick={() => setSelectType("ware")}>Ware</div>
         <div onClick={() => setSelectType("work")}>Work</div>
       </div>
@@ -80,34 +80,31 @@ const WarePage = () => {
 
       {wareType === "all" ? null :
         (<div className="filter">
-          <label>
+          <div>
             <input type="radio" checked={filter} onChange={() => setFilter(!filter)} />
-            Workshop
-          </label>
-          <label>
+            <span>Workshop</span>
+          </div>
+          <div>
             <input type="radio" checked={!filter} onChange={() => setFilter(!filter)} />
-            Area
-          </label>
+            <span>Area</span>
+          </div>
           <input
             onChange={(event) => setId(event.target.value)}
             type="number"
             placeholder="Enter id"
           />
 
-          <div className="selector">
-            <label>Set range?</label>
-            <button onClick={()=>setIsRange(!isRange)}>?</button>
-            {isRange ? null :(
-              <div className="range">
-                <label htmlFor="start">Start date:</label>
-                <input type="date" id="start" name="trip-start"
-                       min="2018-01-01" onChange={event => setRange([event.target.value, range[1]])}/>
-                <label htmlFor="start">Finish date:</label>
-                <input type="date" id="finish" name="trip-finish"
-                       min="2018-01-01"  onChange={event => setRange([range[0], event.target.value])}/>
-              </div>
-              )}
-          </div>
+          <button onClick={()=>setIsRange(!isRange)}>Set range?</button>
+          {isRange ? null :(
+            <div className="range">
+              <label htmlFor="start">Start date:</label>
+              <input type="date" id="start" name="trip-start"
+                     min="2018-01-01" onChange={event => setRange([event.target.value, range[1]])}/>
+              <label htmlFor="start">Finish date:</label>
+              <input type="date" id="finish" name="trip-finish"
+                     min="2018-01-01"  onChange={event => setRange([range[0], event.target.value])}/>
+            </div>
+            )}
           <button onClick={findClick}>Find</button>
         </div>)}
       <div className="items">{items.map((item) => (
@@ -117,7 +114,11 @@ const WarePage = () => {
           item = {item}
         />
       ))}
-        {selectType === "work"? null : (<div className="create" onClick={()=> navigate(AppPath.WARE_CREATE)}>Create new</div>)}
+        {selectType === "work"? null : (<div className="create" onClick={()=> navigate(AppPath.WARE_CREATE)}>
+          <div className="circle">
+            <div className="horizontal"></div>
+            <div className="vertical"></div>
+          </div></div>)}
       </div>
     </div>
   );

@@ -1,0 +1,22 @@
+.back{
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    display: block;
+    margin: 20px auto;
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    transform: rotate(-45deg);
+}
+.back::after{
+    content: "";
+    display: block;
+    width: 2px;
+    height: 30px;
+    background-color: black;
+    transform: rotate(-45deg) translate(10px, 3px);
+    left: 0;
+    top: 0;
+}
