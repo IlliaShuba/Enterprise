@@ -7,7 +7,8 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-public class LoginDto {
+public class RegistrationDto {
     private String login;
     private String password;
+    private String role;
 }

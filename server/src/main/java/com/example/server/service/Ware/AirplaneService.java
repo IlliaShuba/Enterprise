@@ -25,8 +25,6 @@ public class AirplaneService {
     @Autowired
     private ShopRepository shopRepository;
     @Autowired
-    private AreaRepository areaRepository;
-    @Autowired
     private LaboratoryRepository laboratoryRepository;
     @Autowired
     private EquipmentRepository equipmentRepository;
@@ -81,6 +79,9 @@ public class AirplaneService {
         Airplane airplane = airplaneRepository.findById(id).get();
         airplane.setFinishTest(LocalDate.now());
         return airplaneRepository.save(airplane);
+    }
+    public void delete(Integer id){
+        airplaneRepository.deleteById(id);
     }
 
     public AirplaneDto toDto(Airplane entity){

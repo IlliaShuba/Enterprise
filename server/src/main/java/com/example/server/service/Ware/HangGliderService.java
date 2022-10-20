@@ -1,9 +1,11 @@
 package com.example.server.service.Ware;
 
+import com.example.server.dto.GliderDto;
 import com.example.server.dto.HangGliderDto;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
+import com.example.server.entity.Ware.Glider;
 import com.example.server.entity.Ware.HangGlider;
 import com.example.server.repository.AreaRepository;
 import com.example.server.repository.EquipmentRepository;
@@ -23,8 +25,6 @@ public class HangGliderService {
     private HangGliderRepository hangGliderRepository;
     @Autowired
     private ShopRepository shopRepository;
-    @Autowired
-    private AreaRepository areaRepository;
     @Autowired
     private LaboratoryRepository laboratoryRepository;
     @Autowired
@@ -52,6 +52,33 @@ public class HangGliderService {
     public HangGliderDto getById(Integer id){
         HangGlider hangGlider = hangGliderRepository.findById(id).get();
         return toDto(hangGlider);
+    }
+    public List<HangGliderDto> getAll(){
+        List<HangGliderDto> response = new ArrayList<>();
+
+        for (HangGlider item : hangGliderRepository.findAll()) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+
+    public List<HangGlider> getByInterval(String firstDate,String secondDate){
+        return hangGliderRepository.queryFirstByFinishCreateAfterAndFinishCreateBefore(LocalDate.parse(firstDate), LocalDate.parse(secondDate));
+    }
+
+    public HangGlider finishCreate(Integer id){
+        HangGlider hangGlider = hangGliderRepository.findById(id).get();
+        hangGlider.setFinishCreate(LocalDate.now());
+        hangGlider.setStartTest(LocalDate.now());
+        return hangGliderRepository.save(hangGlider);
+    }
+    public HangGlider finishTest(Integer id){
+        HangGlider hangGlider = hangGliderRepository.findById(id).get();
+        hangGlider.setFinishTest(LocalDate.now());
+        return hangGliderRepository.save(hangGlider);
+    }
+    public void delete(Integer id){
+        hangGliderRepository.deleteById(id);
     }
 
     public HangGliderDto toDto(HangGlider entity){

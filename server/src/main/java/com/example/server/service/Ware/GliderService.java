@@ -1,9 +1,11 @@
 package com.example.server.service.Ware;
 
+import com.example.server.dto.AirplaneDto;
 import com.example.server.dto.GliderDto;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
+import com.example.server.entity.Ware.Airplane;
 import com.example.server.entity.Ware.Glider;
 import com.example.server.repository.AreaRepository;
 import com.example.server.repository.EquipmentRepository;
@@ -52,6 +54,34 @@ public class GliderService {
     public GliderDto getById(Integer id){
         Glider glider = gliderRepository.findById(id).get();
         return toDto(glider);
+    }
+    public List<GliderDto> getAll(){
+        List<GliderDto> response = new ArrayList<>();
+
+        for (Glider item : gliderRepository.findAll()) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+
+    public List<Glider> getByInterval(String firstDate,String secondDate){
+        return gliderRepository.queryFirstByFinishCreateAfterAndFinishCreateBefore(LocalDate.parse(firstDate), LocalDate.parse(secondDate));
+    }
+
+
+    public Glider finishCreate(Integer id){
+        Glider glider = gliderRepository.findById(id).get();
+        glider.setFinishCreate(LocalDate.now());
+        glider.setStartTest(LocalDate.now());
+        return gliderRepository.save(glider);
+    }
+    public Glider finishTest(Integer id){
+        Glider glider = gliderRepository.findById(id).get();
+        glider.setFinishTest(LocalDate.now());
+        return gliderRepository.save(glider);
+    }
+    public void delete(Integer id){
+        gliderRepository.deleteById(id);
     }
 
     public GliderDto toDto(Glider entity){

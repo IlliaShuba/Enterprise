@@ -1,9 +1,11 @@
 package com.example.server.service.Ware;
 
+import com.example.server.dto.HelicopterDto;
 import com.example.server.dto.MissileDto;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
+import com.example.server.entity.Ware.Helicopter;
 import com.example.server.entity.Ware.Missile;
 import com.example.server.repository.AreaRepository;
 import com.example.server.repository.EquipmentRepository;
@@ -23,8 +25,6 @@ public class MissileService {
     private MissileRepository missileRepository;
     @Autowired
     private ShopRepository shopRepository;
-    @Autowired
-    private AreaRepository areaRepository;
     @Autowired
     private LaboratoryRepository laboratoryRepository;
     @Autowired
@@ -52,6 +52,33 @@ public class MissileService {
     public MissileDto getById(Integer id){
         Missile missile = missileRepository.findById(id).get();
         return toDto(missile);
+    }
+    public List<MissileDto> getAll(){
+        List<MissileDto> response = new ArrayList<>();
+
+        for (Missile item : missileRepository.findAll()) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+
+    public List<Missile> getByInterval(String firstDate,String secondDate){
+        return missileRepository.queryFirstByFinishCreateAfterAndFinishCreateBefore(LocalDate.parse(firstDate), LocalDate.parse(secondDate));
+    }
+
+    public Missile finishCreate(Integer id){
+        Missile missile = missileRepository.findById(id).get();
+        missile.setFinishCreate(LocalDate.now());
+        missile.setStartTest(LocalDate.now());
+        return missileRepository.save(missile);
+    }
+    public Missile finishTest(Integer id){
+        Missile missile = missileRepository.findById(id).get();
+        missile.setFinishTest(LocalDate.now());
+        return missileRepository.save(missile);
+    }
+    public void delete(Integer id){
+        missileRepository.deleteById(id);
     }
 
     public MissileDto toDto(Missile entity){

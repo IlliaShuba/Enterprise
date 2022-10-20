@@ -4,6 +4,7 @@ import com.example.server.entity.Shop;
 import com.example.server.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,7 +26,7 @@ public class ShopController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<?> showAllShop(){
         try {
             return ResponseEntity.ok(shopService.getAll());

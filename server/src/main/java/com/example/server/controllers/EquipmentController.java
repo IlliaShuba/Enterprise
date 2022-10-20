@@ -39,4 +39,14 @@ public class EquipmentController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+
+    @DeleteMapping
+    public ResponseEntity<?> delete(@RequestParam Integer id){
+        try {
+            equipmentService.delete(id);
+            return ResponseEntity.ok("delete");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
 }

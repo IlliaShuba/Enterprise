@@ -8,7 +8,6 @@ import com.example.server.repository.LaboratoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,14 +29,9 @@ public class EquipmentService {
     public Iterable<Equipment> getAll(){return equipmentRepository.findAll();}
 
     public List<Equipment> getByWareId(Integer id){
-        List<EquipmentDto> response = new ArrayList<>();
-        /*for (Equipment equipment : ) {
-            response.add(toDto(equipment));
-        }
-        return response;*/
         return equipmentRepository.queryAllByAirplaneId(id);
-
     }
+    public void delete(Integer id){equipmentRepository.deleteById(id);}
 
     public EquipmentDto toDto(Equipment entity){
         EquipmentDto dto = new EquipmentDto();

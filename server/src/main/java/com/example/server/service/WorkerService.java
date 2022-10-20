@@ -27,17 +27,6 @@ public class WorkerService {
     }
 
     public Iterable<Worker> getAll(){return workerRepository.findAll();}
+    public void delete(Integer id){workerRepository.deleteById(id);}
 
-   /* public Set<Brigade> getByShopId(Integer id){
-        List<Area> areas = areaService.getByShopId(id);
-        Set<Brigade> brigades = new HashSet<>();
-        //Set<Worker> workers = new HashSet<>();
-        for (Area area : areas) {
-            brigades.addAll(brigadeRepository.queryFindAllByAreaId(area.getId()));
-        }
-        *//*for (Brigade brigade: brigades){
-           workers.addAll(workerRepository.queryFindAllByBrigade_Id(brigade.getId()));
-        }*//*
-        return brigades;
-    }*/
 }

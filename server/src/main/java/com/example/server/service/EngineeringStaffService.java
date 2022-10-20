@@ -22,4 +22,5 @@ public class EngineeringStaffService {
     }
 
     public Iterable<EngineeringStaff> getAll(){return engineeringStaffRepository.findAll();}
+    public void delete(Integer id){engineeringStaffRepository.deleteById(id);}
 }
