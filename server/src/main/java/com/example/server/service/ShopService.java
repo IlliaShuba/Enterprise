@@ -2,9 +2,11 @@ package com.example.server.service;
 
 import com.example.server.dto.ShopDto;
 import com.example.server.entity.EngineeringStaff;
+import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
 import com.example.server.repository.AreaRepository;
 import com.example.server.repository.EngineeringStaffRepository;
+import com.example.server.repository.LaboratoryRepository;
 import com.example.server.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +16,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class ShopService {
-
     @Autowired
     ShopRepository shopRepository;
     @Autowired
     AreaRepository areaRepository;
     @Autowired
     EngineeringStaffRepository engineeringStaffRepository;
+    @Autowired
+    LaboratoryRepository laboratoryRepository;
+
 
     public List<ShopDto> getAll(){
         List<Shop> shops = shopRepository.findAll();
@@ -37,6 +41,14 @@ public class ShopService {
         Shop shop = shopRepository.findById(shopId).orElseThrow();
         EngineeringStaff head = engineeringStaffRepository.findById(headId).orElseThrow();
         shop.setHead(head);
+        return  shopRepository.save(shop);
+    }
+    public Shop setLab(Integer shopId,Integer labId){
+        Shop shop = shopRepository.findById(shopId).orElseThrow();
+        Laboratory lab = laboratoryRepository.findById(labId).orElseThrow();
+        List<Laboratory> laboratories = shop.getLaboratories();
+        laboratories.add(lab);
+        shop.setLaboratories(laboratories);
         return  shopRepository.save(shop);
     }
 

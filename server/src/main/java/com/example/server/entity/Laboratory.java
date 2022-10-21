@@ -1,13 +1,15 @@
 package com.example.server.entity;
 
 import com.example.server.entity.Ware.*;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,28 +23,28 @@ public class Laboratory {
     private Integer id;
 
     @ManyToMany(mappedBy = "laboratories", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private Set<Shop> shops = new HashSet<>();
+    @JsonIgnore
+    private List<Shop> shops = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
-    private Set<Equipment> equipment = new HashSet<>();
+    private List<Equipment> equipment = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
-    private Set<Worker> workers= new HashSet<>();
-
+    private List<Worker> workers= new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
-    private Set<Airplane> airplanes = new HashSet<>();
+    private List<Airplane> airplanes = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
-    private Set<Glider> gliders = new HashSet<>();
+    private List<Glider> gliders = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
-    private Set<HangGlider> hangGliders = new HashSet<>();
+    private List<HangGlider> hangGliders = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
-    private Set<Helicopter> helicopters = new HashSet<>();
+    private List<Helicopter> helicopters = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
-    private Set<Missile> missiles = new HashSet<>();
+    private List<Missile> missiles = new ArrayList<>();
 }

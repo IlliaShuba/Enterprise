@@ -1,9 +1,11 @@
 package com.example.server.service.Ware;
 
+import com.example.server.dto.HangGliderDto;
 import com.example.server.dto.HelicopterDto;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
+import com.example.server.entity.Ware.HangGlider;
 import com.example.server.entity.Ware.Helicopter;
 import com.example.server.repository.AreaRepository;
 import com.example.server.repository.EquipmentRepository;
@@ -23,8 +25,6 @@ public class HelicopterService {
     private HelicopterRepository helicopterRepository;
     @Autowired
     private ShopRepository shopRepository;
-    @Autowired
-    private AreaRepository areaRepository;
     @Autowired
     private LaboratoryRepository laboratoryRepository;
     @Autowired
@@ -52,6 +52,33 @@ public class HelicopterService {
     public HelicopterDto getById(Integer id){
         Helicopter helicopter = helicopterRepository.findById(id).get();
         return toDto(helicopter);
+    }
+    public List<HelicopterDto> getAll(){
+        List<HelicopterDto> response = new ArrayList<>();
+
+        for (Helicopter item : helicopterRepository.findAll()) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+
+    public List<Helicopter> getByInterval(String firstDate,String secondDate){
+        return helicopterRepository.queryFirstByFinishCreateAfterAndFinishCreateBefore(LocalDate.parse(firstDate), LocalDate.parse(secondDate));
+    }
+
+    public Helicopter finishCreate(Integer id){
+        Helicopter helicopter = helicopterRepository.findById(id).get();
+        helicopter.setFinishCreate(LocalDate.now());
+        helicopter.setStartTest(LocalDate.now());
+        return helicopterRepository.save(helicopter);
+    }
+    public Helicopter finishTest(Integer id){
+        Helicopter helicopter = helicopterRepository.findById(id).get();
+        helicopter.setFinishTest(LocalDate.now());
+        return helicopterRepository.save(helicopter);
+    }
+    public void delete(Integer id){
+        helicopterRepository.deleteById(id);
     }
 
     public HelicopterDto toDto(Helicopter entity){

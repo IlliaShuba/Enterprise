@@ -10,6 +10,7 @@ import com.example.server.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,6 +31,16 @@ public class AreaService {
         area.setType(dto.getType());
         area.setShop(shop);
         area.setHead(head);
+        return areaRepository.save(area);
+    }
+    public Area setMasters(ArrayList<Integer> mastersId, Integer id){
+        Area area = areaRepository.findById(id).get();
+        List<EngineeringStaff> masters = new ArrayList<>();
+        for (Integer item : mastersId){
+            EngineeringStaff master = engineeringStaffRepository.findById(item).get();
+            masters.add(master);
+        }
+        area.setMaster(masters);
         return areaRepository.save(area);
     }
 

@@ -5,6 +5,7 @@ import com.example.server.dto.Interval;
 import com.example.server.service.Ware.AirplaneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,7 @@ public class AirplaneController {
     @Autowired
     private AirplaneService airplaneService;
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<?> create(@RequestBody AirplaneDto entity){
         try {
@@ -61,6 +63,15 @@ public class AirplaneController {
     public ResponseEntity<?> finishTest(@RequestParam Integer id){
         try {
             return ResponseEntity.ok(airplaneService.finishTest(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @DeleteMapping
+    public ResponseEntity<?> delete(@RequestParam Integer id){
+        try {
+            airplaneService.delete(id);
+            return ResponseEntity.ok("delete");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

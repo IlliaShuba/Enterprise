@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping(path = "/area")
 public class AreaController {
@@ -35,6 +37,15 @@ public class AreaController {
     public ResponseEntity<?> getAll(){
         try {
             return ResponseEntity.ok(areaService.getAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @PutMapping
+    public ResponseEntity<?> setMasters(@RequestBody AreaDto entity, @RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(areaService.setMasters(entity.getMasters(), id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

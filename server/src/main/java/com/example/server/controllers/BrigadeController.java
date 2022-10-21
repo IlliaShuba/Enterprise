@@ -30,4 +30,6 @@ public class BrigadeController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+
+
 }

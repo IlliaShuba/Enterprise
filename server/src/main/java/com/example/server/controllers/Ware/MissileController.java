@@ -1,5 +1,6 @@
 package com.example.server.controllers.Ware;
 
+import com.example.server.dto.Interval;
 import com.example.server.dto.MissileDto;
 import com.example.server.service.Ware.MissileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,49 @@ public class MissileController {
     public ResponseEntity getById(@RequestParam Integer id){
         try {
             return ResponseEntity.ok(missileService.getById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll(){
+        try {
+            return ResponseEntity.ok(missileService.getAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @PostMapping("/interval")
+    public ResponseEntity<?> getByInterval(@RequestBody Interval interval){
+        try {
+            return ResponseEntity.ok(missileService.getByInterval(interval.getFirstDate(), interval.getSecondDate()));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @PutMapping("/finish-create")
+    public ResponseEntity<?> finishCreate(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(missileService.finishCreate(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @PutMapping("/finish-test")
+    public ResponseEntity<?> finishTest(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(missileService.finishTest(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @DeleteMapping
+    public ResponseEntity<?> delete(@RequestParam Integer id){
+        try {
+            missileService.delete(id);
+            return ResponseEntity.ok("delete");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
