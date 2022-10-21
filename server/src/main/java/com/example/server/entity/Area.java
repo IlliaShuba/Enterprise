@@ -32,9 +32,9 @@ public class Area {
     @OneToOne
     private EngineeringStaff head;
 
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<EngineeringStaff> master = new ArrayList<>();*/
+    private List<EngineeringStaff> master = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "shop_id")

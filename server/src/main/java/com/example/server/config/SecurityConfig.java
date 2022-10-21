@@ -51,11 +51,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/user/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/**").hasAnyAuthority("MANAGER", "ADMIN", "OWNER")
                 .antMatchers(HttpMethod.PUT, "/**").hasAnyAuthority("MANAGER", "ADMIN", "OWNER")
                 .antMatchers(HttpMethod.DELETE, "/**").hasAnyAuthority("MANAGER", "ADMIN", "OWNER")
-                .antMatchers("/user/**").permitAll()
                 .anyRequest()
                 .authenticated();
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

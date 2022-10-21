@@ -43,6 +43,14 @@ public class ShopController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+    @PutMapping("/laboratory")
+    public ResponseEntity<?> setLaboratory(@RequestParam Integer shopId, @RequestParam Integer labId){
+        try {
+            return ResponseEntity.ok(shopService.setLab(shopId,labId));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
 
     @DeleteMapping
     public ResponseEntity deleteShop(@RequestParam Integer id){

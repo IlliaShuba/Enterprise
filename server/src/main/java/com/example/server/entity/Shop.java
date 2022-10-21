@@ -1,7 +1,7 @@
 package com.example.server.entity;
 
 import com.example.server.entity.Ware.*;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +27,7 @@ public class Shop {
     private EngineeringStaff head;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JsonIgnore
     @JoinTable(name = "shop_lab",
             joinColumns = @JoinColumn(name = "shop_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "laboratory_id", referencedColumnName = "id"))
