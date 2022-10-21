@@ -6,11 +6,14 @@
     justify-content: space-around;
     align-items: center;
 }
-.container .home_item{
+.home .home_item{
     display:flex;
     width: 100%;
     height: 100%;
     justify-content: center;
     align-items: center;
-
+    font-size: 50px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
 }
