@@ -9,6 +9,8 @@ import com.example.server.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BrigadeService {
 
@@ -26,6 +28,9 @@ public class BrigadeService {
         entity.setBrigadier(null);
         return brigadeRepository.save(entity);
     }
+
+    public Brigade getById(Integer id){return brigadeRepository.findById(id).get();}
+    public List<Brigade> getAll(){return brigadeRepository.findAll();}
 
     public Brigade setHead(Integer id, Integer headId){
         Brigade brigade = brigadeRepository.findById(id).get();

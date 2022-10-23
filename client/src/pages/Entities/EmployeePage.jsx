@@ -16,8 +16,8 @@ const EmployeePage = () => {
     switch (selectType){
       case "all":
         let all = [];
-        await $api.get("/worker").then((response) => {all = response.data})
-        await $api.get("/engineer").then((response) => {all.concat(response.data); setItems(all)})
+        await $api.get("/worker/all").then((response) => {all = response.data})
+        await $api.get("/engineer/all").then((response) => {all.concat(response.data); setItems(all)})
 
       case "worker":
         if(id == null){
@@ -50,9 +50,9 @@ const EmployeePage = () => {
     <div className="container">
       <Back path = {AppPath.HOME} />
       <div className="selector">
-        <div onClick={() => {setSelectType("all"); setId(null)}}>All</div>
-        <div onClick={() => setSelectType("worker")}>Worker</div>
-        <div onClick={() => setSelectType("engineer")}>Engineer</div>
+        <div onClick={() => {setSelectType("all"); setId(null); findClick()}}>All</div>
+        <div onClick={() => {setSelectType("worker"); findClick()}}>Worker</div>
+        <div onClick={() => {setSelectType("engineer"); findClick()}}>Engineer</div>
       </div>
 
       { selectType === "all" ? null :(

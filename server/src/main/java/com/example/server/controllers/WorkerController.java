@@ -14,9 +14,9 @@ public class WorkerController {
     private WorkerService workerService;
 
     @PostMapping
-    public ResponseEntity createWorker(@RequestBody WorkerDto entity, @RequestParam Integer brigadeId){
+    public ResponseEntity createWorker(@RequestBody WorkerDto entity, @RequestParam Integer id){
         try {
-            workerService.create(entity, brigadeId);
+            workerService.create(entity, id);
             return ResponseEntity.ok("Worker created");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");

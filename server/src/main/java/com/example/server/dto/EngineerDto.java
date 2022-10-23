@@ -5,11 +5,9 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class WorkerDto {
+public class EngineerDto {
     private Integer id;
     private String name;
-    private String type;
-    private String category;
-    private Integer number_of_space;
-
+    private String speciality;
+    private Integer area;
 }

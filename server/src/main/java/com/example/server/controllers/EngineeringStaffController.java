@@ -1,6 +1,7 @@
 package com.example.server.controllers;
 
 
+import com.example.server.dto.EngineerDto;
 import com.example.server.entity.EngineeringStaff;
 import com.example.server.service.EngineeringStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class EngineeringStaffController {
     EngineeringStaffService engineeringStaffService;
 
     @PostMapping
-    public ResponseEntity<?> createEngineer(@RequestBody EngineeringStaff entity){
+    public ResponseEntity<?> createEngineer(@RequestBody EngineerDto entity){
         try {
             engineeringStaffService.create(entity);
             return ResponseEntity.ok("Engineer created");

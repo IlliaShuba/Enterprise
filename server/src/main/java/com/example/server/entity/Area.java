@@ -43,6 +43,6 @@ public class Area {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
     @JsonManagedReference
-    private Set<Work> works = new HashSet<>();
+    private List<Work> works = new ArrayList<>();
 
 }

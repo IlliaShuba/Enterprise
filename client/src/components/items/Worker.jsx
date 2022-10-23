@@ -32,7 +32,7 @@ const Worker = () => {
   }
 
   const deleteClick = async () => {
-    await $api.delete(`/worker?id=${worker.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.delete(`/worker?id=${worker.id}`).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
   }
 
   useEffect(() => {
@@ -44,8 +44,10 @@ const Worker = () => {
     <div className="main">
       <Back path = {AppPath.EMPLOYEE_PAGE} />
       <div className="content">
-        <p>Area number {worker.id}</p>
-        <p>Worker brigade:</p>
+        <p>Worker number: {worker?.id}</p>
+        <p>Name: {worker?.name}</p>
+        <p>Category: {worker?.category}</p>
+        <p>Brigade: {worker?.number_of_space}</p>
         {isEdit ? (
           <select onChange={event => setNewBrigade(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>
@@ -55,7 +57,7 @@ const Worker = () => {
               </option>
             ))}
           </select>
-        ) : ( <p>{worker.brigade.id}</p>)}
+        ) : null}
       </div>
       <div className="action">
         <button onClick={submitChange}>{isEdit ? "confirm" : "edit"}</button>

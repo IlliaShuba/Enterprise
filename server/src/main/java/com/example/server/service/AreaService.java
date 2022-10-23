@@ -57,8 +57,8 @@ public class AreaService {
         AreaDto dto = new AreaDto();
         dto.setId(entity.getId());
         dto.setType(entity.getType());
-        dto.setBrigade(entity.getBrigades());
-        dto.setMasters(entity.getMasters());
+        /*dto.setBrigade(entity.getBrigades());
+        dto.setMasters(entity.getMasters());*/
         return dto;
     }
 }

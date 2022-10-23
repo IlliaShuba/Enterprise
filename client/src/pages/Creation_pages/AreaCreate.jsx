@@ -11,25 +11,25 @@ const AreaCreate = () => {
 
   const [head, setHead] = useState();
   const [workshopId, setWorkshopId] = useState();
+  const [type, setType] = useState();
   let navigate = useNavigate();
 
   const create = async () => {
-    await $api.post(`/area?shopId=${workshopId}&?headId=${head}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.post(`/area?shopId=${workshopId}&headId=${head}`, {type: type}).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
   }
 
   const getInfo = async () => {
-    await $api.get(`/engineer`).then((response) => {
+    await $api.get(`/engineer/all`).then((response) => {
       setCandidates(response.data);
     }).catch(err => console.log(err));
 
-    await $api.get(`/shop`).then((response) => {
+    await $api.get(`/shop/all`).then((response) => {
       setWorkshop(response.data);
     }).catch(err => console.log(err));
   }
 
   useEffect(() => {
     getInfo();
-    create();
   }, []);
 
   return (
@@ -37,12 +37,21 @@ const AreaCreate = () => {
       <Back path={AppPath.SHOP_PAGE}/>
       <fieldset>
         <legend>Area</legend>
-        <form class="inputs-container">
+        <div class="inputs-container">
+          <div className="input-container">
+            <span className="input-text">Type:</span>
+            <input
+              onChange={(event) => setType(event.target.value)}
+              type="text"
+              placeholder="Enter type of area"
+            />
+          </div>
           <div class="input-container">
             <span class="input-text">Head:</span>
-            <select onChange={event => setHead(event.target.value)}>
+            <select onChange={event => setHead(event.target.value)} defaultValue={0}>
+              <option disabled value={0}> -- select an option -- </option>
               {candidates.map(option => (
-                <option key={option.value} value={option.value}>
+                <option key={option.value} value={option.id}>
                   {option.name}
                 </option>
               ))}
@@ -51,17 +60,18 @@ const AreaCreate = () => {
 
           <div className="input-container">
             <span className="input-text">Workshop:</span>
-            <select onChange={event => setWorkshopId(event.target.value)}>
+            <select onChange={event => setWorkshopId(event.target.value)} defaultValue={0}>
+              <option disabled value={0}> -- select an option -- </option>
               {workshop.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.name}
+                <option key={option.id} value={option.id}>
+                  {option.id}
                 </option>
               ))}
             </select>
           </div>
 
           <button onClick={create}>Create</button>
-        </form>
+        </div>
       </fieldset>
     </div>
   )

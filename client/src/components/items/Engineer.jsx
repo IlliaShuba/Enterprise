@@ -11,41 +11,37 @@ const Engineer = () => {
   const [brigades, setBrigades] = useState([{value: 1, name: "ivan"}, {value: 2, name: "iqwe"}, {value: 3, name: "asd"}]);
   const [newBrigade , setNewBrigade] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
-  const [worker, setWorker] = useState({id: 1, brigade: {id: 1}});
+  const [engineer, setEngineer] = useState({id: 1, brigade: {id: 1}});
 
   const getInfo = async () => {
-    await $api.get(`/engineer?id=${localStorage.getItem("id")}`).then((response) => setWorker(response.data)).catch(err => console.log(err));
+    await $api.get(`/engineer?id=${localStorage.getItem("id")}`).then((response) => setEngineer(response.data)).catch(err => console.log(err));
   }
-
-  const getBrigade = async () => {
-    await $api.get(`/brigade/all`).then((response) => {
-      setBrigades(response.data);
-    }).catch(err => console.log(err))}
 
   const submitChange = async () => {
     if (isEdit){
       setIsEdit(!isEdit)
       if (newBrigade != null)
-        await $api.put(`/worker?id=${newBrigade}`).then((response) => setWorker(response.data)).catch(err => console.log(err));
+        await $api.put(`/engineer?id=${newBrigade}`).then((response) => setEngineer(response.data)).catch(err => console.log(err));
     }
     else setIsEdit(!isEdit);
   }
 
   const deleteClick = async () => {
-    await $api.delete(`/worker?id=${worker.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.delete(`/worker?id=${engineer.id}`).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
   }
 
   useEffect(() => {
     getInfo();
-    getBrigade();
   }, []);
 
   return (
     <div className="main">
       <Back path = {AppPath.EMPLOYEE_PAGE} />
       <div className="content">
-        <p>Area number {worker.id}</p>
-        <p>Area :</p>
+        <p>Engineer number: {engineer.id}</p>
+        <p>Name: {engineer?.name}</p>
+        <p>Speciality: {engineer?.speciality}</p>
+        <p>{engineer?.area != null? `Area: ${engineer.area}`:`` }</p>
         {isEdit ? (
           <select onChange={event => setNewBrigade(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>
@@ -55,10 +51,10 @@ const Engineer = () => {
               </option>
             ))}
           </select>
-        ) : ( <p>{worker.brigade.id}</p>)}
+        ) : null}
       </div>
       <div className="action">
-        <button onClick={submitChange}>{isEdit ? "confirm" : "edit"}</button>
+        {engineer?.area != null? <button onClick={submitChange}>{isEdit ? "confirm" : "edit"}</button> : null}
         <button onClick={deleteClick}>delete</button>
       </div>
     </div>

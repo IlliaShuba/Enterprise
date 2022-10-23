@@ -22,7 +22,6 @@ const WorkshopCreate = () => {
 
   useEffect(() => {
     getCandidates();
-    create();
   }, []);
 
   return (
@@ -30,7 +29,7 @@ const WorkshopCreate = () => {
       <Back path={AppPath.SHOP_PAGE}/>
       <fieldset>
        <legend>Workshop</legend>
-        <form class="inputs-container">
+        <div class="inputs-container">
           <div class="input-container">
             <span class="input-text">Head:</span>
             <select onChange={event => setId(event.target.value)}>
@@ -42,7 +41,7 @@ const WorkshopCreate = () => {
             </select>
           </div>
           <button onClick={create}>Create</button>
-        </form>
+        </div>
       </fieldset>
     </div>
   )

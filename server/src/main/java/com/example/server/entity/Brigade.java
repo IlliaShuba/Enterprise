@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,9 +27,9 @@ public class Brigade {
     private Area area;
     @OneToOne
     private Worker brigadier;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brigade")
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set<Worker> worker = new HashSet<>();
+    private List<Worker> worker = new ArrayList<>();
 
     /*@OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn

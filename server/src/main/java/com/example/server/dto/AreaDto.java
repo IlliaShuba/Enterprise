@@ -13,6 +13,6 @@ import java.util.List;
 public class AreaDto {
     private Integer id;
     private String type;
-    private List<Brigade> brigade;
-    private List<EngineeringStaff> masters;
+   /* private List<Brigade> brigade;
+    private List<EngineeringStaff> masters;*/
 }

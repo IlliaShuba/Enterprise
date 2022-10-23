@@ -24,3 +24,19 @@ fieldset input{
     border: none;
     border-bottom: 1px solid #584B4F;
 }
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.input-container{
+    margin: 10px 0;
+}
+.input-container input, .input-container select{
+    border: none;
+    margin-left: 5px;
+    width: 200px;
+    height: 20px;
+    font-size: 16px;
+}
