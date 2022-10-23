@@ -3,6 +3,7 @@ package com.example.server.service;
 import com.example.server.dto.AreaDto;
 import com.example.server.entity.Area;
 import com.example.server.entity.EngineeringStaff;
+import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
 import com.example.server.repository.AreaRepository;
 import com.example.server.repository.EngineeringStaffRepository;
@@ -33,17 +34,16 @@ public class AreaService {
         area.setHead(head);
         return areaRepository.save(area);
     }
-    public Area setMasters(ArrayList<Integer> mastersId, Integer id){
-        Area area = areaRepository.findById(id).get();
-        List<EngineeringStaff> masters = new ArrayList<>();
-        for (Integer item : mastersId){
-            EngineeringStaff master = engineeringStaffRepository.findById(item).get();
-            masters.add(master);
-        }
-        area.setMaster(masters);
-        return areaRepository.save(area);
+    public Area setMasters(Integer areaId, Integer masterId){
+        Area area = areaRepository.findById(areaId).orElseThrow();
+        EngineeringStaff master = engineeringStaffRepository.findById(masterId).orElseThrow();
+        List<EngineeringStaff> masters = area.getMasters();
+        masters.add(master);
+        area.setMasters(masters);
+        return  areaRepository.save(area);
     }
 
+    public Area getById(Integer id) {return areaRepository.findById(id).get();}
     public List<Area> getByShopId(Integer id){return areaRepository.queryFindAllByShopId(id);}
     public List<Area> getAll() {return areaRepository.findAll();}
 
@@ -57,6 +57,8 @@ public class AreaService {
         AreaDto dto = new AreaDto();
         dto.setId(entity.getId());
         dto.setType(entity.getType());
+        dto.setBrigade(entity.getBrigades());
+        dto.setMasters(entity.getMasters());
         return dto;
     }
 }

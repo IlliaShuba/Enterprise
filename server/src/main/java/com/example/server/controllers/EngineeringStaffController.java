@@ -23,6 +23,14 @@ public class EngineeringStaffController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+    @GetMapping
+    public  ResponseEntity<?> getById(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(engineeringStaffService.getById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
     @GetMapping("/all")
     public  ResponseEntity<?> showAll(){
         try {

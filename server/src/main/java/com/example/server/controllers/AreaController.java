@@ -25,6 +25,15 @@ public class AreaController {
     }
 
     @GetMapping
+    public ResponseEntity<?> getById(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(areaService.getById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @GetMapping("/byShop")
     public ResponseEntity<?> getAllAreaInShop(@RequestParam Integer id){
         try {
             return ResponseEntity.ok(areaService.getByShopId(id));
@@ -42,10 +51,10 @@ public class AreaController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<?> setMasters(@RequestBody AreaDto entity, @RequestParam Integer id){
+    @PutMapping("/master")
+    public ResponseEntity<?> setMasters(@RequestParam Integer areaId, @RequestParam Integer masterId){
         try {
-            return ResponseEntity.ok(areaService.setMasters(entity.getMasters(), id));
+            return ResponseEntity.ok(areaService.setMasters(areaId, masterId));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

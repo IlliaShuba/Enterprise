@@ -2,6 +2,7 @@ package com.example.server.service;
 
 import com.example.server.dto.WorkerDto;
 import com.example.server.entity.Brigade;
+import com.example.server.entity.EngineeringStaff;
 import com.example.server.entity.Worker;
 import com.example.server.repository.BrigadeRepository;
 import com.example.server.repository.WorkerRepository;
@@ -14,8 +15,6 @@ public class WorkerService {
     private WorkerRepository workerRepository;
     @Autowired
     private BrigadeRepository brigadeRepository;
-    @Autowired
-    private AreaService areaService;
 
     public Worker create(WorkerDto dto, Integer brigadeId){
         Worker entity = new Worker();
@@ -26,6 +25,7 @@ public class WorkerService {
         return workerRepository.save(entity);
     }
 
+    public Worker getById(Integer id){return workerRepository.findById(id).get();}
     public Iterable<Worker> getAll(){return workerRepository.findAll();}
     public void delete(Integer id){workerRepository.deleteById(id);}
 

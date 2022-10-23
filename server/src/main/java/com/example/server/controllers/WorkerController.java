@@ -23,6 +23,14 @@ public class WorkerController {
         }
     }
 
+    @GetMapping
+    public  ResponseEntity<?> getById(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(workerService.getById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
     @GetMapping("/all")
     public  ResponseEntity<?> showAll(){
         try {
