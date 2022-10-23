@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import $api from "../../common/axios";
-import WorkshopCard from "../../components/WorkshopCard";
 import {AppPath} from "../../common/path.enum";
 import {useNavigate} from "react-router-dom";
 import Back from "../../components/Back";
@@ -22,7 +21,7 @@ const EmployeePage = () => {
 
       case "worker":
         if(id == null){
-          await $api.get("/worker").then((response) => {
+          await $api.get("/worker/all").then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {
@@ -32,7 +31,7 @@ const EmployeePage = () => {
         break;
       case "engineer":
         if(id == null){
-          await $api.get("/engineer").then((response) => {
+          await $api.get("/engineer/all").then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {

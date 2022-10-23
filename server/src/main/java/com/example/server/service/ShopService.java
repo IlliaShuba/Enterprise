@@ -31,6 +31,11 @@ public class ShopService {
         return shops.stream().map(this::toDto).collect(Collectors.toList());
     }
 
+    public ShopDto getById(Integer id){
+        Shop shop = shopRepository.findById(id).get();
+        return toDto(shop);
+    }
+
     public Shop createShop(Shop shop, Integer headId){
         EngineeringStaff head = engineeringStaffRepository.findById(headId).orElseThrow();
         shop.setHead(head);

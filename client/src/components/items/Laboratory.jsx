@@ -3,6 +3,8 @@ import $api from "../../common/axios";
 import {AppPath} from "../../common/path.enum";
 import {useNavigate} from "react-router-dom";
 import Back from "../Back";
+import "./item.css";
+
 
 const Laboratory = () => {
   const navigate = useNavigate();

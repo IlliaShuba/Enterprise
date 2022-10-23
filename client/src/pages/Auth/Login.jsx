@@ -7,22 +7,25 @@ import axios from 'axios';
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(null);
+  //const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
   function handleClick(e) {
     e.preventDefault();
-      axios.post("http://localhost:3000/user/signin", {
-        email: email,
+      axios.post("http://localhost:8085/user/signin", {
+        login: email,
         password: password,
       })
       .then(function (response) {
-        setMessage("was login");
-        localStorage.setItem('token', response.data.token);
-        navigate(AppPath.ROOT)
+        localStorage.setItem('token', JSON.stringify(response.data.accessToken));
+        axios.post("http://localhost:8085/user/role", {
+          login: email,
+          password: password,
+        }).then(function (response) {localStorage.setItem("accessRight", response.data[0].accessRight)})
+        navigate(AppPath.HOME)
       })
       .catch(function (error) {
-        setMessage(error.data.message);
+        console.log(error.data);
       });
   }
 
@@ -48,7 +51,7 @@ export default function Login() {
               placeholder="Password"
               type= "password"
               required
-              minLength="6"
+              minLength="1"
               className="loginInput"
             />
           </div>

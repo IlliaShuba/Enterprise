@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import $api from "../../common/axios";
-import WorkshopCard from "../../components/WorkshopCard";
+import WorkshopCard from "../../components/cards/WorkshopCard";
 import {AppPath} from "../../common/path.enum";
 import {useNavigate} from "react-router-dom";
 import Back from "../../components/Back";
@@ -15,7 +15,7 @@ const WorkshopPage = () => {
     switch (selectType){
       case "shop":
         if(id == null){
-          await $api.get("/shop").then((response) => {
+          await $api.get("/shop/all").then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {

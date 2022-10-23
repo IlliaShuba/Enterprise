@@ -16,9 +16,9 @@ const EmployeeCard = (props) => {
     }
   }
    return (
-    <div className="cardWrapper" onClick={cardClick}>
-      <p>{props.item.id}</p>
-      <p>{props.item.name}</p>
+    <div className="cardWrapper" onClick={localStorage.getItem("accessRight") === "USER"? null : cardClick}>
+      <p>#{props.item.id}</p>
+      <p>name: {props.item.name}</p>
     </div>
   );
 };

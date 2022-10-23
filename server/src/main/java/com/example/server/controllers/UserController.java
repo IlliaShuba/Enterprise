@@ -24,6 +24,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping(path="/user")
+@CrossOrigin("http://localhost:3000")
 public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;

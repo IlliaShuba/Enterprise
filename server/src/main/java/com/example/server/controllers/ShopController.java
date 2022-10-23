@@ -26,6 +26,15 @@ public class ShopController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<?> getById(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(shopService.getById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
     @GetMapping("/all")
     public ResponseEntity<?> showAllShop(){
         try {

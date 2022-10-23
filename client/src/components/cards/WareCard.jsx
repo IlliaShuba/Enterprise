@@ -15,7 +15,7 @@ const WareCard = (props) => {
   switch (props.select){
     case "ware":
       return (
-        <div className="cardWrapper" onClick={cardClick}>
+        <div className="cardWrapper" onClick={localStorage.getItem("accessRight") === "USER"? null : cardClick}>
           <p>№{props.item.id}</p>
           <p>{Object.keys(props.item)[1]}: {Object.values(props.item)[1]}</p>
           <p>start of creating: {props.item.startCreate}</p>
