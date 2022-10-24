@@ -17,7 +17,7 @@ public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
+    private String type;
     @ManyToOne
     @JoinColumn(name = "laboratory_id")
     @JsonBackReference

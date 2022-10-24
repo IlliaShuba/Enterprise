@@ -11,7 +11,7 @@ const WarePage = () => {
   const [selectType, setSelectType] = useState("ware");
   const [items, setItems] = useState([{id:1, name: "Ivan"}]);
   const [id, setId] = useState(null);
-  const [wareType, setWareType] = useState("all");
+  const [wareType, setWareType] = useState("airplane");
   const [filter, setFilter] = useState(true);
   const [range, setRange] = useState([null, null]);
   const [isRange, setIsRange] = useState(false);
@@ -19,18 +19,6 @@ const WarePage = () => {
   const findClick = async () => {
     switch (selectType){
       case "ware":
-        /*switch (wareType){
-          case "airplane":
-            break;
-          case "glider":
-            break;
-          case "hang-glider":
-            break;
-          case "helicopter":
-            break;
-          case "missile":
-            break;
-        }*/
         if(id == null){
           await $api.get(`/${wareType}/all`).then((response) => {
             setItems(response.data);
@@ -46,11 +34,11 @@ const WarePage = () => {
         break;
       case "work":
         if(id == null){
-          await $api.get("/work/all").then((response) => {
+          await $api.get(`/work/${wareType}`).then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {
-          await $api.get(`/${wareType}?id=${id}`).then((response) => {
+          await $api.get(`/work/${wareType}/${id}`).then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         break;
@@ -95,7 +83,7 @@ const WarePage = () => {
           />
 
           <button onClick={()=>setIsRange(!isRange)}>Set range?</button>
-          {isRange ? null :(
+          {isRange ?(
             <div className="range">
               <label htmlFor="start">Start date:</label>
               <input type="date" id="start" name="trip-start"
@@ -104,7 +92,7 @@ const WarePage = () => {
               <input type="date" id="finish" name="trip-finish"
                      min="2018-01-01"  onChange={event => setRange([range[0], event.target.value])}/>
             </div>
-            )}
+            ) : null }
           <button onClick={findClick}>Find</button>
         </div>)}
       <div className="items">{items.map((item) => (

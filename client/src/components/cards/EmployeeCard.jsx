@@ -20,7 +20,7 @@ const EmployeeCard = (props) => {
     <div className="cardWrapper" onClick={localStorage.getItem("accessRight") === "USER"? null : cardClick}>
       <p>#{props.item.id}</p>
       <p>name: {props.item.name}</p>
-      <p>{props.item?.type != null? `type: ${props?.item?.type === "brigade"? "worker" : "tester"}`: `type: engineer` }</p>
+      <p>{props.item?.type != null? `type: ${props?.item?.type === "brigade"? "worker" : "tester"}`: `type: engineering staff` }</p>
       {props.item?.speciality != null? <p>speciality: {props.item?.speciality}</p> : null}
       {props.item?.category != null? <p>category: {props.item?.category}</p> : null}
     </div>

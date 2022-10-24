@@ -32,6 +32,7 @@ public class Laboratory {
     @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Worker> workers= new ArrayList<>();
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory")
     @JsonManagedReference
     private List<Airplane> airplanes = new ArrayList<>();

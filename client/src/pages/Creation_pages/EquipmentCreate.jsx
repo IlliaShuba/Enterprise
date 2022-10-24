@@ -30,7 +30,7 @@ const EquipmentCreate = () => {
       <Back path={AppPath.LABORATORY_PAGE}/>
       <fieldset>
         <legend>Equipment</legend>
-        <form class="inputs-container">
+        <div class="inputs-container">
           <div class="input-container">
             <span class="input-text">Type:</span>
             <input
@@ -42,17 +42,18 @@ const EquipmentCreate = () => {
 
           <div className="input-container">
             <span className="input-text">Laboratory:</span>
-            <select onChange={event => setLaboratoryId(event.target.value)}>
+            <select onChange={event => setLaboratoryId(event.target.value)} defaultValue={0}>
+              <option disabled value={0}> -- select an option -- </option>
               {laboratory.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.name}
+                <option key={option.value} value={option.id}>
+                  {option.id}
                 </option>
               ))}
             </select>
           </div>
 
           <button onClick={create}>Create</button>
-        </form>
+        </div>
       </fieldset>
     </div>
   )

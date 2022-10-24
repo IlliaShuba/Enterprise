@@ -22,6 +22,24 @@ public class WorkController {
         }
     }
 
+    @GetMapping("{ware}")
+    public ResponseEntity<?> getByType(@PathVariable("ware") String ware){
+        try {
+            return ResponseEntity.ok(workService.getByType(ware));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @GetMapping("{ware}/{id}")
+    public ResponseEntity<?> getByWareId(@PathVariable("ware") String ware, @PathVariable("id") Integer id){
+        try {
+            return ResponseEntity.ok(workService.getByWareId(ware, id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
     @PutMapping("/finish")
     public ResponseEntity<?> finish(@RequestParam Integer id){
         try {

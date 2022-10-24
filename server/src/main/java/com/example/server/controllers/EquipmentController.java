@@ -22,6 +22,14 @@ public class EquipmentController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<?> getById(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(equipmentService.getById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
     @GetMapping("/all")
     public ResponseEntity<?> getAll(){
         try {
@@ -31,7 +39,7 @@ public class EquipmentController {
         }
     }
 
-    @GetMapping
+    @GetMapping("ware")
     public ResponseEntity<?> getByWareId(@RequestParam Integer id){
         try {
             return ResponseEntity.ok(equipmentService.getByWareId(id));

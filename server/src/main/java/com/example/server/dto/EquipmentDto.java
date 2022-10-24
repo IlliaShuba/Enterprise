@@ -7,5 +7,6 @@ import lombok.Setter;
 @Getter
 public class EquipmentDto {
     private Integer id;
-    private String name;
+    private String type;
+    private Integer number_laboratory;
 }

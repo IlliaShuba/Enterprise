@@ -3,12 +3,14 @@ package com.example.server.service;
 import com.example.server.dto.EquipmentDto;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
+import com.example.server.entity.Shop;
 import com.example.server.repository.EquipmentRepository;
 import com.example.server.repository.LaboratoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EquipmentService {
@@ -21,22 +23,26 @@ public class EquipmentService {
         Equipment equipment = new Equipment();
         Laboratory laboratory = laboratoryRepository.findById(labId).get();
 
-        equipment.setName(dto.getName());
+        equipment.setType(dto.getType());
         equipment.setLaboratory(laboratory);
         return equipmentRepository.save(equipment);
     }
 
-    public Iterable<Equipment> getAll(){return equipmentRepository.findAll();}
+    public EquipmentDto getById(Integer id){return toDto(equipmentRepository.findById(id).get());}
+    public List<EquipmentDto> getAll(){
+        List<Equipment> shops = equipmentRepository.findAll();
+        return shops.stream().map(this::toDto).collect(Collectors.toList());}
 
-    public List<Equipment> getByWareId(Integer id){
-        return equipmentRepository.queryAllByAirplaneId(id);
-    }
+    public List<EquipmentDto> getByWareId(Integer id){
+        List<Equipment> shops = equipmentRepository.queryAllByAirplaneId(id);
+        return shops.stream().map(this::toDto).collect(Collectors.toList());}
     public void delete(Integer id){equipmentRepository.deleteById(id);}
 
     public EquipmentDto toDto(Equipment entity){
         EquipmentDto dto = new EquipmentDto();
         dto.setId(entity.getId());
-        dto.setName(entity.getName());
+        dto.setType(entity.getType());
+        dto.setNumber_laboratory(entity.getLaboratory().getId());
         return dto;
     }
 }

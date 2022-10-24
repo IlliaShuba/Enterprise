@@ -18,7 +18,7 @@ const EngineerCreate = () => {
     <div className="main">
       <Back path={AppPath.EMPLOYEE_PAGE}/>
       <fieldset>
-        <legend>Employee</legend>
+        <legend>EngineeringStaff</legend>
         <div className="inputs-container">
           <div className="input-container">
             <span className="input-text">Name:</span>

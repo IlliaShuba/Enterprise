@@ -19,14 +19,18 @@ const LaboratoryCard = (props) => {
   switch (props.select){
     case "laboratory": return (
       <div className="cardWrapper" onClick={localStorage.getItem("accessRight") === "USER"? null : cardClick}>
-        <p>{props.item.id}</p>
+        <p>#{props.item.id}</p>
+        <p>Count of equipment: {props.item?.equipment?.length}</p>
+        <p>Count of worker: {props.item?.workers?.length}</p>
+        {/*<p>Count of workshop: {props.item?.workshop?.length}</p>*/}
 
       </div>
     );
     case "equipment": return (
       <div className="cardWrapper" onClick={localStorage.getItem("accessRight") === "USER"? null : cardClick}>
-        <p>{props.item.id}</p>
-        <p>{props.item.type}</p>
+        <p>#{props.item.id}</p>
+        <p>Type: {props.item.type}</p>
+        <p>Number of laboratory: {props.item?.number_laboratory}</p>
 
       </div>
     );

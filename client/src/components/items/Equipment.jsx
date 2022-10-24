@@ -5,7 +5,6 @@ import {useNavigate} from "react-router-dom";
 import Back from "../Back";
 import "./item.css";
 
-
 const Equipment = () => {
   const navigate = useNavigate();
   const [laboratory, setLaboratory] = useState([{value: 1, name: "ivan"}, {value: 2, name: "iqwe"}, {value: 3, name: "asd"}]);
@@ -14,7 +13,7 @@ const Equipment = () => {
   const [equipment, setEquipment] = useState({id: 1, laboratory: {id: 1}});
 
   const getInfo = async () => {
-    await $api.get(`/engineer?id=${localStorage.getItem("id")}`).then((response) => setEquipment(response.data)).catch(err => console.log(err));
+    await $api.get(`/equipment?id=${localStorage.getItem("id")}`).then((response) => setEquipment(response.data)).catch(err => console.log(err));
   }
 
   const getLaboratory = async () => {
@@ -44,19 +43,19 @@ const Equipment = () => {
     <div className="main">
       <Back path = {AppPath.LABORATORY_PAGE} />
       <div className="content">
-        <p>Equipment number {equipment.id}</p>
-        <p>Equipment type {equipment.type}</p>
-        <p>Laboratory:</p>
+        <p>Equipment number: {equipment.id}</p>
+        <p>Equipment type: {equipment.type}</p>
+        <p>Laboratory: {equipment.number_laboratory}</p>
         {isEdit ? (
           <select onChange={event => setNewLab(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>
             {laboratory.map(option => (
-              <option key={option.value} value={option.value}>
+              <option key={option.value} value={option.id}>
                 {option.id}
               </option>
             ))}
           </select>
-        ) : ( <p>{equipment.laboratory.id}</p>)}
+        ) : null}
       </div>
       <div className="action">
         <button onClick={submitChange}>{isEdit ? "confirm" : "edit"}</button>

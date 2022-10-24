@@ -52,7 +52,7 @@ const EmployeePage = () => {
       <div className="selector">
         <div onClick={() => {setSelectType("all"); setId(null); findClick()}}>All</div>
         <div onClick={() => {setSelectType("worker"); findClick()}}>Worker</div>
-        <div onClick={() => {setSelectType("engineer"); findClick()}}>Engineer</div>
+        <div onClick={() => {setSelectType("engineer"); findClick()}}>Engineering Staff</div>
       </div>
 
       { selectType === "all" ? null :(

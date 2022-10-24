@@ -30,7 +30,7 @@ const WareCreate = () => {
       setLaboratory(response.data);
     }).catch(err => console.log(err));
 
-    await $api.get(`/equipment`).then((response) => {
+    await $api.get(`/equipment/all`).then((response) => {
       setEquipment(response.data);
     }).catch(err => console.log(err));
   }
@@ -67,10 +67,11 @@ const WareCreate = () => {
 
           <div className="input-container">
             <span className="input-text">Workshop:</span>
-            <select onChange={event => setWorkshopId(event.target.value)}>
+            <select onChange={event => setWorkshopId(event.target.value)} defaultValue={0}>
+              <option disabled value={0}> -- select an option -- </option>
               {workshop.map(option => (
                 <option key={option.value} value={option.id}>
-                  {option.name}
+                  {option.id}
                 </option>
               ))}
             </select>
@@ -78,10 +79,11 @@ const WareCreate = () => {
 
           <div className="input-container">
             <span className="input-text">Laboratory:</span>
-            <select onChange={event => setLabId(event.target.value)}>
+            <select onChange={event => setLabId(event.target.value)} defaultValue={0}>
+              <option disabled value={0}> -- select an option -- </option>
               {laboratory.map(option => (
                 <option key={option.value} value={option.id}>
-                  {option.name}
+                  {option.id}
                 </option>
               ))}
             </select>
@@ -92,7 +94,7 @@ const WareCreate = () => {
             <select onChange={event => setEquipmentId(event.target.value)} multiple>
               {equipment.map(option => (
                 <option key={option.value} value={option.id}>
-                  {option.name}
+                  {option.type}
                 </option>
               ))}
             </select>

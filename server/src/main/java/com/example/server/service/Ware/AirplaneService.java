@@ -1,6 +1,7 @@
 package com.example.server.service.Ware;
 
 import com.example.server.dto.AirplaneDto;
+import com.example.server.dto.EquipmentDto;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
@@ -95,9 +96,9 @@ public class AirplaneService {
         dto.setShop(entity.getShop().getId());
         dto.setLab(entity.getLaboratory().getId());
 
-        List<Equipment> equipment = equipmentService.getByWareId(entity.getId());
+        List<EquipmentDto> equipment = equipmentService.getByWareId(entity.getId());
         List<Integer> equipment_ids= new ArrayList<>();
-        for (Equipment elem : equipment){
+        for (EquipmentDto elem : equipment){
             equipment_ids.add(elem.getId());
         }
         dto.setEquipment(equipment_ids);

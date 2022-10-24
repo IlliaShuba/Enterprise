@@ -35,11 +35,11 @@ const Laboratory = () => {
     <div className="main">
       <Back path = {AppPath.LABORATORY_PAGE} />
       <div className="content">
-        <p>Laboratory number {laboratory.id}{isEdit}</p>
-
+        <p>Laboratory number: {laboratory.id}</p>
+        <p>Equipment: {laboratory?.equipment?.map((item) => item.id + ", ")}</p>
+        <p>Workers: {laboratory?.workers?.map((item) => item.id + ", ")}</p>
       </div>
       <div className="action">
-        <button onClick={submitChange}>{isEdit ? "confirm" : "edit"}</button>
         <button onClick={deleteClick}>delete</button>
       </div>
     </div>

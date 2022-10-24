@@ -8,26 +8,23 @@ import "./item.css";
 
 const Ware = () => {
   const navigate = useNavigate();
-  const [brigades, setBrigades] = useState([{value: 1, name: "ivan"}, {value: 2, name: "iqwe"}, {value: 3, name: "asd"}]);
-  const [newBrigade , setNewBrigade] = useState(null);
-  const [isEdit, setIsEdit] = useState(false);
   const [ware, setWare] = useState({id: 1, brigade: {id: 1}});
+  const wareType = localStorage.getItem("ware");
 
   const getInfo = async () => {
     await $api.get(`/${localStorage.getItem("ware")}?id=${localStorage.getItem("id")}`).then((response) => setWare(response.data)).catch(err => console.log(err));
   }
 
-  const getBrigade = async () => {
-    await $api.get(`/brigade/all`).then((response) => {
-      setBrigades(response.data);
-    }).catch(err => console.log(err))}
-
   const newWork = async () => {
     navigate(AppPath.WORK_CREATE);
   }
 
-  const finish = async () => {
-    await $api.post(`/${localStorage.getItem("ware")}?id=${localStorage.getItem("id")}/finish`).then((response) => setWare(response.data)).catch(err => console.log(err));
+  const finishCreate = async () => {
+    await $api.put(`/${localStorage.getItem("ware")}/finish-create?id=${localStorage.getItem("id")}`).then((response) => setWare(response.data)).catch(err => console.log(err));
+  }
+
+  const finishTes = async () => {
+    await $api.put(`/${localStorage.getItem("ware")}/finish-test?id=${localStorage.getItem("id")}`).then((response) => setWare(response.data)).catch(err => console.log(err));
   }
 
   const deleteClick = async () => {
@@ -36,22 +33,29 @@ const Ware = () => {
 
   useEffect(() => {
     getInfo();
-    getBrigade();
   }, []);
 
   return (
     <div className="main">
       <Back path = {AppPath.WARE_PAGE} />
       <div className="content">
-        <p>{localStorage.getItem("ware")} number {ware.id}</p>
-        <p>{Object.keys(ware.item)[1]}: {Object.values(ware.item)[1]}</p>
-        <p>Laboratory : {ware.lab.id}</p>
-        <p>Workshop : {ware.workshop.id}</p>
-        <p>Laboratory : {ware.lab.id}</p>
+        <p>{localStorage.getItem("ware")} number: {ware?.id}</p>
+        {wareType === "airplane"? <p>Number of engines: {ware?.numberOfEngines}</p>:null}
+        {wareType === "glider" || wareType === "hang-glider" ? <p>Weight: {ware?.weight}</p>:null}
+        {wareType === "helicopter"? <p>Engine power: {ware?.enginePower}</p>:null}
+        {wareType === "missile"? <p>Charge power: {ware?.chargePower}</p>:null}
+
+        {ware.finishCreate != null ? <p>finish of creating: {ware.finishCreate}</p> : null}
+        {ware.startTest != null ? <p>start of testing: {ware.startTest}</p> : null}
+        {ware.finishTest != null ? <p>finish of testing: {ware.finishTest}</p> : null}
+        <p>Workshop : {ware?.shop}</p>
+        <p>Laboratory : {ware?.lab}</p>
+
       </div>
       <div className="action">
-        <button onClick={newWork}>new work</button>
-        <button onClick={finish}>finish create</button>
+        {ware.finishCreate != null ? null : <button onClick={newWork}>new work</button>}
+        {ware.finishCreate != null ? null : <button onClick={finishCreate}>finish create</button>}
+        {ware.finishTest != null ? null : <button onClick={finishTes}>finish test</button>}
         <button onClick={deleteClick}>delete</button>
       </div>
     </div>

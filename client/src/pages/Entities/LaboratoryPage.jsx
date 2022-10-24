@@ -15,11 +15,11 @@ const LaboratoryPage = () => {
     switch (selectType){
       case "laboratory":
         if(id == null){
-          await $api.get("/laboratory").then((response) => {
+          await $api.get("/laboratory/all").then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {
-          await $api.get(`/shop?id=${id}`).then((response) => {
+          await $api.get(`/laboratory?id=${id}`).then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         break;
@@ -29,7 +29,7 @@ const LaboratoryPage = () => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {
-          await $api.get(`/area?id=${id}`).then((response) => {
+          await $api.get(`/equipment?id=${id}`).then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         break;
