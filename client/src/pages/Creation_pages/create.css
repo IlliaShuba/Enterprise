@@ -40,3 +40,7 @@ fieldset input{
     height: 20px;
     font-size: 16px;
 }
+select[multiple] {
+    height: 100px;
+
+}

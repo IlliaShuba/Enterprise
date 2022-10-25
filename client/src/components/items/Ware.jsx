@@ -16,6 +16,7 @@ const Ware = () => {
   }
 
   const newWork = async () => {
+    localStorage.setItem("shop", ware.shop);
     navigate(AppPath.WORK_CREATE);
   }
 
@@ -45,6 +46,7 @@ const Ware = () => {
         {wareType === "helicopter"? <p>Engine power: {ware?.enginePower}</p>:null}
         {wareType === "missile"? <p>Charge power: {ware?.chargePower}</p>:null}
 
+        <p>start of creating: {ware.startCreate}</p>
         {ware.finishCreate != null ? <p>finish of creating: {ware.finishCreate}</p> : null}
         {ware.startTest != null ? <p>start of testing: {ware.startTest}</p> : null}
         {ware.finishTest != null ? <p>finish of testing: {ware.finishTest}</p> : null}
@@ -55,7 +57,7 @@ const Ware = () => {
       <div className="action">
         {ware.finishCreate != null ? null : <button onClick={newWork}>new work</button>}
         {ware.finishCreate != null ? null : <button onClick={finishCreate}>finish create</button>}
-        {ware.finishTest != null ? null : <button onClick={finishTes}>finish test</button>}
+        {ware.finishTest != null  ? null : ware.finishCreate != null? <button onClick={finishTes}>finish test</button> : null}
         <button onClick={deleteClick}>delete</button>
       </div>
     </div>

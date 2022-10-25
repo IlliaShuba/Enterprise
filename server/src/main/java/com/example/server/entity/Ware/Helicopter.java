@@ -25,7 +25,6 @@ public class Helicopter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String typeOfWorks;
     private Integer enginePower;
     private LocalDate startCreate;
     private LocalDate finishCreate;

@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {AppPath} from "../../common/path.enum";
 import Back from "../../components/Back";
 import "./create.css";
+import ware from "../../components/items/Ware";
 
 const WareCreate = () => {
   const [workshop, setWorkshop] = useState([]);
@@ -17,8 +18,28 @@ const WareCreate = () => {
   const [labId, setLabId] = useState();
   let navigate = useNavigate();
 
+  const handleChangeNormalSelect = e => {
+    const updatedOptions = [...e.target.options]
+      .filter(option => option.selected)
+      .map(x => x.value);
+    console.log("updatedOptions", updatedOptions);
+    setEquipmentId(updatedOptions);
+  };
+
   const create = async () => {
-    await $api.post(`/${wareType}`, { ware: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    switch (wareType){
+      case "airplane":
+        await $api.post(`/${wareType}`, {numberOfEngines: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+      case "glider":
+        await $api.post(`/${wareType}`, {weight: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+      case "hang-glider":
+        await $api.post(`/${wareType}`, {weight: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+      case "helicopter":
+        await $api.post(`/${wareType}`, {enginePower: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+      case "missile":
+        await $api.post(`/${wareType}`, {chargePower: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+
+    }
   }
 
   const getInfo = async () => {
@@ -44,7 +65,7 @@ const WareCreate = () => {
       <Back path={AppPath.WARE_PAGE}/>
       <fieldset>
         <legend>Ware</legend>
-        <form class="inputs-container">
+        <div class="inputs-container">
           <div class="input-container">
             <span class="input-text">Ware type:</span>
             <select onChange={event => setWareType(event.target.value)}>
@@ -57,7 +78,7 @@ const WareCreate = () => {
             </select>
           </div>
           <div className="input-container">
-            <span className="input-text">{wareType === "airplane"? "number of engine": ""}:</span>
+            <span className="input-text">{wareType === "airplane"? "Number of engine": wareType === "glider" || wareType === "hang-glider"? "Weight": wareType === "helicopter"? "Engine power": wareType === "missile" ? "Charge power": ""}:</span>
             <input
               onChange={(event) => setField(event.target.value)}
               type="number"
@@ -91,7 +112,7 @@ const WareCreate = () => {
 
           <div className="input-container">
             <span className="input-text">Equipment:</span>
-            <select onChange={event => setEquipmentId(event.target.value)} multiple>
+            <select onChange={handleChangeNormalSelect} multiple>
               {equipment.map(option => (
                 <option key={option.value} value={option.id}>
                   {option.type}
@@ -100,7 +121,7 @@ const WareCreate = () => {
             </select>
           </div>
           <button onClick={create}>Create</button>
-        </form>
+        </div>
       </fieldset>
     </div>
   )

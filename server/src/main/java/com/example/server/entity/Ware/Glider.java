@@ -25,7 +25,6 @@ public class Glider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String typeOfWorks;
     private Integer weight;
     private LocalDate startCreate;
     private LocalDate finishCreate;

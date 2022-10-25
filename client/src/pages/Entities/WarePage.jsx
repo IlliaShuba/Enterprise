@@ -66,7 +66,16 @@ const WarePage = () => {
         <div onClick={() => setWareType("missile")}>Missile</div>
       </div>
 
-      {wareType === "all" ? null :
+      {selectType === "work" ?
+        <div className="filter">
+
+          <input
+            onChange={(event) => event.target.value === ""? setId(null): setId(event.target.value)}
+            type="number"
+            placeholder="Enter ware id"
+          />
+          <button onClick={findClick}>Find</button>
+        </div> :
         (<div className="filter">
           <div>
             <input type="radio" checked={filter} onChange={() => setFilter(!filter)} />

@@ -25,7 +25,6 @@ public class Missile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String typeOfWorks;
     private Integer chargePower;
     private LocalDate startCreate;
     private LocalDate finishCreate;
