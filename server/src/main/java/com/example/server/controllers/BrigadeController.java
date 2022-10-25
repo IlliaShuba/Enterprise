@@ -30,6 +30,15 @@ public class BrigadeController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+
+    @GetMapping("/area")
+    public  ResponseEntity<?> getByAreaId(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(brigadeService.getByAreaId(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
     @GetMapping("/all")
     public  ResponseEntity<?> showAll(){
         try {

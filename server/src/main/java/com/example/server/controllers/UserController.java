@@ -82,4 +82,38 @@ public class UserController {
         return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
 
     }
+    @GetMapping
+    public ResponseEntity<?> getById(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(userRepository.findById(id).get());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @GetMapping("/role")
+    public ResponseEntity<?> getAll(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(userRepository.queryUserByRoles_Id(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll(){
+        try {
+            return ResponseEntity.ok(userRepository.findAll());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @DeleteMapping
+    public ResponseEntity deleteArea(@RequestParam Integer id){
+        try {
+            userRepository.deleteById(id);
+            return ResponseEntity.ok("User deleted");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
 }

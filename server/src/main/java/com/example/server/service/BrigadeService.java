@@ -30,6 +30,7 @@ public class BrigadeService {
     }
 
     public Brigade getById(Integer id){return brigadeRepository.findById(id).get();}
+    public List<Brigade> getByAreaId(Integer id){return  brigadeRepository.queryFindAllByAreaId(id);}
     public List<Brigade> getAll(){return brigadeRepository.findAll();}
 
     public Brigade setHead(Integer id, Integer headId){

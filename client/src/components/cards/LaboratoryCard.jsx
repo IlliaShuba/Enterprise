@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {AppPath} from "../../common/path.enum";
+import "./card.css";
 
 const LaboratoryCard = (props) => {
   let navigate = useNavigate();

@@ -7,6 +7,7 @@ const AppPath = {
   WARE_PAGE: '/ware',
   EMPLOYEE_PAGE: '/employee',
   LABORATORY_PAGE: '/laboratory',
+  USER_PAGE: '/user',
 
   SHOP_CREATE: '/shop-create',
   AREA_CREATE: '/area-create',
@@ -16,6 +17,7 @@ const AppPath = {
   EQUIPMENT_CREATE: '/equipment-create',
   WARE_CREATE: '/ware-create',
   WORK_CREATE: '/work-create',
+  USER_CREATE: '/user-create',
 
   SHOP_ITEM: '/shop-item',
   AREA_ITEM: '/area-item',
@@ -24,6 +26,7 @@ const AppPath = {
   LABORATORY_ITEM: '/laboratory-item',
   EQUIPMENT_ITEM: '/equipment-item',
   WARE_ITEM: '/ware-item',
+  USER_ITEM: '/user-item',
   ANY: '*'
 };
 

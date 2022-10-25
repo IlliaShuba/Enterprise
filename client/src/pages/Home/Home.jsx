@@ -17,7 +17,7 @@ const Home = () => {
       <div className="home_item" style={{ background: `url(${ware})`, backgroundSize: "100% 150%" }} onClick={() => navigate(AppPath.WARE_PAGE)}>Wares</div>
       <div className="home_item" style={{ background: `url(${workers})`, backgroundSize: "100% 150%" }} onClick={() => navigate(AppPath.EMPLOYEE_PAGE)}>Personal</div>
       <div className="home_item" style={{ background: `url(${test})`, backgroundPositionY: 600 }} onClick={() => navigate(AppPath.LABORATORY_PAGE)}>Laboratories</div>
-      {localStorage.getItem("accessRight") === "ADMIN" || localStorage.getItem("accessRight") === "OWNER" ? (<div className="home_item" style={{backgroundColor: "black"}}>Users</div>) : null}
+      {localStorage.getItem("accessRight") === "ADMIN" || localStorage.getItem("accessRight") === "OWNER" ? (<div className="home_item" style={{backgroundColor: "black"}} onClick={() => navigate(AppPath.USER_PAGE)}>Users</div>) : null}
     </div>
   );
 };

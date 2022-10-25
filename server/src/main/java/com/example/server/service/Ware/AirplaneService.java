@@ -6,6 +6,7 @@ import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
 import com.example.server.entity.Ware.Airplane;
+import com.example.server.entity.Ware.Work;
 import com.example.server.repository.AreaRepository;
 import com.example.server.repository.EquipmentRepository;
 import com.example.server.repository.LaboratoryRepository;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -31,6 +33,8 @@ public class AirplaneService {
     private EquipmentRepository equipmentRepository;
     @Autowired
     private EquipmentService equipmentService;
+    @Autowired
+    private WorkService workService;
 
 
     public Airplane create(AirplaneDto dto){
@@ -74,6 +78,15 @@ public class AirplaneService {
         Airplane airplane = airplaneRepository.findById(id).get();
         airplane.setFinishCreate(LocalDate.now());
         airplane.setStartTest(LocalDate.now());
+
+        if(!airplane.getWork().isEmpty()){
+            List<Integer> ids = new ArrayList<>();
+            for (Work item : airplane.getWork()) {
+                ids.add(item.getId());
+            }
+            Integer work = Collections.max(ids);
+            workService.finish(work);
+        }
         return airplaneRepository.save(airplane);
     }
     public Airplane finishTest(Integer id){

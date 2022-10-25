@@ -14,7 +14,6 @@ public class AirplaneController {
     @Autowired
     private AirplaneService airplaneService;
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<?> create(@RequestBody AirplaneDto entity){
         try {

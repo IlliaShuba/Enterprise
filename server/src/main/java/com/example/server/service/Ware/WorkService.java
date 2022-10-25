@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,6 +53,14 @@ public class WorkService {
         switch (dto.getWare()) {
             case ("airplane") -> {
                 Airplane airplane = airplaneRepository.findById(dto.getWareId()).get();
+                if(!airplane.getWork().isEmpty()){
+                    List<Integer> ids = new ArrayList<>();
+                    for (Work item : airplane.getWork()) {
+                        ids.add(item.getId());
+                    }
+                    Integer id = Collections.max(ids);
+                    finish(id);
+                }
                 work.setAirplane(airplane);
             }
             case ("glider") -> {
