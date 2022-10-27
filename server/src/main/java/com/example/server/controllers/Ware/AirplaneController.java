@@ -40,6 +40,22 @@ public class AirplaneController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+    @GetMapping("/shop")
+    public ResponseEntity<?> getByShop(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(airplaneService.getByShop(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @GetMapping("/laboratory")
+    public ResponseEntity<?> getByArea(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(airplaneService.getByLaboratory(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
 
     @PostMapping("/interval")
     public ResponseEntity<?> getByInterval(@RequestBody Interval interval){

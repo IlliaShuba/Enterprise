@@ -25,10 +25,14 @@
     justify-content: space-around;
     align-items: center;
 }
-.container .filter div{
+.container .filter .range{
     display: flex;
     align-items: center;
 }
+.container .filter .range div{
+    margin: 0 20px;
+}
+
 input[type="radio"] {
     appearance: none;
     background-color: #fff;
@@ -57,7 +61,6 @@ input[type="date"]{
     font-family: "Verdana", serif;
 
 }
-
 
 .container .items{
     display: grid;

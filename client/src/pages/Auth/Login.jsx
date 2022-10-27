@@ -56,10 +56,6 @@ export default function Login() {
             />
           </div>
 
-          <span className="loginForgot">
-            <Link to="/">Forgot Password?</Link>
-          </span>
-
           <button className="loginButton" type="submit">
             LOGIN
           </button>

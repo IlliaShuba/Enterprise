@@ -24,6 +24,8 @@ import WareCreate from "./pages/Creation_pages/WareCreate";
 import UserPage from "./pages/Entities/UserPage";
 import UserCreate from "./pages/Creation_pages/UserCreate";
 import User from "./components/items/User";
+import BrigadeCreate from "./pages/Creation_pages/BrigadeCreate";
+import Brigade from "./components/items/Brigade";
 
 function App() {
   return (
@@ -47,6 +49,7 @@ function App() {
       <Route path={AppPath.WARE_CREATE} element={<WareCreate/>}/>
       <Route path={AppPath.WORK_CREATE} element={<WorkCreate/>}/>
       <Route path={AppPath.USER_CREATE} element={<UserCreate/>}/>
+      <Route path={AppPath.BRIGADE_CREATE} element={<BrigadeCreate/>}/>
 
       {/*Edit routes*/}
       <Route path={AppPath.SHOP_ITEM} element={<Workshop />}/>
@@ -57,6 +60,8 @@ function App() {
       <Route path={AppPath.EQUIPMENT_ITEM} element={<Equipment />}/>
       <Route path={AppPath.WARE_ITEM} element={<Ware />}/>
       <Route path={AppPath.USER_ITEM} element={<User />}/>
+      <Route path={AppPath.BRIGADE_ITEM} element={<Brigade />}/>
+
     </Routes>
   );
 }

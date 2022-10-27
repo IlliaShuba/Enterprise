@@ -14,11 +14,6 @@ const EmployeePage = () => {
 
   const findClick = async () => {
     switch (selectType){
-      case "all":
-        let all = [];
-        await $api.get("/worker/all").then((response) => {all = response.data})
-        await $api.get("/engineer/all").then((response) => {all.concat(response.data); setItems(all)})
-
       case "worker":
         if(id == null){
           await $api.get("/worker/all").then((response) => {
@@ -50,7 +45,6 @@ const EmployeePage = () => {
     <div className="container">
       <Back path = {AppPath.HOME} />
       <div className="selector">
-        <div onClick={() => {setSelectType("all"); setId(null); findClick()}}>All</div>
         <div onClick={() => {setSelectType("worker"); findClick()}}>Worker</div>
         <div onClick={() => {setSelectType("engineer"); findClick()}}>Engineering Staff</div>
       </div>
@@ -65,7 +59,7 @@ const EmployeePage = () => {
       { selectType === "all" ? null :
         (<div className="filter">
           <input
-            onChange={(event) => setId(event.target.value)}
+            onChange={(event) => event.target.value === ""? setId(null): setId(event.target.value)}
             type="number"
             placeholder={filter === "workshop"? "Enter shop id" : filter === "area"? "Enter area id" :"Enter laboratory id"}
           />
@@ -76,10 +70,11 @@ const EmployeePage = () => {
           item = {item}
         />
       ))}
-        <div className="create" onClick={() => selectType === "worker"? navigate(AppPath.WORKER_CREATE) :  navigate(AppPath.ENGINEER_CREATE)}><div className="circle">
+        {localStorage.getItem("accessRight") === "OWNER" || localStorage.getItem("accessRight") === "ADMIN" || localStorage.getItem("accessRight") === "MANAGER"?
+          <div className="create" onClick={() => selectType === "worker"? navigate(AppPath.WORKER_CREATE) :  navigate(AppPath.ENGINEER_CREATE)}><div className="circle">
           <div className="horizontal"></div>
           <div className="vertical"></div>
-        </div></div>
+        </div></div>: null}
       </div>
     </div>
   );

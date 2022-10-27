@@ -68,6 +68,22 @@ public class AirplaneService {
         }
         return response;
     }
+    public List<AirplaneDto> getByShop(Integer id){
+        List<AirplaneDto> response = new ArrayList<>();
+
+        for (Airplane item : airplaneRepository.queryAirplanesByShop_Id(id)) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+    public List<AirplaneDto> getByLaboratory(Integer id){
+        List<AirplaneDto> response = new ArrayList<>();
+
+        for (Airplane item : airplaneRepository.queryAirplanesByLaboratory_Id(id)) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
 
     public List<Airplane> getByInterval(String firstDate,String secondDate){
         return airplaneRepository.queryFirstByFinishCreateAfterAndFinishCreateBefore(LocalDate.parse(firstDate), LocalDate.parse(secondDate));

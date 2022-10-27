@@ -19,18 +19,35 @@ const WarePage = () => {
   const findClick = async () => {
     switch (selectType){
       case "ware":
-        if(id == null){
-          await $api.get(`/${wareType}/all`).then((response) => {
-            setItems(response.data);
-          }).catch(err => console.log(err))}
-        else if(filter) {
-          await $api.get(`/${wareType}?ware=${id}`).then((response) => {
-            setItems(response.data);
-          }).catch(err => console.log(err))}
+        if(isRange) {
+          if (range[0] == null || range[1] == null) {
+            await $api.get(`/${wareType}/all`).then((response) => {
+              setItems(response.data);
+            }).catch(err => console.log(err))
+          }
+          else{
+            await $api.post(`/${wareType}/interval`, {firstDate: range[0], secondDate: range[1]}).then((response) => {
+              setItems(response.data);
+            }).catch(err => console.log(err))
+          }
+        }
         else {
-          await $api.get(`/${wareType}?area=${id}`).then((response) => {
-            setItems(response.data);
-          }).catch(err => console.log(err))}
+          if(id == null){
+            await $api.get(`/${wareType}/all`).then((response) => {
+              setItems(response.data);
+            }).catch(err => console.log(err))}
+          else {
+            if (filter){
+              await $api.get(`/${wareType}/shop?id=${id}`).then((response) => {
+                setItems(response.data);
+              }).catch(err => console.log(err))}
+            else{
+              await $api.get(`/${wareType}/laboratory?id=${id}`).then((response) => {
+                setItems(response.data);
+              }).catch(err => console.log(err))
+            }
+          }
+        }
         break;
       case "work":
         if(id == null){
@@ -58,7 +75,6 @@ const WarePage = () => {
       </div>
 
       <div className="selector">
-        <div onClick={() => setWareType("all")}>All</div>
         <div onClick={() => setWareType("airplane")}>Airplane</div>
         <div onClick={() => setWareType("glider")}>Glider</div>
         <div onClick={() => setWareType("hang-glider")}>Hang-glider</div>
@@ -76,22 +92,10 @@ const WarePage = () => {
           />
           <button onClick={findClick}>Find</button>
         </div> :
-        (<div className="filter">
-          <div>
-            <input type="radio" checked={filter} onChange={() => setFilter(!filter)} />
-            <span>Workshop</span>
-          </div>
-          <div>
-            <input type="radio" checked={!filter} onChange={() => setFilter(!filter)} />
-            <span>Area</span>
-          </div>
-          <input
-            onChange={(event) => setId(event.target.value)}
-            type="number"
-            placeholder="Enter id"
-          />
 
-          <button onClick={()=>setIsRange(!isRange)}>Set range?</button>
+        <div className="filter">
+
+          <button onClick={()=>setIsRange(!isRange)}>{isRange? "Find by id" :"Find by range"}</button>
           {isRange ?(
             <div className="range">
               <label htmlFor="start">Start date:</label>
@@ -101,9 +105,25 @@ const WarePage = () => {
               <input type="date" id="finish" name="trip-finish"
                      min="2018-01-01"  onChange={event => setRange([range[0], event.target.value])}/>
             </div>
-            ) : null }
+            ) :
+            <div className="range">
+              <div>
+                <input type="radio" checked={filter} onChange={() => setFilter(!filter)} />
+                <span>Workshop</span>
+              </div>
+              <div>
+                <input type="radio" checked={!filter} onChange={() => setFilter(!filter)} />
+                <span>Laboratory</span>
+              </div>
+              <input
+                onChange={(event) => event.target.value === ""? setId(null): setId(event.target.value)}
+                type="number"
+                placeholder="Enter id"
+              />
+            </div>
+          }
           <button onClick={findClick}>Find</button>
-        </div>)}
+        </div>}
       <div className="items">{items.map((item) => (
         <WareCard
           select = {selectType}
@@ -111,11 +131,12 @@ const WarePage = () => {
           item = {item}
         />
       ))}
-        {selectType === "work"? null : (<div className="create" onClick={()=> navigate(AppPath.WARE_CREATE)}>
+        {selectType === "work"? null : localStorage.getItem("accessRight") === "OWNER" || localStorage.getItem("accessRight") === "ADMIN" || localStorage.getItem("accessRight") === "MANAGER"?
+        (<div className="create" onClick={()=> navigate(AppPath.WARE_CREATE)}>
           <div className="circle">
             <div className="horizontal"></div>
             <div className="vertical"></div>
-          </div></div>)}
+          </div></div>):null}
       </div>
     </div>
   );

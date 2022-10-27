@@ -14,6 +14,9 @@ const WorkshopCard = (props) => {
       case "area":
         localStorage.setItem("id", props.item.id)
         return navigate(AppPath.AREA_ITEM)
+      case "brigade":
+        localStorage.setItem("id", props.item.id)
+        return navigate(AppPath.BRIGADE_ITEM)
     }
   }
 
@@ -34,6 +37,14 @@ const WorkshopCard = (props) => {
         <p>Count of brigade: {props?.item?.brigades?.length}</p>
         <p>Head: {props?.item?.head?.name}</p>
         <p>Count of masters: {props?.item?.masters?.length}</p>
+      </div>
+    );
+    case "brigade": return (
+      <div className="cardWrapper" onClick={localStorage.getItem("accessRight") === "USER"? null : cardClick}>
+        <p>#{props?.item?.id}</p>
+        <p>Area: {props?.item?.area}</p>
+        <p>Brigadier: {props?.item?.brigadier?.name}</p>
+        <p>Count of workers: {props?.item?.workers?.length}</p>
       </div>
     );
   }

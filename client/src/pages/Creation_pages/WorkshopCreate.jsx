@@ -16,7 +16,7 @@ const WorkshopCreate = () => {
 
 
   const getCandidates = async () => {
-    await $api.get(`/engineer`).then((response) => {
+    await $api.get(`/engineer/all`).then((response) => {
       setCandidates(response.data);
     }).catch(err => console.log(err))}
 

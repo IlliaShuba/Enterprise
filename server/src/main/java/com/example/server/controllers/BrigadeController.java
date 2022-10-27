@@ -13,9 +13,9 @@ public class BrigadeController {
     private BrigadeService brigadeService;
 
     @PostMapping
-    public ResponseEntity<?> createBrigade(@RequestParam Integer areaId){
+    public ResponseEntity<?> createBrigade(@RequestParam Integer areaId, @RequestParam Integer headId){
         try {
-            brigadeService.createBrigade(areaId);
+            brigadeService.createBrigade(areaId, headId);
             return ResponseEntity.ok("Brigade created");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");

@@ -49,7 +49,7 @@ const LaboratoryPage = () => {
       </div>
       <div className="filter">
         <input
-          onChange={(event) => setId(event.target.value)}
+          onChange={(event) => event.target.value === ""? setId(null): setId(event.target.value)}
           type="number"
           placeholder="Enter laboratory id"
         />
@@ -61,10 +61,11 @@ const LaboratoryPage = () => {
           item = {item}
         />
       ))}
+        {localStorage.getItem("accessRight") === "OWNER" || localStorage.getItem("accessRight") === "ADMIN" || localStorage.getItem("accessRight") === "MANAGER"?
         <div className="create" onClick={() => selectType === "laboratory"? navigate(AppPath.LABORATORY_CREATE) :  navigate(AppPath.EQUIPMENT_CREATE)}><div className="circle">
           <div className="horizontal"></div>
           <div className="vertical"></div>
-        </div></div>
+        </div></div>:null}
       </div>
     </div>
   );

@@ -33,6 +33,16 @@ const WorkshopPage = () => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         break;
+      case "brigade":
+        if(id == null){
+          await $api.get("/brigade/all").then((response) => {
+            setItems(response.data);
+          }).catch(err => console.log(err))}
+        else {
+          await $api.get(`/brigade?id=${id}`).then((response) => {
+            setItems(response.data);
+          }).catch(err => console.log(err))}
+        break;
     }
   };
 
@@ -46,10 +56,11 @@ const WorkshopPage = () => {
       <div className="selector">
         <div onClick={() => setSelectType("shop")}>Shop</div>
         <div onClick={() => setSelectType("area")}>Area</div>
+        <div onClick={() => setSelectType("brigade")}>Brigade</div>
       </div>
       <div className="filter">
         <input
-          onChange={(event) => setId(event.target.value)}
+          onChange={(event) => event.target.value === ""? setId(null): setId(event.target.value)}
           type="number"
           placeholder="Enter shop id"
         />
@@ -60,10 +71,11 @@ const WorkshopPage = () => {
           item = {item}
         />
       ))}
-        <div className="create" onClick={() => selectType === "shop"? navigate(AppPath.SHOP_CREATE) :  navigate(AppPath.AREA_CREATE)}><div className="circle">
+        {localStorage.getItem("accessRight") === "OWNER" || localStorage.getItem("accessRight") === "ADMIN" || localStorage.getItem("accessRight") === "MANAGER"?
+          <div className="create" onClick={() => selectType === "shop"? navigate(AppPath.SHOP_CREATE) : selectType === "area"? navigate(AppPath.AREA_CREATE) : navigate(AppPath.BRIGADE_CREATE)}><div className="circle">
           <div className="horizontal"></div>
           <div className="vertical"></div>
-        </div></div>
+        </div></div>:null}
       </div>
     </div>
   );
