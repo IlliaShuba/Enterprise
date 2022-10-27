@@ -8,12 +8,12 @@ import "./item.css";
 
 const Area = () => {
   const navigate = useNavigate();
-  const [candidates, setCandidates] = useState([{value: 1, name: "ivan"}, {value: 2, name: "iqwe"}, {value: 3, name: "asd"}]);
+  const [candidates, setCandidates] = useState([]);
   const [newHead , setNewHead] = useState(null);
   const [newMaster, setNewMaster] = useState(null);
   const [isEditMaster, setIsEditMaster] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [area, setArea] = useState({id: 1, head: {name: "joke"}});
+  const [area, setArea] = useState();
 
   const getInfo = async () => {
     await $api.get(`/area?id=${localStorage.getItem("id")}`).then((response) => setArea(response.data)).catch(err => console.log(err));
@@ -37,13 +37,13 @@ const Area = () => {
     if (isEditMaster){
       setIsEditMaster(!isEditMaster)
       if (newMaster != null)
-        await $api.put(`/area/master?shopId=${area.id}&masterId=${newMaster}`).then((response) => setArea(response.data)).catch(err => console.log(err));
+        await $api.put(`/area/master?areaId=${area?.id}&masterId=${newMaster}`).then((response) => setArea(response.data)).catch(err => console.log(err));
     }
     else setIsEditMaster(!isEditMaster);
   }
 
   const deleteClick = async () => {
-    await $api.delete(`/area?id=${area.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.delete(`/area?id=${area?.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
   }
 
   useEffect(() => {
@@ -55,25 +55,25 @@ const Area = () => {
     <div className="main">
       <Back path = {AppPath.SHOP_PAGE} />
       <div className="content">
-        <p>Area number {area.id}</p>
+        <p>Area number {area?.id}</p>
         <p>Type: {area?.type}</p>
-        <p>Area head: {area?.head?.name}</p>
+        <p>Area head: {area?.head?.name + " " + area?.head.lastname}</p>
         {isEdit ? (
           <select onChange={event => setNewHead(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>
             {candidates.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.name}
+              <option key={option.value} value={option.id}>
+                {option.name} {option?.lastname}
               </option>
             ))}
           </select>
         ) : null}
-        <p>Masters: {area?.masters?.map((item) => item.id + ", ")}</p>
+        <p>Masters: {area?.masters?.map((item) => item.name + " " + item.lastname + ", ")}</p>
         {isEditMaster ? (
           <select onChange={event => setNewMaster(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>
             {candidates.map(option => (
-              <option key={option.value} value={option.value}>
+              <option key={option.value} value={option.id}>
                 {option.name}
               </option>
             ))}

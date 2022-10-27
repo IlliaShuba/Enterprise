@@ -26,6 +26,7 @@ public class EngineeringStaffService {
     public EngineeringStaff create(EngineerDto dto){
         EngineeringStaff entity = new EngineeringStaff();
         entity.setName(dto.getName());
+        entity.setLastname(dto.getLastname());
         entity.setSpeciality(dto.getSpeciality());
 
         return engineeringStaffRepository.save(entity);
@@ -40,6 +41,7 @@ public class EngineeringStaffService {
         dto.setId(entity.getId());
         dto.setSpeciality(entity.getSpeciality());
         dto.setName(entity.getName());
+        dto.setLastname(entity.getLastname());
         if(entity.getArea() != null){
             dto.setArea(entity.getArea().getId());
         }

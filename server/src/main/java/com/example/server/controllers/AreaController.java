@@ -51,6 +51,15 @@ public class AreaController {
         }
     }
 
+    @PutMapping("/head")
+    public ResponseEntity<?> setHead(@RequestParam Integer areaId, @RequestParam Integer headId){
+        try {
+            return ResponseEntity.ok(areaService.setHead(areaId,headId));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
     @PutMapping("/master")
     public ResponseEntity<?> setMasters(@RequestParam Integer areaId, @RequestParam Integer masterId){
         try {

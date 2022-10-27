@@ -9,7 +9,7 @@ import "./item.css";
 const Laboratory = () => {
   const navigate = useNavigate();
   const [isEdit, setIsEdit] = useState(false);
-  const [laboratory, setLaboratory] = useState({id: 1, head: {name: "joke"}});
+  const [laboratory, setLaboratory] = useState();
 
   const getInfo = async () => {
     await $api.get(`/laboratory?id=${localStorage.getItem("id")}`).then((response) => setLaboratory(response.data)).catch(err => console.log(err));
@@ -24,7 +24,7 @@ const Laboratory = () => {
   }
 
   const deleteClick = async () => {
-    await $api.delete(`/laboratory?id=${laboratory.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.delete(`/laboratory?id=${laboratory?.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
   }
 
   useEffect(() => {
@@ -35,9 +35,9 @@ const Laboratory = () => {
     <div className="main">
       <Back path = {AppPath.LABORATORY_PAGE} />
       <div className="content">
-        <p>Laboratory number: {laboratory.id}</p>
+        <p>Laboratory number: {laboratory?.id}</p>
         <p>Equipment: {laboratory?.equipment?.map((item) => item.id + ", ")}</p>
-        <p>Workers: {laboratory?.workers?.map((item) => item.id + ", ")}</p>
+        <p>Workers: {laboratory?.workers?.map((item) => item.name + " " + item.lastname + ", ")}</p>
       </div>
       <div className="action">
         <button onClick={deleteClick}>delete</button>

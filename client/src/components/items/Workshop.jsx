@@ -7,13 +7,13 @@ import "./item.css";
 
 const Workshop = () => {
   const navigate = useNavigate();
-  const [candidates, setCandidates] = useState([{value: 1, name: "ivan"}, {value: 2, name: "iqwe"}, {value: 3, name: "asd"}]);
+  const [candidates, setCandidates] = useState([]);
   const [laboratory , setLaboratory] = useState([]);
   const [newLab, setNewLab] = useState(null);
   const [newHead , setNewHead] = useState(null);
   const [isEditLab, setIsEditLab] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [workshop, setWorkshop] = useState({id: 1, head: {name: "joke"}, area: [{id: 1}, {id: 2}]});
+  const [workshop, setWorkshop] = useState();
 
   const getInfo = async () => {
     await $api.get(`/shop?id=${localStorage.getItem("id")}`).then((response) => setWorkshop(response.data)).catch(err => console.log(err));
@@ -33,7 +33,7 @@ const Workshop = () => {
     if (isEdit){
       setIsEdit(!isEdit)
       if (newHead != null)
-        await $api.put(`/shop/head?shopId=${workshop.id}&headId=${newHead}`).then((response) => setWorkshop(response.data)).catch(err => console.log(err));
+        await $api.put(`/shop/head?shopId=${workshop?.id}&headId=${newHead}`).then((response) => setWorkshop(response.data)).catch(err => console.log(err));
       }
       else setIsEdit(!isEdit);
   }
@@ -42,7 +42,7 @@ const Workshop = () => {
     if (isEditLab){
       setIsEditLab(!isEditLab)
       if (newLab != null)
-        await $api.put(`/shop/laboratory?shopId=${workshop.id}&laboratoryId=${newLab}`).then((response) => setWorkshop(response.data)).catch(err => console.log(err));
+        await $api.put(`/shop/laboratory?shopId=${workshop?.id}&laboratoryId=${newLab}`).then((response) => setWorkshop(response.data)).catch(err => console.log(err));
     }
     else setIsEditLab(!isEditLab);
   }
@@ -62,12 +62,12 @@ const Workshop = () => {
       <Back path = {AppPath.SHOP_PAGE} />
       <div className="content">
         <p>Workshop number {workshop?.id}</p>
-        <p>Workshop head: {workshop?.head?.name}</p>
+        <p>Workshop head: {workshop?.head?.name + " " + workshop?.head?.lastname} </p>
         {isEdit ? (
           <select onChange={event => setNewHead(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>
             {candidates.map(option => (
-              <option key={option.value} value={option.value}>
+              <option key={option.value} value={option.id}>
                 {option.name}
               </option>
             ))}
@@ -79,7 +79,7 @@ const Workshop = () => {
           <select onChange={event => setNewLab(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>
             {laboratory.map(option => (
-              <option key={option.value} value={option.value}>
+              <option key={option.value} value={option.id}>
                 {option.name}
               </option>
             ))}

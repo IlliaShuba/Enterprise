@@ -8,10 +8,10 @@ import "./item.css";
 
 const Brigade = () => {
   const navigate = useNavigate();
-  const [candidates, setCandidates] = useState([{value: 1, name: "ivan"}, {value: 2, name: "iqwe"}, {value: 3, name: "asd"}]);
+  const [candidates, setCandidates] = useState([]);
   const [newHead , setNewHead] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
-  const [brigade, setBrigade] = useState({id: 1, head: {name: "joke"}});
+  const [brigade, setBrigade] = useState();
 
   const getInfo = async () => {
     await $api.get(`/brigade?id=${localStorage.getItem("id")}`).then((response) => setBrigade(response.data)).catch(err => console.log(err));
@@ -32,7 +32,7 @@ const Brigade = () => {
   }
 
   const deleteClick = async () => {
-    await $api.delete(`/area?id=${brigade.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.delete(`/area?id=${brigade?.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
   }
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const Brigade = () => {
     <div className="main">
       <Back path = {AppPath.SHOP_PAGE} />
       <div className="content">
-        <p>Brigade number {brigade.id}</p>
+        <p>Brigade number {brigade?.id}</p>
         <p>Area number: {brigade?.area}</p>
-        <p>Brigadier: {brigade?.brigadier?.name}</p>
+        <p>Brigadier: {brigade?.brigadier?.name + " " + brigade?.brigadier?.lastname}</p>
         {isEdit ? (
           <select onChange={event => setNewHead(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>
@@ -57,7 +57,7 @@ const Brigade = () => {
             ))}
           </select>
         ) : null}
-        <p>Workers: {brigade?.workers?.map((item) => item.id + ", ")}</p>
+        <p>Workers: {brigade?.workers?.map((item) => item.name + " " + item.lastname + ", ")}</p>
       </div>
       <div className="action">
         <button onClick={changeBrigadier}>{isEdit ? "set new brigadier" : "new brigadier"}</button>

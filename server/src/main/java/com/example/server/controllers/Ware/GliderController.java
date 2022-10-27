@@ -40,6 +40,23 @@ public class GliderController {
         }
     }
 
+    @GetMapping("/shop")
+    public ResponseEntity<?> getByShop(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(gliderService.getByShop(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @GetMapping("/laboratory")
+    public ResponseEntity<?> getByLaboratory(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(gliderService.getByLaboratory(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
     @PostMapping("/interval")
     public ResponseEntity<?> getByInterval(@RequestBody Interval interval){
         try {

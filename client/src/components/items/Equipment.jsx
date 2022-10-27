@@ -7,10 +7,10 @@ import "./item.css";
 
 const Equipment = () => {
   const navigate = useNavigate();
-  const [laboratory, setLaboratory] = useState([{value: 1, name: "ivan"}, {value: 2, name: "iqwe"}, {value: 3, name: "asd"}]);
+  const [laboratory, setLaboratory] = useState([]);
   const [newLab , setNewLab] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
-  const [equipment, setEquipment] = useState({id: 1, laboratory: {id: 1}});
+  const [equipment, setEquipment] = useState();
 
   const getInfo = async () => {
     await $api.get(`/equipment?id=${localStorage.getItem("id")}`).then((response) => setEquipment(response.data)).catch(err => console.log(err));
@@ -31,7 +31,7 @@ const Equipment = () => {
   }
 
   const deleteClick = async () => {
-    await $api.delete(`/equipment?id=${equipment.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.delete(`/equipment?id=${equipment?.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
   }
 
   useEffect(() => {
@@ -43,9 +43,9 @@ const Equipment = () => {
     <div className="main">
       <Back path = {AppPath.LABORATORY_PAGE} />
       <div className="content">
-        <p>Equipment number: {equipment.id}</p>
-        <p>Equipment type: {equipment.type}</p>
-        <p>Laboratory: {equipment.number_laboratory}</p>
+        <p>Equipment number: {equipment?.id}</p>
+        <p>Equipment type: {equipment?.type}</p>
+        <p>Laboratory: {equipment?.number_laboratory}</p>
         {isEdit ? (
           <select onChange={event => setNewLab(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>

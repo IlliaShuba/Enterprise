@@ -8,6 +8,7 @@ import lombok.Setter;
 public class WorkerDto {
     private Integer id;
     private String name;
+    private String lastname;
     private String type;
     private String category;
     private Integer number_of_space;

@@ -1,10 +1,12 @@
 package com.example.server.service.Ware;
 
+import com.example.server.dto.AirplaneDto;
 import com.example.server.dto.GliderDto;
 import com.example.server.dto.HangGliderDto;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
+import com.example.server.entity.Ware.Airplane;
 import com.example.server.entity.Ware.Glider;
 import com.example.server.entity.Ware.HangGlider;
 import com.example.server.repository.AreaRepository;
@@ -57,6 +59,23 @@ public class HangGliderService {
         List<HangGliderDto> response = new ArrayList<>();
 
         for (HangGlider item : hangGliderRepository.findAll()) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+
+    public List<HangGliderDto> getByShop(Integer id){
+        List<HangGliderDto> response = new ArrayList<>();
+
+        for (HangGlider item : hangGliderRepository.queryHangGliderByShop_Id(id)) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+    public List<HangGliderDto> getByLaboratory(Integer id){
+        List<HangGliderDto> response = new ArrayList<>();
+
+        for (HangGlider item : hangGliderRepository.queryHangGliderByLaboratory_Id(id)) {
             response.add(toDto(item));
         }
         return response;

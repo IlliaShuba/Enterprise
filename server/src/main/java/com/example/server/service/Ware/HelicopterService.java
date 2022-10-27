@@ -1,10 +1,12 @@
 package com.example.server.service.Ware;
 
+import com.example.server.dto.AirplaneDto;
 import com.example.server.dto.HangGliderDto;
 import com.example.server.dto.HelicopterDto;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
+import com.example.server.entity.Ware.Airplane;
 import com.example.server.entity.Ware.HangGlider;
 import com.example.server.entity.Ware.Helicopter;
 import com.example.server.repository.AreaRepository;
@@ -57,6 +59,23 @@ public class HelicopterService {
         List<HelicopterDto> response = new ArrayList<>();
 
         for (Helicopter item : helicopterRepository.findAll()) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+
+    public List<HelicopterDto> getByShop(Integer id){
+        List<HelicopterDto> response = new ArrayList<>();
+
+        for (Helicopter item : helicopterRepository.queryHelicopterByShop_Id(id)) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+    public List<HelicopterDto> getByLaboratory(Integer id){
+        List<HelicopterDto> response = new ArrayList<>();
+
+        for (Helicopter item : helicopterRepository.queryHelicopterByLaboratory_Id(id)) {
             response.add(toDto(item));
         }
         return response;

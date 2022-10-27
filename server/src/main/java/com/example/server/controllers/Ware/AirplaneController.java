@@ -49,7 +49,7 @@ public class AirplaneController {
         }
     }
     @GetMapping("/laboratory")
-    public ResponseEntity<?> getByArea(@RequestParam Integer id){
+    public ResponseEntity<?> getByLaboratory(@RequestParam Integer id){
         try {
             return ResponseEntity.ok(airplaneService.getByLaboratory(id));
         } catch (Exception e) {

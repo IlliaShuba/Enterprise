@@ -29,22 +29,6 @@ public class Brigade {
     private Worker brigadier;
     @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Worker> worker = new ArrayList<>();
-
-    /*@OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Airplane airplane;
-    @OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Glider glider;
-    @OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private HangGlider hangGlider;
-    @OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Helicopter helicopter;
-    @OneToOne(mappedBy = "brigade", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Missile missile;*/
+    private List<Worker> workers = new ArrayList<>();
 
 }

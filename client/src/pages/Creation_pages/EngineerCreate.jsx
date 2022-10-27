@@ -7,11 +7,12 @@ import "./create.css";
 
 const EngineerCreate = () => {
   const [name, setName] = useState();
+  const [lastname, setLastname] = useState();
   const [speciality, setSpeciality] = useState("");
   let navigate = useNavigate();
 
   const create = async () => {
-    await $api.post(`/engineer`, {name: name, speciality: speciality}).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
+    await $api.post(`/engineer`, {name: name, lastname:lastname, speciality: speciality}).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
   }
 
   return (
@@ -28,6 +29,16 @@ const EngineerCreate = () => {
               placeholder="Enter name"
             />
           </div>
+
+          <div className="input-container">
+            <span className="input-text">Last name:</span>
+            <input
+              onChange={(event) => setLastname(event.target.value)}
+              type="text"
+              placeholder="Enter name"
+            />
+          </div>
+
           <div className="input-container">
             <span className="input-text">Speciality:</span>
             <select onChange={event => setSpeciality(event.target.value)}>

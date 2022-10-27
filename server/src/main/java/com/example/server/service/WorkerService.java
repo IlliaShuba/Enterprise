@@ -24,6 +24,7 @@ public class WorkerService {
     public Worker create(WorkerDto dto, Integer id){
         Worker entity = new Worker();
         entity.setName(dto.getName());
+        entity.setLastname(dto.getLastname());
         entity.setCategory(dto.getCategory());
         entity.setType(dto.getType());
         System.out.println(entity.getType());
@@ -47,6 +48,7 @@ public class WorkerService {
         dto.setId(entity.getId());
         dto.setType(entity.getType());
         dto.setName(entity.getName());
+        dto.setLastname(entity.getLastname());
         dto.setCategory(entity.getCategory());
         Integer id;
         if(Objects.equals(entity.getType(), "brigade"))

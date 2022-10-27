@@ -12,10 +12,11 @@ const WorkerCreate = () => {
   const [category, setCategory] = useState("");
   const [id, setId] = useState();
   const [name, setName] = useState();
+  const [lastname, setLastname] = useState();
   let navigate = useNavigate();
 
   const create = async () => {
-    await $api.post(`/worker?id=${id}`, {name: name, type: type,category: category }).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
+    await $api.post(`/worker?id=${id}`, {name: name, lastname:lastname, type: type,category: category }).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
   }
 
 
@@ -42,6 +43,14 @@ const WorkerCreate = () => {
             <span className="input-text">Name:</span>
             <input
               onChange={(event) => setName(event.target.value)}
+              type="text"
+              placeholder="Enter name"
+            />
+          </div>
+          <div className="input-container">
+            <span className="input-text">Last name:</span>
+            <input
+              onChange={(event) => setLastname(event.target.value)}
               type="text"
               placeholder="Enter name"
             />

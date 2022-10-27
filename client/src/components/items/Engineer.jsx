@@ -8,10 +8,10 @@ import "./item.css";
 
 const Engineer = () => {
   const navigate = useNavigate();
-  const [brigades, setBrigades] = useState([{value: 1, name: "ivan"}, {value: 2, name: "iqwe"}, {value: 3, name: "asd"}]);
+  const [brigades, setBrigades] = useState([]);
   const [newBrigade , setNewBrigade] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
-  const [engineer, setEngineer] = useState({id: 1, brigade: {id: 1}});
+  const [engineer, setEngineer] = useState();
 
   const getInfo = async () => {
     await $api.get(`/engineer?id=${localStorage.getItem("id")}`).then((response) => setEngineer(response.data)).catch(err => console.log(err));
@@ -27,7 +27,7 @@ const Engineer = () => {
   }
 
   const deleteClick = async () => {
-    await $api.delete(`/worker?id=${engineer.id}`).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
+    await $api.delete(`/worker?id=${engineer?.id}`).then((response) => response.status === 200 ? navigate(AppPath.EMPLOYEE_PAGE) : null).catch(err => console.log(err));
   }
 
   useEffect(() => {
@@ -38,8 +38,9 @@ const Engineer = () => {
     <div className="main">
       <Back path = {AppPath.EMPLOYEE_PAGE} />
       <div className="content">
-        <p>Engineer number: {engineer.id}</p>
+        <p>Engineer number: {engineer?.id}</p>
         <p>Name: {engineer?.name}</p>
+        <p>Last name: {engineer?.lastname}</p>
         <p>Speciality: {engineer?.speciality}</p>
         <p>{engineer?.area != null? `Area: ${engineer.area}`:`` }</p>
         {isEdit ? (

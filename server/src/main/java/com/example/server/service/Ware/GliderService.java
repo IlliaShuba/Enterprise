@@ -64,6 +64,23 @@ public class GliderService {
         return response;
     }
 
+    public List<GliderDto> getByShop(Integer id){
+        List<GliderDto> response = new ArrayList<>();
+
+        for (Glider item : gliderRepository.queryGliderByShop_Id(id)) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+    public List<GliderDto> getByLaboratory(Integer id){
+        List<GliderDto> response = new ArrayList<>();
+
+        for (Glider item : gliderRepository.queryGliderByLaboratory_Id(id)) {
+            response.add(toDto(item));
+        }
+        return response;
+    }
+
     public List<Glider> getByInterval(String firstDate,String secondDate){
         return gliderRepository.queryFirstByFinishCreateAfterAndFinishCreateBefore(LocalDate.parse(firstDate), LocalDate.parse(secondDate));
     }

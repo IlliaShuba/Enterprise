@@ -15,6 +15,7 @@ public class Worker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String lastname;
     private String category;
     private String type;
 

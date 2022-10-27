@@ -43,6 +43,13 @@ public class AreaService {
         return  areaRepository.save(area);
     }
 
+    public Area setHead(Integer areaId,Integer headId){
+        Area area = areaRepository.findById(areaId).orElseThrow();
+        EngineeringStaff head = engineeringStaffRepository.findById(headId).orElseThrow();
+        area.setHead(head);
+        return  areaRepository.save(area);
+    }
+
     public Area getById(Integer id) {return areaRepository.findById(id).get();}
     public List<Area> getByShopId(Integer id){return areaRepository.queryFindAllByShopId(id);}
     public List<Area> getAll() {return areaRepository.findAll();}
@@ -51,7 +58,6 @@ public class AreaService {
         areaRepository.deleteById(id);
         return id;
     }
-
 
     public AreaDto toDto(Area entity){
         AreaDto dto = new AreaDto();

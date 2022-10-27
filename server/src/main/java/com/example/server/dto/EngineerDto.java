@@ -8,6 +8,7 @@ import lombok.Setter;
 public class EngineerDto {
     private Integer id;
     private String name;
+    private String lastname;
     private String speciality;
     private Integer area;
 }

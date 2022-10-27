@@ -17,6 +17,7 @@ public class EngineeringStaff {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String lastname;
     private String speciality;
 
     @ManyToOne
