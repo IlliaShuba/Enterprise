@@ -17,7 +17,6 @@ public class Worker {
     private String name;
     private String lastname;
     private String category;
-    private String type;
 
     @ManyToOne
     @JoinColumn(name = "brigade_id")

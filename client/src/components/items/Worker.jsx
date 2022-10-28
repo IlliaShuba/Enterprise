@@ -8,27 +8,10 @@ import "./item.css";
 
 const Worker = () => {
   const navigate = useNavigate();
-  const [brigades, setBrigades] = useState([]);
-  const [newBrigade , setNewBrigade] = useState(null);
-  const [isEdit, setIsEdit] = useState(false);
   const [worker, setWorker] = useState();
 
   const getInfo = async () => {
     await $api.get(`/worker?id=${localStorage.getItem("id")}`).then((response) => setWorker(response.data)).catch(err => console.log(err));
-  }
-
-  const getBrigade = async () => {
-    await $api.get(`/brigade/all`).then((response) => {
-      setBrigades(response.data);
-    }).catch(err => console.log(err))}
-
-  const submitChange = async () => {
-    if (isEdit){
-      setIsEdit(!isEdit)
-      if (newBrigade != null)
-        await $api.put(`/worker?id=${newBrigade}`).then((response) => setWorker(response.data)).catch(err => console.log(err));
-    }
-    else setIsEdit(!isEdit);
   }
 
   const deleteClick = async () => {
@@ -37,7 +20,6 @@ const Worker = () => {
 
   useEffect(() => {
     getInfo();
-    getBrigade();
   }, []);
 
   return (
@@ -48,20 +30,11 @@ const Worker = () => {
         <p>Name: {worker?.name}</p>
         <p>Last name: {worker?.lastname}</p>
         <p>Category: {worker?.category}</p>
-        <p>Brigade: {worker?.number_of_space}</p>
-        {isEdit ? (
-          <select onChange={event => setNewBrigade(event.target.value)} defaultValue={0}>
-            <option disabled value={0}> -- select an option -- </option>
-            {brigades.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.id}
-              </option>
-            ))}
-          </select>
-        ) : null}
+        {worker?.type === "brigade"? <p>Brigade: {worker?.number_of_space}</p> : worker?.type === "laboratory"? <p>Laboratory: {worker?.number_of_space}</p> : null}
+
+
       </div>
       <div className="action">
-        <button onClick={submitChange}>{isEdit ? "confirm" : "edit"}</button>
         <button onClick={deleteClick}>delete</button>
       </div>
     </div>

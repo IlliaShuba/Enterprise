@@ -4,6 +4,7 @@ import com.example.server.dto.AreaDto;
 import com.example.server.dto.BrigadeDto;
 import com.example.server.entity.Area;
 import com.example.server.entity.Brigade;
+import com.example.server.entity.EngineeringStaff;
 import com.example.server.entity.Worker;
 import com.example.server.repository.AreaRepository;
 import com.example.server.repository.BrigadeRepository;
@@ -37,6 +38,15 @@ public class BrigadeService {
     public List<BrigadeDto> getByAreaId(Integer id){return  brigadeRepository.queryFindAllByAreaId(id).stream().map(this::toDto).collect(Collectors.toList());}
     public List<BrigadeDto> getAll(){return brigadeRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());}
 
+    public Brigade setWorker(Integer brigadeId, Integer workerId){
+        Brigade brigade = brigadeRepository.findById(brigadeId).orElseThrow();
+        Worker worker = workerRepository.findById(workerId).orElseThrow();
+        List<Worker> workers = brigade.getWorkers();
+        workers.add(worker);
+        brigade.setWorkers(workers);
+        return  brigadeRepository.save(brigade);
+    }
+
     public Brigade setHead(Integer id, Integer headId){
         Brigade brigade = brigadeRepository.findById(id).get();
         Worker head = workerRepository.findById(headId).get();
@@ -44,10 +54,12 @@ public class BrigadeService {
         return brigadeRepository.save(brigade);
     }
 
+    public void delete(Integer id){brigadeRepository.deleteById(id);}
+
     public BrigadeDto toDto(Brigade entity){
         BrigadeDto dto = new BrigadeDto();
         dto.setId(entity.getId());
-        dto.setArea(entity.getArea().getId());
+        dto.setAreaId(entity.getArea().getId());
         dto.setBrigadier(entity.getBrigadier());
         dto.setWorkers(entity.getWorkers());
         return dto;

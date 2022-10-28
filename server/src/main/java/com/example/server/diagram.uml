@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="46.78124999999994" y="582.2291666666667">com.example.server.entity.Area</node>
+    <node x="-417.9114583333334" y="84.33333333333334">com.example.server.entity.Laboratory</node>
+    <node x="-585.7656249999999" y="471.77604166666674">com.example.server.entity.Worker</node>
+    <node x="-923.2444166666663" y="584.0416666666666">com.example.server.entity.Ware.Helicopter</node>
+    <node x="809.8776041666665" y="721.6080729166666">com.example.server.entity.Role</node>
+    <node x="-98.71875000000006" y="95.33333333333334">com.example.server.entity.Equipment</node>
+    <node x="-571.7135416666667" y="-491.66927083333326">com.example.server.entity.Ware.HangGlider</node>
+    <node x="353.0416666666664" y="538.2291666666667">com.example.server.entity.Ware.Work</node>
+    <node x="-51.71875000000006" y="863.7083333333334">com.example.server.entity.EngineeringStaff</node>
+    <node x="-114.71875000000006" y="-327.65104166666663">com.example.server.entity.Ware.Airplane</node>
+    <node x="71.28124999999994" y="396.12500000000006">com.example.server.entity.Brigade</node>
+    <node x="-377.3333333333333" y="560.2291666666667">com.example.server.entity.Shop</node>
+    <node x="306.5195312499999" y="-560.6184895833333">com.example.server.entity.Ware.Glider</node>
+    <node x="815.8776041666664" y="556.6080729166666">com.example.server.entity.User</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.server.entity.Laboratory" target="com.example.server.entity.Equipment" relationship="TO_MANY">
+      <point x="0.0" y="-115.0" />
+      <point x="-313.4114583333334" y="184.33333333333334" />
+      <point x="-85.0" y="-15.0" />
+    </edge>
+    <edge source="com.example.server.entity.Shop" target="com.example.server.entity.Ware.HangGlider" relationship="TO_MANY">
+      <point x="-70.57766666666669" y="-115.0001666666667" />
+      <point x="-343.411" y="335.0" />
+      <point x="-621.766" y="335.0" />
+      <point x="-621.766" y="-365.6695208333334" />
+      <point x="-100.00037500000008" y="-2.5000000016461854E-4" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Glider" target="com.example.server.entity.Laboratory" relationship="TO_ONE">
+      <point x="0.0" y="-126.0" />
+      <point x="-343.4114583333334" y="-560.6184895833333" />
+      <point x="-30.0" y="-115.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Work" target="com.example.server.entity.Ware.HangGlider" relationship="TO_ONE">
+      <point x="30.00033333333357" y="-137.0001666666667" />
+      <point x="468.042" y="335.0" />
+      <point x="-621.766" y="335.0" />
+      <point x="-621.766" y="-365.6695208333334" />
+      <point x="-100.00037500000008" y="-2.5000000016461854E-4" />
+    </edge>
+    <edge source="com.example.server.entity.Area" target="com.example.server.entity.Brigade" relationship="TO_MANY">
+      <point x="15.0" y="-93.0" />
+      <point x="15.0" y="60.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Airplane" target="com.example.server.entity.Laboratory" relationship="TO_ONE">
+      <point x="-101.0" y="0.0" />
+      <point x="-298.4114583333334" y="-201.65104166666663" />
+      <point x="15.0" y="-115.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.HangGlider" target="com.example.server.entity.Laboratory" relationship="TO_ONE">
+      <point x="-100.0" y="14.999749999999835" />
+      <point x="-636.766" y="-350.6695208333334" />
+      <point x="-636.766" y="102.875" />
+      <point x="-104.5" y="-96.45833333333334" />
+    </edge>
+    <edge source="com.example.server.entity.Area" target="com.example.server.entity.Ware.Work" relationship="TO_MANY">
+      <point x="107.0" y="5.6843418860808015E-14" />
+      <point x="-85.0" y="0.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Work" target="com.example.server.entity.Area" relationship="TO_ONE">
+      <point x="-85.0" y="15.0" />
+      <point x="107.0" y="15.000000000000057" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Glider" target="com.example.server.entity.Equipment" relationship="TO_MANY">
+      <point x="-100.0" y="-2.8421709430404007E-14" />
+      <point x="196.40039062499991" y="-434.61848958333326" />
+      <point x="196.40039062499991" y="199.33333333333334" />
+      <point x="85.0" y="0.0" />
+    </edge>
+    <edge source="com.example.server.entity.Laboratory" target="com.example.server.entity.Worker" relationship="TO_MANY">
+      <point x="104.50045833333343" y="15.0" />
+      <point x="-172.0" y="214.33333333333334" />
+      <point x="-172.0" y="370.0" />
+      <point x="-504.2655208333331" y="370.0" />
+      <point x="1.0416666674473163E-4" y="92.99951041666668" />
+    </edge>
+    <edge source="com.example.server.entity.Laboratory" target="com.example.server.entity.Ware.HangGlider" relationship="TO_MANY">
+      <point x="15.000458333333427" y="114.99966666666668" />
+      <point x="-298.411" y="335.0" />
+      <point x="-621.766" y="335.0" />
+      <point x="-621.766" y="-365.6695208333334" />
+      <point x="-100.00037500000008" y="-2.5000000016461854E-4" />
+    </edge>
+    <edge source="com.example.server.entity.Laboratory" target="com.example.server.entity.Ware.Glider" relationship="TO_MANY">
+      <point x="104.50045833333343" y="-30.000333333333344" />
+      <point x="-127.0" y="169.333" />
+      <point x="-127.0" y="-556.1188229166667" />
+      <point x="-99.9995312499999" y="-121.50033333333337" />
+    </edge>
+    <edge source="com.example.server.entity.Worker" target="com.example.server.entity.Laboratory" relationship="TO_ONE">
+      <point x="0.0" y="-93.0" />
+      <point x="-504.2656249999999" y="117.875" />
+      <point x="-328.4114583333334" y="117.875" />
+      <point x="-15.0" y="-115.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Work" target="com.example.server.entity.Brigade" relationship="TO_ONE">
+      <point x="0.0" y="-137.0" />
+      <point x="438.0416666666664" y="456.12500000000006" />
+      <point x="82.5" y="0.0" />
+    </edge>
+    <edge source="com.example.server.entity.Shop" target="com.example.server.entity.Ware.Helicopter" relationship="TO_MANY">
+      <point x="-85.57766666666669" y="-115.0001666666667" />
+      <point x="-358.411" y="421.0" />
+      <point x="-756.7968749999995" y="421.0" />
+      <point x="66.44754166666672" y="-126.00025000000016" />
+    </edge>
+    <edge source="com.example.server.entity.Laboratory" target="com.example.server.entity.Shop" relationship="TO_MANY">
+      <point x="0.0" y="115.0" />
+      <point x="-313.4114583333334" y="690.2291666666667" />
+      <point x="-104.5" y="15.0" />
+    </edge>
+    <edge source="com.example.server.entity.Shop" target="com.example.server.entity.Laboratory" relationship="TO_MANY">
+      <point x="-104.49966666666666" y="0.0" />
+      <point x="-157.0" y="675.2291666666667" />
+      <point x="-157.0" y="199.33366666666666" />
+      <point x="104.50004166666673" y="3.3333333331597714E-4" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Helicopter" target="com.example.server.entity.Shop" relationship="TO_ONE">
+      <point x="100.0" y="0.0" />
+      <point x="-302.8333333333333" y="710.0416666666666" />
+      <point x="-30.0" y="115.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Glider" target="com.example.server.entity.Ware.Work" relationship="TO_MANY">
+      <point x="31.522135416666515" y="126.0" />
+      <point x="438.0416666666664" y="431.78125000000006" />
+      <point x="453.0416666666664" y="431.78125000000006" />
+      <point x="15.0" y="-137.0" />
+    </edge>
+    <edge source="com.example.server.entity.User" target="com.example.server.entity.Role" relationship="TO_MANY">
+      <point x="5.6843418860808015E-14" y="60.0" />
+      <point x="0.0" y="-38.0" />
+    </edge>
+    <edge source="com.example.server.entity.Shop" target="com.example.server.entity.Ware.Airplane" relationship="TO_MANY">
+      <point x="3.3333333328755543E-4" y="-115.0001666666667" />
+      <point x="-272.833" y="539.0" />
+      <point x="253.781" y="539.0" />
+      <point x="253.781" y="-201.65129166666662" />
+      <point x="100.99975000000006" y="-2.499999999940883E-4" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Airplane" target="com.example.server.entity.Shop" relationship="TO_ONE">
+      <point x="-101.0" y="-15.0" />
+      <point x="-603.2656249999999" y="-216.65104166666663" />
+      <point x="-603.2656249999999" y="705.2291666666667" />
+      <point x="-104.5" y="30.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Work" target="com.example.server.entity.Ware.Glider" relationship="TO_ONE">
+      <point x="-84.99966666666643" y="130.9998333333333" />
+      <point x="-127.0" y="806.229" />
+      <point x="-127.0" y="-556.1188229166667" />
+      <point x="-99.9995312499999" y="-121.50033333333337" />
+    </edge>
+    <edge source="com.example.server.entity.Equipment" target="com.example.server.entity.Ware.Glider" relationship="TO_ONE">
+      <point x="-85.00024999999994" y="14.999666666666656" />
+      <point x="-127.0" y="214.333" />
+      <point x="-127.0" y="-556.1188229166667" />
+      <point x="-99.9995312499999" y="-121.50033333333337" />
+    </edge>
+    <edge source="com.example.server.entity.Shop" target="com.example.server.entity.EngineeringStaff" relationship="TO_ONE">
+      <point x="104.50033333333337" y="30.0" />
+      <point x="29.281249999999943" y="705.2291666666667" />
+      <point x="0.0" y="-71.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Work" target="com.example.server.entity.Ware.Airplane" relationship="TO_ONE">
+      <point x="-84.9995416666664" y="-15.000166666666757" />
+      <point x="278.281" y="660.229" />
+      <point x="278.281" y="539.0" />
+      <point x="253.781" y="539.0" />
+      <point x="253.781" y="-201.65129166666662" />
+      <point x="100.99975000000006" y="-2.499999999940883E-4" />
+    </edge>
+    <edge source="com.example.server.entity.Shop" target="com.example.server.entity.Ware.Glider" relationship="TO_MANY">
+      <point x="104.50033333333332" y="-15.0001666666667" />
+      <point x="-127.0" y="660.229" />
+      <point x="-127.0" y="-556.1188229166667" />
+      <point x="-99.9995312499999" y="-121.50033333333337" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.HangGlider" target="com.example.server.entity.Shop" relationship="TO_ONE">
+      <point x="100.0" y="0.0" />
+      <point x="-287.8333333333333" y="-365.66927083333326" />
+      <point x="-15.0" y="115.0" />
+    </edge>
+    <edge source="com.example.server.entity.Equipment" target="com.example.server.entity.Laboratory" relationship="TO_ONE">
+      <point x="-85.00024999999994" y="0.0" />
+      <point x="-157.0" y="199.33333333333334" />
+      <point x="-157.0" y="199.33366666666666" />
+      <point x="104.50004166666673" y="3.3333333331597714E-4" />
+    </edge>
+    <edge source="com.example.server.entity.Brigade" target="com.example.server.entity.Area" relationship="TO_ONE">
+      <point x="0.0" y="60.0" />
+      <point x="0.0" y="-93.0" />
+    </edge>
+    <edge source="com.example.server.entity.Laboratory" target="com.example.server.entity.Ware.Airplane" relationship="TO_MANY">
+      <point x="-14.999541666666573" y="114.99966666666666" />
+      <point x="-328.411" y="539.0" />
+      <point x="253.781" y="539.0" />
+      <point x="253.781" y="-201.65129166666662" />
+      <point x="100.99975000000006" y="-2.499999999940883E-4" />
+    </edge>
+    <edge source="com.example.server.entity.EngineeringStaff" target="com.example.server.entity.Area" relationship="TO_ONE">
+      <point x="15.0" y="-71.0" />
+      <point x="44.28124999999994" y="791.2291666666666" />
+      <point x="168.78124999999994" y="791.2291666666666" />
+      <point x="15.0" y="93.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Airplane" target="com.example.server.entity.Equipment" relationship="TO_MANY">
+      <point x="0.0" y="126.0" />
+      <point x="0.0" y="-104.0" />
+    </edge>
+    <edge source="com.example.server.entity.Worker" target="com.example.server.entity.Brigade" relationship="TO_ONE">
+      <point x="-40.40389583333325" y="93.0" />
+      <point x="-544.6695208333331" y="355.080078125" />
+      <point x="168.781" y="355.080078125" />
+      <point x="14.999750000000063" y="-60.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Helicopter" target="com.example.server.entity.Ware.Work" relationship="TO_MANY">
+      <point x="100.0" y="90.92708333333337" />
+      <point x="453.0416666666664" y="800.96875" />
+      <point x="15.0" y="137.0" />
+    </edge>
+    <edge source="com.example.server.entity.Area" target="com.example.server.entity.EngineeringStaff" relationship="TO_MANY">
+      <point x="0.0" y="93.0" />
+      <point x="153.78124999999994" y="791.2291666666666" />
+      <point x="29.281249999999943" y="791.2291666666666" />
+      <point x="0.0" y="-71.0" />
+    </edge>
+    <edge source="com.example.server.entity.Brigade" target="com.example.server.entity.Worker" relationship="TO_MANY">
+      <point x="-2.4999999993724487E-4" y="-59.999666666666684" />
+      <point x="153.781" y="370.0" />
+      <point x="-504.2655208333331" y="370.0" />
+      <point x="1.0416666674473163E-4" y="92.99951041666668" />
+    </edge>
+    <edge source="com.example.server.entity.Equipment" target="com.example.server.entity.Ware.Airplane" relationship="TO_ONE">
+      <point x="-2.499999999443503E-4" y="103.99966666666666" />
+      <point x="-13.719000000000001" y="539.0" />
+      <point x="253.781" y="539.0" />
+      <point x="253.781" y="-201.65129166666662" />
+      <point x="100.99975000000006" y="-2.499999999940883E-4" />
+    </edge>
+    <edge source="com.example.server.entity.Equipment" target="com.example.server.entity.Ware.HangGlider" relationship="TO_ONE">
+      <point x="-26.781249999999943" y="103.99966666666668" />
+      <point x="-40.5" y="335.0" />
+      <point x="-621.766" y="335.0" />
+      <point x="-621.766" y="-365.6695208333334" />
+      <point x="-100.00037500000008" y="-2.5000000016461854E-4" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Helicopter" target="com.example.server.entity.Laboratory" relationship="TO_ONE">
+      <point x="-100.0" y="0.0" />
+      <point x="-651.766" y="710.0416666666666" />
+      <point x="-651.766" y="87.875" />
+      <point x="-104.5" y="-111.45833333333334" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.HangGlider" target="com.example.server.entity.Equipment" relationship="TO_MANY">
+      <point x="100.0" y="105.92708333333337" />
+      <point x="599.8385416666664" y="-259.7421874999999" />
+      <point x="599.8385416666664" y="214.33333333333334" />
+      <point x="85.0" y="15.0" />
+    </edge>
+    <edge source="com.example.server.entity.Laboratory" target="com.example.server.entity.Ware.Helicopter" relationship="TO_MANY">
+      <point x="40.5784583333334" y="114.99966666666668" />
+      <point x="-272.833" y="421.0" />
+      <point x="-756.7968749999995" y="421.0" />
+      <point x="66.44754166666672" y="-126.00025000000016" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.HangGlider" target="com.example.server.entity.Ware.Work" relationship="TO_MANY">
+      <point x="100.0" y="90.92708333333337" />
+      <point x="438.0416666666664" y="-274.7421874999999" />
+      <point x="0.0" y="137.0" />
+    </edge>
+    <edge source="com.example.server.entity.Area" target="com.example.server.entity.Shop" relationship="TO_ONE">
+      <point x="-107.0" y="15.0" />
+      <point x="104.5" y="15.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Helicopter" target="com.example.server.entity.Equipment" relationship="TO_MANY">
+      <point x="100.0" y="105.92708333333337" />
+      <point x="614.8385416666664" y="815.96875" />
+      <point x="614.8385416666664" y="229.33333333333334" />
+      <point x="85.0" y="30.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Glider" target="com.example.server.entity.Shop" relationship="TO_ONE">
+      <point x="100.0" y="0.0" />
+      <point x="584.8385416666664" y="-434.61848958333326" />
+      <point x="584.8385416666664" y="1023.2083333333334" />
+      <point x="-272.8333333333333" y="1023.2083333333334" />
+      <point x="0.0" y="115.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Airplane" target="com.example.server.entity.Ware.Work" relationship="TO_MANY">
+      <point x="101.0" y="-15.000249999999994" />
+      <point x="569.8385416666664" y="-216.65129166666662" />
+      <point x="569.8385416666664" y="675.2291666666667" />
+      <point x="85.0" y="0.0" />
+    </edge>
+    <edge source="com.example.server.entity.Ware.Work" target="com.example.server.entity.Ware.Helicopter" relationship="TO_ONE">
+      <point x="-14.999666666666428" y="136.9998333333333" />
+      <point x="423.042" y="843.781" />
+      <point x="-142.0" y="843.781" />
+      <point x="-142.0" y="421.0" />
+      <point x="-756.7968749999995" y="421.0" />
+      <point x="66.44754166666672" y="-126.00025000000016" />
+    </edge>
+    <edge source="com.example.server.entity.Shop" target="com.example.server.entity.Area" relationship="TO_MANY">
+      <point x="104.5" y="0.0" />
+      <point x="-107.0" y="0.0" />
+    </edge>
+    <edge source="com.example.server.entity.Equipment" target="com.example.server.entity.Ware.Helicopter" relationship="TO_ONE">
+      <point x="14.999750000000056" y="103.99966666666668" />
+      <point x="1.2809999999999988" y="421.0" />
+      <point x="-756.7968749999995" y="421.0" />
+      <point x="66.44754166666672" y="-126.00025000000016" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.6144000000000003" showDependencies="true" x="167.08203124999977" y="309.70442708333303" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

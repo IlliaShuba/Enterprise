@@ -42,7 +42,7 @@ const WorkshopCard = (props) => {
     case "brigade": return (
       <div className="cardWrapper" onClick={localStorage.getItem("accessRight") === "USER"? null : cardClick}>
         <p>#{props?.item?.id}</p>
-        <p>Area: {props?.item?.area}</p>
+        <p>Area: {props?.item?.areaId}</p>
         <p>Brigadier: {props?.item?.brigadier?.name}</p>
         <p>Count of workers: {props?.item?.workers?.length}</p>
       </div>

@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 public class BrigadeDto {
     private Integer id;
-    private Integer area;
+    private Integer areaId;
     private Worker brigadier;
     private List<Worker> workers;
 }

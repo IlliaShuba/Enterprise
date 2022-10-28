@@ -38,6 +38,15 @@ public class LaboratoryController {
         }
     }
 
+    @PutMapping("/worker")
+    public ResponseEntity<?> setWorker(@RequestParam Integer labId, @RequestParam Integer workerId){
+        try {
+            return ResponseEntity.ok(laboratoryService.setWorker(labId, workerId));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
     @DeleteMapping
     public ResponseEntity delete(@RequestParam Integer id){
         try {

@@ -21,21 +21,12 @@ public class WorkerService {
     @Autowired
     private LaboratoryRepository laboratoryRepository;
 
-    public Worker create(WorkerDto dto, Integer id){
+    public Worker create(WorkerDto dto){
         Worker entity = new Worker();
         entity.setName(dto.getName());
         entity.setLastname(dto.getLastname());
         entity.setCategory(dto.getCategory());
-        entity.setType(dto.getType());
-        System.out.println(entity.getType());
-        if(Objects.equals(entity.getType(), "brigade")){
-            Brigade brigade = brigadeRepository.findById(id).get();
-            entity.setBrigade(brigade);
-        }
-        else {
-            Laboratory laboratory = laboratoryRepository.findById(id).get();
-            entity.setLaboratory(laboratory);
-        }
+
         return workerRepository.save(entity);
     }
 
@@ -46,16 +37,18 @@ public class WorkerService {
     public WorkerDto toDto(Worker entity){
         WorkerDto dto = new WorkerDto();
         dto.setId(entity.getId());
-        dto.setType(entity.getType());
         dto.setName(entity.getName());
         dto.setLastname(entity.getLastname());
         dto.setCategory(entity.getCategory());
-        Integer id;
-        if(Objects.equals(entity.getType(), "brigade"))
-            id = entity.getBrigade().getId();
-        else
-            id = entity.getLaboratory().getId();
-        dto.setNumber_of_space(id);
+        if(entity.getBrigade() != null){
+            dto.setNumber_of_space(entity.getBrigade().getId());
+            dto.setType("brigade");
+        }
+        else if(entity.getLaboratory() != null){
+            dto.setNumber_of_space(entity.getLaboratory().getId());
+            dto.setType("laboratory");
+        }
+
         return dto;
     }
 }

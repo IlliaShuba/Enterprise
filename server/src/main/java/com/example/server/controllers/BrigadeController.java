@@ -48,6 +48,15 @@ public class BrigadeController {
         }
     }
 
+    @PutMapping("/worker")
+    public ResponseEntity<?> setWorker(@RequestParam Integer brigadeId, @RequestParam Integer workerId){
+        try {
+            return ResponseEntity.ok(brigadeService.setWorker(brigadeId, workerId));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
     @PutMapping
     public ResponseEntity<?> setHead(@RequestParam Integer id, @RequestParam Integer headId){
         try {
@@ -57,5 +66,14 @@ public class BrigadeController {
         }
     }
 
+    @DeleteMapping
+    public ResponseEntity delete(@RequestParam Integer id){
+        try {
+            brigadeService.delete(id);
+            return ResponseEntity.ok("delete");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
 
 }

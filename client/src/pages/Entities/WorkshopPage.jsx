@@ -8,7 +8,7 @@ import Back from "../../components/Back";
 const WorkshopPage = () => {
   let navigate = useNavigate();
   const [selectType, setSelectType] = useState("shop");
-  const [items,setItems] = useState([{id:1, type: "qwe"}]);
+  const [items,setItems] = useState([]);
   const [id, setId] = useState(null);
 
   const findClick = async () => {

@@ -8,7 +8,7 @@ import "./create.css";
 const EngineerCreate = () => {
   const [name, setName] = useState();
   const [lastname, setLastname] = useState();
-  const [speciality, setSpeciality] = useState("");
+  const [speciality, setSpeciality] = useState("engineer");
   let navigate = useNavigate();
 
   const create = async () => {
