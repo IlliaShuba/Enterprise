@@ -28,7 +28,7 @@ const Brigade = () => {
     if (isEdit){
       setIsEdit(!isEdit)
       if (newHead != null)
-        await $api.put(`/brigade?id=${newHead}`).then((response) => setBrigade(response.data)).catch(err => console.log(err));
+        await $api.put(`/brigade?id=${brigade?.id}&headId=${newHead}`).then((response) => setBrigade(response.data)).catch(err => console.log(err));
     }
     else setIsEdit(!isEdit);
   }
@@ -62,8 +62,8 @@ const Brigade = () => {
           <select onChange={event => setNewHead(event.target.value)} defaultValue={0}>
             <option disabled value={0}> -- select an option -- </option>
             {candidates.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.name}
+              <option key={option.value} value={option.id}>
+                {option.name + " " + option.lastname}
               </option>
             ))}
           </select>
@@ -74,7 +74,7 @@ const Brigade = () => {
             <option disabled value={0}> -- select an option -- </option>
             {candidates.map(option => (
               <option key={option.value} value={option.id}>
-                {option.name}
+                {option.name + " " + option.lastname}
               </option>
             ))}
           </select>

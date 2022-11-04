@@ -40,9 +40,9 @@ public class EquipmentController {
     }
 
     @GetMapping("ware")
-    public ResponseEntity<?> getByWareId(@RequestParam Integer id){
+    public ResponseEntity<?> getByWareId(@RequestParam Integer id, @RequestParam String type){
         try {
-            return ResponseEntity.ok(equipmentService.getByWareId(id));
+            return ResponseEntity.ok(equipmentService.getByWareId(id, type));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

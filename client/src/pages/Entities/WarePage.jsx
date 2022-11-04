@@ -70,16 +70,16 @@ const WarePage = () => {
     <div className="container">
       <Back path = {AppPath.HOME} />
       <div className="selector">
-        <div onClick={() => setSelectType("ware")}>Ware</div>
-        <div onClick={() => setSelectType("work")}>Work</div>
+        <div className={selectType === "ware"? "selected" : null} onClick={() => setSelectType("ware")}>Ware</div>
+        <div className={selectType === "work"? "selected" : null} onClick={() => setSelectType("work")}>Work</div>
       </div>
 
       <div className="selector">
-        <div onClick={() => setWareType("airplane")}>Airplane</div>
-        <div onClick={() => setWareType("glider")}>Glider</div>
-        <div onClick={() => setWareType("hang-glider")}>Hang-glider</div>
-        <div onClick={() => setWareType("helicopter")}>Helicopter</div>
-        <div onClick={() => setWareType("missile")}>Missile</div>
+        <div className={wareType === "airplane"? "selected" : null} onClick={() => setWareType("airplane")}>Airplane</div>
+        <div className={wareType === "glider"? "selected" : null} onClick={() => setWareType("glider")}>Glider</div>
+        <div className={wareType === "hang-glider"? "selected" : null} onClick={() => setWareType("hang-glider")}>Hang-glider</div>
+        <div className={wareType === "helicopter"? "selected" : null} onClick={() => setWareType("helicopter")}>Helicopter</div>
+        <div className={wareType === "missile"? "selected" : null} onClick={() => setWareType("missile")}>Missile</div>
       </div>
 
       {selectType === "work" ?

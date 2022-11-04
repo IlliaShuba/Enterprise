@@ -13,7 +13,6 @@ import java.util.List;
 public class HelicopterDto {
     private Integer id;
     private Integer enginePower;
-    private List<Work> work = new ArrayList<>();
     private LocalDate startCreate;
     private LocalDate finishCreate;
     private LocalDate startTest;

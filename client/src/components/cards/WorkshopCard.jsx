@@ -25,7 +25,7 @@ const WorkshopCard = (props) => {
         <div className="cardWrapper" onClick={localStorage.getItem("accessRight") === "USER"? null : cardClick}>
           <p>#{props?.item?.id}</p>
           <p>Count of area: {props?.item?.area?.length}</p>
-          <p>Head: {props?.item?.head?.name}</p>
+          <p>Head: {props?.item?.head?.name} {props?.item?.head?.lastname}</p>
           <p>Count of laboratories: {props?.item?.laboratories?.length}</p>
 
         </div>
@@ -35,7 +35,7 @@ const WorkshopCard = (props) => {
         <p>#{props?.item?.id}</p>
         <p>Type of area: {props?.item?.type}</p>
         <p>Count of brigade: {props?.item?.brigades?.length}</p>
-        <p>Head: {props?.item?.head?.name}</p>
+        <p>Head: {props?.item?.head?.name} {props?.item?.head?.lastname}</p>
         <p>Count of masters: {props?.item?.masters?.length}</p>
       </div>
     );
@@ -43,7 +43,7 @@ const WorkshopCard = (props) => {
       <div className="cardWrapper" onClick={localStorage.getItem("accessRight") === "USER"? null : cardClick}>
         <p>#{props?.item?.id}</p>
         <p>Area: {props?.item?.areaId}</p>
-        <p>Brigadier: {props?.item?.brigadier?.name}</p>
+        <p>Brigadier: {props?.item?.brigadier?.name} {props?.item?.brigadier?.lastname}</p>
         <p>Count of workers: {props?.item?.workers?.length}</p>
       </div>
     );

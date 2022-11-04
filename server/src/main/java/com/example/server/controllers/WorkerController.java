@@ -39,6 +39,30 @@ public class WorkerController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+    @GetMapping("/shop")
+    public  ResponseEntity<?> getByShop(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(workerService.getByShop(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @GetMapping("/area")
+    public  ResponseEntity<?> getByArea(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(workerService.getByArea(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+    @GetMapping("/laboratory")
+    public  ResponseEntity<?> getByLaboratory(@RequestParam Integer id){
+        try {
+            return ResponseEntity.ok(workerService.getByLaboratory(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
 
     @DeleteMapping
     public ResponseEntity delete(@RequestParam Integer id){

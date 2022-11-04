@@ -66,9 +66,6 @@ public class UserController {
         if(userRepository.existsByLogin(body.getLogin())){
             return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
         }
-        if(Objects.equals(body.getRole(), "OWNER")){
-            return new ResponseEntity<>("Invalid access level", HttpStatus.BAD_REQUEST);
-        }
 
         User user = new User();
         user.setLogin(body.getLogin());

@@ -29,7 +29,7 @@ const Ware = () => {
   }
 
   const deleteClick = async () => {
-    await $api.delete(`/worker?id=${ware?.id}`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.delete(`/${localStorage.getItem("ware")}?id=${ware?.id}`).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
   }
 
   useEffect(() => {

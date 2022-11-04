@@ -14,7 +14,6 @@ public class GliderDto {
 
     private Integer id;
     private Integer weight;
-    private List<Work> work = new ArrayList<>();
     private LocalDate startCreate;
     private LocalDate finishCreate;
     private LocalDate startTest;

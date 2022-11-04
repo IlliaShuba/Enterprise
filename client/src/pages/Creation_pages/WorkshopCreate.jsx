@@ -34,8 +34,8 @@ const WorkshopCreate = () => {
             <span class="input-text">Head:</span>
             <select onChange={event => setId(event.target.value)}>
               {candidates.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.name}
+                <option key={option.value} value={option.id}>
+                  {option.name + " " + option.lastname}
                 </option>
               ))}
             </select>

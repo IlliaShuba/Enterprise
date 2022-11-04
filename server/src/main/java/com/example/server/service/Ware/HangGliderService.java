@@ -1,6 +1,7 @@
 package com.example.server.service.Ware;
 
 import com.example.server.dto.AirplaneDto;
+import com.example.server.dto.EquipmentDto;
 import com.example.server.dto.GliderDto;
 import com.example.server.dto.HangGliderDto;
 import com.example.server.entity.Equipment;
@@ -14,6 +15,7 @@ import com.example.server.repository.EquipmentRepository;
 import com.example.server.repository.LaboratoryRepository;
 import com.example.server.repository.ShopRepository;
 import com.example.server.repository.WareRepo.HangGliderRepository;
+import com.example.server.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,8 @@ public class HangGliderService {
     private LaboratoryRepository laboratoryRepository;
     @Autowired
     private EquipmentRepository equipmentRepository;
+    @Autowired
+    private EquipmentService equipmentService;
 
 
     public HangGlider create(HangGliderDto dto){
@@ -110,11 +114,13 @@ public class HangGliderService {
         dto.setFinishTest(entity.getFinishTest());
         dto.setShop(entity.getShop().getId());
         dto.setLab(entity.getLaboratory().getId());
-        List<Integer> equipment= new ArrayList<>();
-        for (Equipment item :entity.getEquipment()) {
-            equipment.add(item.getId());
+
+        List<EquipmentDto> equipment = equipmentService.getByWareId(entity.getId(), "hang-glider");
+        List<Integer> equipment_ids= new ArrayList<>();
+        for (EquipmentDto elem : equipment){
+            equipment_ids.add(elem.getId());
         }
-        dto.setEquipment(equipment);
+        dto.setEquipment(equipment_ids);
         return dto;
     }
 }

@@ -44,8 +44,8 @@ const LaboratoryPage = () => {
     <div className="container">
       <Back path = {AppPath.HOME} />
       <div className="selector">
-        <div onClick={() => setSelectType("laboratory")}>Laboratory</div>
-        <div onClick={() => setSelectType("equipment")}>Equipment</div>
+        <div className={selectType === "laboratory"? "selected" : null} onClick={() => setSelectType("laboratory")}>Laboratory</div>
+        <div className={selectType === "equipment"? "selected" : null} onClick={() => setSelectType("equipment")}>Equipment</div>
       </div>
       <div className="filter">
         <input

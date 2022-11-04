@@ -56,7 +56,7 @@ const BrigadeCreate = () => {
               <option disabled value={0}> -- select an option --</option>
               {candidates.map(option => (
                 <option key={option.value} value={option.id}>
-                  {option.name}
+                  {option.name + " " + option.lastname}
                 </option>
               ))}
             </select>

@@ -13,7 +13,6 @@ import java.util.List;
 public class MissileDto {
     private Integer id;
     private Integer chargePower;
-    private List<Work> work = new ArrayList<>();
     private LocalDate startCreate;
     private LocalDate finishCreate;
     private LocalDate startTest;

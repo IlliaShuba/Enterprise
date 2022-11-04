@@ -31,10 +31,10 @@ const UserPage = () => {
     <div className="container">
       <Back path = {AppPath.HOME} />
       <div className="selector">
-        <div onClick={() => setSelectType("all")}>All</div>
-        <div onClick={() => setSelectType("admin")}>Admin</div>
-        <div onClick={() => setSelectType("manager")}>Manager</div>
-        <div onClick={() => setSelectType("user")}>User</div>
+        <div className={selectType === "all"? "selected" : null} onClick={() => setSelectType("all")}>All</div>
+        <div className={selectType === "admin"? "selected" : null} onClick={() => setSelectType("admin")}>Admin</div>
+        <div className={selectType === "manager"? "selected" : null} onClick={() => setSelectType("manager")}>Manager</div>
+        <div className={selectType === "user"? "selected" : null} onClick={() => setSelectType("user")}>User</div>
       </div>
       <div className="filter">
         <input

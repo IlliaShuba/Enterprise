@@ -29,7 +29,7 @@ const WorkshopPage = () => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {
-          await $api.get(`/area?id=${id}`).then((response) => {
+          await $api.get(`/area/byShop?id=${id}`).then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         break;
@@ -39,7 +39,7 @@ const WorkshopPage = () => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {
-          await $api.get(`/brigade?id=${id}`).then((response) => {
+          await $api.get(`/brigade/area?id=${id}`).then((response) => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         break;
@@ -54,16 +54,17 @@ const WorkshopPage = () => {
     <div className="container">
       <Back path = {AppPath.HOME} />
       <div className="selector">
-        <div onClick={() => setSelectType("shop")}>Shop</div>
-        <div onClick={() => setSelectType("area")}>Area</div>
-        <div onClick={() => setSelectType("brigade")}>Brigade</div>
+        <div className={selectType === "shop"? "selected" : null} onClick={() => setSelectType("shop")}>Shop</div>
+        <div className={selectType === "area"? "selected" : null} onClick={() => setSelectType("area")}>Area</div>
+        <div className={selectType === "brigade"? "selected" : null} onClick={() => setSelectType("brigade")}>Brigade</div>
       </div>
       <div className="filter">
-        <input
-          onChange={(event) => event.target.value === ""? setId(null): setId(event.target.value)}
+        {selectType !== "shop"? <input
+          onChange={(event) => event.target.value === "" ? setId(null) : setId(event.target.value)}
           type="number"
-          placeholder="Enter shop id"
-        />
+          placeholder={selectType === "area"?"Enter shop id": "Enter area id"}
+        />:null}
+
         <button onClick={findClick}>Find</button></div>
       <div className="items">{items.map((item) => (
         <WorkshopCard

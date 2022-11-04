@@ -30,14 +30,19 @@ const WareCreate = () => {
     switch (wareType){
       case "airplane":
         await $api.post(`/${wareType}`, {numberOfEngines: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+        break;
       case "glider":
         await $api.post(`/${wareType}`, {weight: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+        break;
       case "hang-glider":
         await $api.post(`/${wareType}`, {weight: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+        break;
       case "helicopter":
         await $api.post(`/${wareType}`, {enginePower: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+        break;
       case "missile":
         await $api.post(`/${wareType}`, {chargePower: field, shop: workshopId, lab: labId, equipment: equipmentId}).then((response) => response.status === 200 ? navigate(AppPath.WARE_PAGE) : null).catch(err => console.log(err));
+        break;
 
     }
   }

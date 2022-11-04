@@ -125,7 +125,7 @@ public class AirplaneService {
         dto.setShop(entity.getShop().getId());
         dto.setLab(entity.getLaboratory().getId());
 
-        List<EquipmentDto> equipment = equipmentService.getByWareId(entity.getId());
+        List<EquipmentDto> equipment = equipmentService.getByWareId(entity.getId(), "airplane");
         List<Integer> equipment_ids= new ArrayList<>();
         for (EquipmentDto elem : equipment){
             equipment_ids.add(elem.getId());

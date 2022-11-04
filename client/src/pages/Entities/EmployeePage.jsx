@@ -10,7 +10,7 @@ const EmployeePage = () => {
   const [selectType, setSelectType] = useState("worker");
   const [items,setItems] = useState([{id:1, name: "Ivan"}]);
   const [id, setId] = useState(null);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("workshop");
 
   const findClick = async () => {
     switch (selectType){
@@ -20,9 +20,24 @@ const EmployeePage = () => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {
-          await $api.get(`/shop?id=${id}`).then((response) => {
-            setItems(response.data);
-          }).catch(err => console.log(err))}
+          switch (filter) {
+            case "workshop":
+              await $api.get(`/worker/shop?id=${id}`).then((response) => {
+                setItems(response.data);
+              }).catch(err => console.log(err))
+              break;
+            case "area":
+              await $api.get(`/worker/area?id=${id}`).then((response) => {
+                setItems(response.data);
+              }).catch(err => console.log(err))
+              break;
+            case "laboratory":
+              await $api.get(`/worker/laboratory?id=${id}`).then((response) => {
+                setItems(response.data);
+              }).catch(err => console.log(err))
+              break;
+          }
+        }
         break;
       case "engineer":
         if(id == null){
@@ -30,9 +45,19 @@ const EmployeePage = () => {
             setItems(response.data);
           }).catch(err => console.log(err))}
         else {
-          await $api.get(`/area?id=${id}`).then((response) => {
-            setItems(response.data);
-          }).catch(err => console.log(err))}
+          switch (filter) {
+            case "workshop":
+              await $api.get(`/engineer/shop?id=${id}`).then((response) => {
+                setItems(response.data);
+              }).catch(err => console.log(err))
+              break;
+            case "area":
+              await $api.get(`/engineer/area?id=${id}`).then((response) => {
+                setItems(response.data);
+              }).catch(err => console.log(err))
+              break;
+          }
+        }
         break;
     }
   };
@@ -45,16 +70,15 @@ const EmployeePage = () => {
     <div className="container">
       <Back path = {AppPath.HOME} />
       <div className="selector">
-        <div onClick={() => {setSelectType("worker"); findClick()}}>Worker</div>
-        <div onClick={() => {setSelectType("engineer"); findClick()}}>Engineering Staff</div>
+        <div className={selectType === "worker"? "selected" : null} onClick={() => {setSelectType("worker"); findClick()}}>Worker</div>
+        <div className={selectType === "engineer"? "selected" : null} onClick={() => {setSelectType("engineer"); findClick()}}>Engineering Staff</div>
       </div>
 
-      { selectType === "all" ? null :(
-        <div className="selector">
-          <div onClick={() => setFilter("workshop")}>Workshop</div>
-          <div onClick={() => setFilter("area")}>Area</div>
-          { selectType === "engineer"? null : <div onClick={() => setFilter("laboratory")}>Laboratory</div>}
-        </div>)}
+      <div className="selector">
+        <div className={filter === "workshop"? "selected" : null} onClick={() => setFilter("workshop")}>Workshop</div>
+        <div className={filter === "area"? "selected" : null} onClick={() => setFilter("area")}>Area</div>
+        { selectType === "engineer"? null : <div className={filter === "laboratory"? "selected" : null} onClick={() => setFilter("laboratory")}>Laboratory</div>}
+      </div>
 
       { selectType === "all" ? null :
         (<div className="filter">

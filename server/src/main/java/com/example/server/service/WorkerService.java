@@ -3,12 +3,11 @@ package com.example.server.service;
 import com.example.server.dto.AreaDto;
 import com.example.server.dto.WorkerDto;
 import com.example.server.entity.*;
-import com.example.server.repository.BrigadeRepository;
-import com.example.server.repository.LaboratoryRepository;
-import com.example.server.repository.WorkerRepository;
+import com.example.server.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,9 +16,12 @@ public class WorkerService {
     @Autowired
     private WorkerRepository workerRepository;
     @Autowired
-    private BrigadeRepository brigadeRepository;
+    private ShopRepository shopRepository;
+    @Autowired
+    private AreaRepository areaRepository;
     @Autowired
     private LaboratoryRepository laboratoryRepository;
+
 
     public Worker create(WorkerDto dto){
         Worker entity = new Worker();
@@ -32,6 +34,30 @@ public class WorkerService {
 
     public WorkerDto getById(Integer id){return toDto(workerRepository.findById(id).get());}
     public List<Worker> getAll(){return workerRepository.findAll();}
+    public List<Worker> getByShop(Integer id){
+        Shop shop = shopRepository.findById(id).get();
+        List<Worker> response = new ArrayList<>();
+
+        for(Area area : shop.getArea()){
+            for(Brigade brigade : area.getBrigades()){
+                response.addAll(brigade.getWorkers());
+            }
+        }
+
+        return response;
+    }
+    public List<Worker> getByArea(Integer id){
+        Area area = areaRepository.findById(id).get();
+        List<Worker> response = new ArrayList<>();
+
+        for(Brigade brigade : area.getBrigades()){
+            response.addAll(brigade.getWorkers());
+        }
+
+        return response;
+    }
+    public List<Worker> getByLaboratory(Integer id){return laboratoryRepository.findById(id).get().getWorkers();}
+
     public void delete(Integer id){workerRepository.deleteById(id);}
 
     public WorkerDto toDto(Worker entity){

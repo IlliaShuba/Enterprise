@@ -11,7 +11,7 @@ const LabCreate = () => {
   let navigate = useNavigate();
 
   const create = async () => {
-    await $api.post(`/laboratory`).then((response) => response.status === 200 ? navigate(AppPath.SHOP_PAGE) : null).catch(err => console.log(err));
+    await $api.post(`/laboratory`).then((response) => response.status === 200 ? navigate(AppPath.LABORATORY_PAGE) : null).catch(err => console.log(err));
   }
 
   const getCandidates = async () => {
