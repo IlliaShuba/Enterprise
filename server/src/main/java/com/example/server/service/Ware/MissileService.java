@@ -55,6 +55,11 @@ public class MissileService {
         }
         return missileRepository.save(missile);
     }
+
+    public Missile copy(Integer id){
+        Missile missile = missileRepository.findById(id).get();
+        return (Missile) missile.copy();
+    }
     public MissileDto getById(Integer id){
         Missile missile = missileRepository.findById(id).get();
         return toDto(missile);

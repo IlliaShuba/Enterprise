@@ -23,6 +23,16 @@ public class MissileController {
         }
     }
 
+    @PostMapping("/prototype")
+    public ResponseEntity<?> copy(@RequestParam Integer id){
+        try {
+            missileService.copy(id);
+            return ResponseEntity.ok("Missile created");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
     @GetMapping
     public ResponseEntity getById(@RequestParam Integer id){
         try {

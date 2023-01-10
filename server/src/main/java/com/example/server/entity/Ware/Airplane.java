@@ -24,6 +24,8 @@ public class Airplane {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer numberOfEngines;
+    private Integer weight;
+    private String description;
     private LocalDate startCreate;
     private LocalDate finishCreate;
     private LocalDate startTest;

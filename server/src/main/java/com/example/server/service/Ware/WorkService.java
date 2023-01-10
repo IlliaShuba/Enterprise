@@ -1,11 +1,8 @@
 package com.example.server.service.Ware;
 
-import com.example.server.dto.AirplaneDto;
-import com.example.server.dto.EquipmentDto;
 import com.example.server.dto.WorkDto;
 import com.example.server.entity.Area;
 import com.example.server.entity.Brigade;
-import com.example.server.entity.Equipment;
 import com.example.server.entity.Ware.*;
 import com.example.server.repository.AreaRepository;
 import com.example.server.repository.BrigadeRepository;
@@ -52,7 +49,7 @@ public class WorkService {
 
         switch (dto.getWare()) {
             case ("airplane") -> {
-                Airplane airplane = airplaneRepository.findById(dto.getWareId()).get();
+               /* AirplaneService airplane = airplaneRepository.findById(dto.getWareId()).get();
                 if(!airplane.getWork().isEmpty()){
                     List<Integer> ids = new ArrayList<>();
                     for (Work item : airplane.getWork()) {
@@ -61,7 +58,7 @@ public class WorkService {
                     Integer id = Collections.max(ids);
                     finish(id);
                 }
-                work.setAirplane(airplane);
+                work.setAirplane(airplane);*/
             }
             case ("glider") -> {
                 Glider glider = gliderRepository.findById(dto.getWareId()).get();
