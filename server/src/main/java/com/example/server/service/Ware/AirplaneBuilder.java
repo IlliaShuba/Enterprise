@@ -25,21 +25,12 @@ public abstract class AirplaneBuilder {
 
     Airplane airplane;
 
-    void create(AirplaneDto dto){
+    void create(){
         airplane = new Airplane();
         airplane.setStartCreate(LocalDate.now());
         airplane.setFinishCreate(null);
         airplane.setStartTest(null);
         airplane.setFinishTest(null);
-
-        Shop shop = shopRepository.findById(dto.getShop()).get();
-        Laboratory laboratory = laboratoryRepository.findById(dto.getLab()).get();
-        airplane.setShop(shop);
-        airplane.setLaboratory(laboratory);
-        for (Integer id : dto.getEquipment()) {
-            Equipment equipment = equipmentRepository.findById(id).get();
-            equipment.setAirplane(airplane);
-        }
     }
 
     abstract void buildEngines();

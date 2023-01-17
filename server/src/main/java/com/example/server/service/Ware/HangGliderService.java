@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class HangGliderService {
+public class HangGliderService{
     @Autowired
     private HangGliderRepository hangGliderRepository;
     @Autowired

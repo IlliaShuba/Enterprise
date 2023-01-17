@@ -12,14 +12,14 @@ public class Director {
 
     public void setBuilder(AirplaneBuilder builder){ this.builder = builder;}
 
-    Airplane buildAirplane(AirplaneDto dto){
-        builder.create(dto);
+    public Airplane buildAirplane(){
+        builder.create();
         builder.buildEngines();
         builder.buildWeight();
         builder.buildDescription();
 
         Airplane airplane = builder.getAirplane();
 
-        return airplaneRepository.save(airplane);
+        return airplane;
     }
 }

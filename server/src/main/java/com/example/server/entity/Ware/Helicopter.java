@@ -21,7 +21,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "helicopter")
-public class Helicopter {
+public class Helicopter implements Ware{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -45,4 +45,9 @@ public class Helicopter {
     @JoinColumn(name = "laboratory_id")
     @JsonBackReference
     private Laboratory laboratory;
+
+    @Override
+    public String showDescription() {
+        return "Description for helicopter!";
+    }
 }

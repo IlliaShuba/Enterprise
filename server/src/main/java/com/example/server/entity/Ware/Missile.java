@@ -3,17 +3,11 @@ package com.example.server.entity.Ware;
 import com.example.server.entity.Equipment;
 import com.example.server.entity.Laboratory;
 import com.example.server.entity.Shop;
-import com.example.server.entity.Ware.Prototype.Copyable;
-import com.example.server.repository.EquipmentRepository;
-import com.example.server.repository.LaboratoryRepository;
-import com.example.server.repository.ShopRepository;
-import com.example.server.service.EquipmentService;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDate;

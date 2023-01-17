@@ -1,4 +1,4 @@
-package com.example.server.entity.Ware.Prototype;
+package com.example.server.entity.Ware;
 
 public interface Copyable {
     Object copy();

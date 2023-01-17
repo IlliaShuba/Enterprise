@@ -21,7 +21,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "hang_glider")
-public class HangGlider {
+public class HangGlider extends WareTemplate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -45,4 +45,20 @@ public class HangGlider {
     @JoinColumn(name = "laboratory_id")
     @JsonBackReference
     private Laboratory laboratory;
+
+    @Override
+    public void showWareInfo() {
+        System.out.println( "HangGlider{" +
+                "id=" + id +
+                ", weight=" + weight +
+                ", startCreate=" + startCreate +
+                ", finishCreate=" + finishCreate +
+                ", startTest=" + startTest +
+                ", finishTest=" + finishTest +
+                ", work=" + work +
+                ", equipment=" + equipment +
+                ", shop=" + shop +
+                ", laboratory=" + laboratory +
+                '}');
+    }
 }
